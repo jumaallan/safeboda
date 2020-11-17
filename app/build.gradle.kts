@@ -109,7 +109,7 @@ dependencies {
 
     // Glide
     implementation(Libraries.glide)
-    annotationProcessor(Libraries.glideCompiler)
+    kapt(Libraries.glideCompiler)
 
     // Lifecycle
     implementation(Libraries.viewModel)
