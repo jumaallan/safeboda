@@ -4,7 +4,6 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.ktlintPlugin)
     id(BuildPlugins.kapt)
-    id(BuildPlugins.apollo).version(Versions.apolloVersion)
 }
 
 android {
@@ -62,11 +61,6 @@ kapt {
     arguments {
         arg("room.incremental", "true")
     }
-}
-
-apollo {
-    // instruct the compiler to generate Kotlin models
-    generateKotlinModels.set(true)
 }
 
 spotless {
