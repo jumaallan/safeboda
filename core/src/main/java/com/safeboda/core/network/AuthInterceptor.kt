@@ -9,9 +9,10 @@ class AuthInterceptor(
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
+        val token = settings.bearerToken.orEmpty()
         var chainRequest = chain.request()
         chainRequest =
-            chainRequest.newBuilder().header("Authorization", "Bearer $settings.bearerToken.orEmpty()")
+            chainRequest.newBuilder().header("Authorization", "Bearer $token")
                 .build()
         return chain.proceed(chainRequest)
     }
