@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--    Network Errors-->
-    <string name="error_no_connectivity_message">Looks like you are no longer connected to the Internet, reconnect and try again.</string>
-    <string name="error_unexpected_message">Something went wrong, please try again.</string>
-    <string name="error_timeout_message">Looks like the server is taking to long to respond, please try again</string>
-    <string name="error_client_message">Something went wrong with your request, please try again</string>
-    <string name="error_server_message">Issues in server side, and will be fixed as soon as possible</string>
+    <!-- Server errors -->
+    <string name="error_unauthorized">Unauthorized</string>
+    <string name="error_no_network">No network connection</string>
+    <string name="error_default">Something went wrong</string>
+    <string name="try_again">Try again</string>
+
+    <!-- Empty Strings -->
+    <string name="default_empty_text">Nothing to see here</string>
+    <string name="empty_people">There aren\'t any users.</string>
+
 </resources>

@@ -18,6 +18,9 @@ object Versions {
     //DI - KOIN
     const val koin = "2.1.5"
 
+    // Glide
+    const val glideVersion = "4.11.0"
+
     // Room db
     const val room = "2.3.0-alpha02"
 
@@ -108,6 +111,10 @@ object Libraries {
     // DI - KOIN
     const val koin = "org.koin:koin-android:${Versions.koin}"
     const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+
+    // Glide
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
 
     // Room db
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"

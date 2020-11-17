@@ -1,4 +1,4 @@
-package com.safeboda.core.settings
+package com.safeboda.core.preference
 
 import android.content.SharedPreferences
 import androidx.core.content.edit

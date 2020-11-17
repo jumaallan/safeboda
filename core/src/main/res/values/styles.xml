@@ -1,0 +1,58 @@
+<resources>
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+
+  <style name="Header" parent="TextAppearance.AppCompat">
+    <item name="android:textSize">24sp</item>
+    <item name="android:letterSpacing">-0.008</item>
+    <item name="android:lineSpacingExtra">2sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:fontFamily">@font/inter_bold</item>
+  </style>
+
+  <style name="EditText.Title" parent="TextAppearance.AppCompat">
+    <item name="android:textSize">18sp</item>
+    <item name="android:fontFamily">@font/inter_medium</item>
+  </style>
+
+  <style name="Header.Section" parent="Header">
+    <item name="android:textSize">16sp</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:fontFamily">@font/inter_semibold</item>
+  </style>
+
+  <style name="Secondary">
+    <item name="android:textSize">@dimen/body_text_size</item>
+    <item name="android:textColor">@color/textSecondary</item>
+  </style>
+
+  <!-- Buttons -->
+  <style name="TextButton" parent="TextAppearance.AppCompat.Button">
+    <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    <item name="android:textSize">@dimen/body_text_size_small</item>
+    <item name="android:letterSpacing">0.01</item>
+    <item name="android:lineSpacingExtra">2sp</item>
+    <item name="android:textColor">@color/blue</item>
+    <item name="android:fontFamily">@font/inter_medium</item>
+  </style>
+
+  <style name="ButtonPrimary" parent="TextButton">
+    <item name="android:background">@drawable/button_primary</item>
+    <item name="android:gravity">center</item>
+    <item name="android:elevation">@dimen/default_elevation</item>
+  </style>
+
+  <style name="Tertiary">
+    <item name="android:textColor">@color/textTertiary</item>
+  </style>
+
+  <style name="Tertiary.Small" parent="Tertiary">
+    <item name="android:textSize">@dimen/body_text_size_small</item>
+  </style>
+
+</resources>

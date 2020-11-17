@@ -8,6 +8,9 @@ plugins {
 android {
     compileSdkVersion(AndroidSdk.compileSdkVersion)
 
+    android.buildFeatures.dataBinding = true
+    android.buildFeatures.viewBinding = true
+
     defaultConfig {
         minSdkVersion(AndroidSdk.minSdkVersion)
         targetSdkVersion(AndroidSdk.targetSdkVersion)
@@ -42,13 +45,14 @@ dependencies {
 
     // Material Design
     implementation(Libraries.material)
+    implementation(Libraries.swiperefreshlayout)
 
     // Firebase crashlytics
     implementation(Libraries.crashlytics)
 
     // Network - Retrofit, OKHTTP
-    implementation(Libraries.retrofit)
-    implementation(Libraries.gson)
+    implementation(Libraries.apollo)
+    implementation(Libraries.apolloCoroutines)
     implementation(Libraries.ohttp)
     implementation(Libraries.loggingInterceptor)
     debugImplementation(Libraries.chunkDebug)
@@ -58,6 +62,10 @@ dependencies {
     implementation(Libraries.room)
     implementation(Libraries.roomRuntime)
     kapt(Libraries.roomCompiler)
+
+    // Glide
+    implementation(Libraries.glide)
+    kapt(Libraries.glideCompiler)
 
     // Coroutines
     implementation(Libraries.coroutines)

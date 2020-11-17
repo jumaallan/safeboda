@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- regular -->
+    <font
+        app:font="@font/inter_regular"
+        app:fontStyle="normal" />
+
+    <!-- regular italic -->
+    <font
+        app:font="@font/inter_italic"
+        app:fontStyle="italic" />
+
+    <!-- regular bold -->
+    <font
+        app:font="@font/inter_bold"
+        app:fontStyle="normal" />
+
+    <!-- medium -->
+    <font
+        app:font="@font/inter_medium"
+        app:fontStyle="normal" />
+
+    <!-- medium italic -->
+    <font
+        app:font="@font/inter_medium_italic"
+        app:fontStyle="italic" />
+
+    <!-- semibold -->
+    <font
+        app:font="@font/inter_semibold"
+        app:fontStyle="normal" />
+
+    <!-- semibold italic -->
+    <font
+        app:font="@font/inter_semibold_italic"
+        app:fontStyle="italic" />
+</font-family>

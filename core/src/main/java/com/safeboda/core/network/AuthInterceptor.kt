@@ -1,6 +1,6 @@
 package com.safeboda.core.network
 
-import com.safeboda.core.settings.Settings
+import com.safeboda.core.preference.Settings
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -9,9 +9,10 @@ class AuthInterceptor(
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
+        val token = settings.bearerToken.orEmpty()
         var chainRequest = chain.request()
         chainRequest =
-            chainRequest.newBuilder().header("Authorization", settings.bearerToken.orEmpty())
+            chainRequest.newBuilder().header("Authorization", "Bearer $token")
                 .build()
         return chain.proceed(chainRequest)
     }

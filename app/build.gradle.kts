@@ -94,11 +94,6 @@ dependencies {
     implementation(Libraries.navigation)
     implementation(Libraries.navigationFragment)
 
-    // Network - Retrofit, OKHTTP
-    implementation(Libraries.retrofit)
-    implementation(Libraries.apollo)
-    implementation(Libraries.apolloCoroutines)
-
     // Room
     implementation(Libraries.room)
     implementation(Libraries.roomRuntime)
@@ -111,6 +106,10 @@ dependencies {
     // DI - KOIN
     implementation(Libraries.koin)
     implementation(Libraries.koinViewModel)
+
+    // Glide
+    implementation(Libraries.glide)
+    kapt(Libraries.glideCompiler)
 
     // Lifecycle
     implementation(Libraries.viewModel)

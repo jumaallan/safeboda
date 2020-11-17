@@ -39,7 +39,7 @@ Develop an application that uses Github APIs to achieve the following features:
     * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operations.
     * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) - handle the stream of data asynchronously that executes sequentially.
     * [KOIN](https://insert-koin.io/) - a pragmatic lightweight dependency injection framework.
-    * [Retrofit](https://square.github.io/retrofit/) - a type-safe REST client for Android.
+    * [Apollo GraphQL Client](https://www.apollographql.com/docs/android/essentials/get-started-kotlin/) - Apollo is a platform for building a data graph.
     * [Jetpack](https://developer.android.com/jetpack)
         * [Room](https://developer.android.com/topic/libraries/architecture/room) - a persistence library provides an abstraction layer over SQLite.
         * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - is an observable data holder.
