@@ -14,7 +14,7 @@ import org.koin.core.module.Module
 import timber.log.Timber
 import javax.annotation.Nullable
 
-class Safeboda : Application() {
+open class Safeboda : Application() {
 
     override fun onCreate() {
         super.onCreate()

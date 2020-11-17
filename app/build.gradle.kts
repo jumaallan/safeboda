@@ -112,8 +112,8 @@ dependencies {
 
     // Debug - for debug builds only
     implementation(Libraries.timber)
-    implementation(Libraries.leakCanary)
-    implementation(Libraries.stetho)
+    debugImplementation(Libraries.leakCanary)
+    debugImplementation(Libraries.stetho)
 
     // UI Tests
     androidTestImplementation(TestLibraries.espresso)
