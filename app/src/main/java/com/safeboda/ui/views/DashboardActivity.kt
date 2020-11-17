@@ -45,7 +45,6 @@ class DashboardActivity :
                 }
             }
         }
-
     }
 
     private fun handleProfileSuccess(profile: UserOrOrganization) {

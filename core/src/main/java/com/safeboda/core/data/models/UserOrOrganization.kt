@@ -1,7 +1,5 @@
 package com.safeboda.core.data.models
 
-import android.graphics.Color
-import androidx.annotation.ColorInt
 import com.safeboda.core.fragment.OrganizationFragment
 import com.safeboda.core.fragment.UserProfileFragment
 

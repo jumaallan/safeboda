@@ -19,14 +19,16 @@ class UserOrganizationRepository(
     ): Flow<UserOrOrganization?> {
         val data = apolloClient.query(UserOrOrganizationQuery(login)).toDeferred().data(onFailure)
             ?: return flowOf()
-        return flowOf(data.repositoryOwner?.let {
-            when {
-                it.asUser != null ->
-                    UserOrOrganization(it.asUser.fragments.userProfileFragment)
-                it.asOrganization != null ->
-                    UserOrOrganization(it.asOrganization.fragments.organizationFragment)
-                else -> null
+        return flowOf(
+            data.repositoryOwner?.let {
+                when {
+                    it.asUser != null ->
+                        UserOrOrganization(it.asUser.fragments.userProfileFragment)
+                    it.asOrganization != null ->
+                        UserOrOrganization(it.asOrganization.fragments.organizationFragment)
+                    else -> null
+                }
             }
-        })
+        )
     }
 }
