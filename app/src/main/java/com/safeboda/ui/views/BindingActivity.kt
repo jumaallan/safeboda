@@ -1,4 +1,4 @@
-package com.safeboda.core.ui
+package com.safeboda.ui.views
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
