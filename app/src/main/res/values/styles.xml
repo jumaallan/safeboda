@@ -7,6 +7,14 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+  <style name="Header" parent="TextAppearance.AppCompat">
+    <item name="android:textSize">24sp</item>
+    <item name="android:letterSpacing">-0.008</item>
+    <item name="android:lineSpacingExtra">2sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:fontFamily">@font/inter_bold</item>
+  </style>
+
   <style name="Tertiary">
     <item name="android:textColor">@color/textTertiary</item>
   </style>
