@@ -1,4 +1,4 @@
-package ke.co.appslab.gradleplugins
+package com.safeboda
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

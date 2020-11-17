@@ -1,4 +1,4 @@
-package ke.co.appslab.gradleplugins
+package com.safeboda
 
 import org.junit.Test
 
