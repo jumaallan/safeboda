@@ -4,6 +4,7 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.ktlintPlugin)
     id(BuildPlugins.kapt)
+    id(BuildPlugins.apollo).version(Versions.apolloVersion)
 }
 
 android {
@@ -63,6 +64,11 @@ kapt {
     }
 }
 
+apollo {
+    // instruct the compiler to generate Kotlin models
+    generateKotlinModels.set(true)
+}
+
 spotless {
     kotlin {
         licenseHeaderFile(
@@ -90,6 +96,8 @@ dependencies {
 
     // Network - Retrofit, OKHTTP
     implementation(Libraries.retrofit)
+    implementation(Libraries.apollo)
+    implementation(Libraries.apolloCoroutines)
 
     // Room
     implementation(Libraries.room)
