@@ -1,12 +1,15 @@
 package com.safeboda.ui.views
 
 import android.os.Bundle
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.safeboda.R
 import com.safeboda.core.span.LabelColor
 import com.safeboda.core.ui.BindingActivity
 import com.safeboda.databinding.ActivityDashboardBinding
+import com.safeboda.ui.interfaces.OnUserSelectedListener
 
-class DashboardActivity : BindingActivity<ActivityDashboardBinding>() {
+class DashboardActivity : BindingActivity<ActivityDashboardBinding>(), OnUserSelectedListener,
+    OnRefreshListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,4 +21,12 @@ class DashboardActivity : BindingActivity<ActivityDashboardBinding>() {
 
     override val layoutResId: Int
         get() = R.layout.activity_dashboard
+
+    override fun onUserOrOrgSelected(login: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onRefresh() {
+        TODO("Not yet implemented")
+    }
 }
