@@ -12,16 +12,16 @@ abstract class BindingActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     abstract val layoutResId: Int
 
-    protected lateinit var dataBinding: T
+    protected lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding = DataBindingUtil.setContentView(this, layoutResId)
+        binding = DataBindingUtil.setContentView(this, layoutResId)
     }
 
     override fun onDestroy() {
-        if (::dataBinding.isInitialized) {
-            dataBinding.unbind()
+        if (::binding.isInitialized) {
+            binding.unbind()
         }
         super.onDestroy()
     }

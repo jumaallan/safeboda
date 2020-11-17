@@ -1,13 +1,16 @@
 package com.safeboda.ui.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.safeboda.R
+import com.safeboda.databinding.ActivityDashboardBinding
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : BindingActivity<ActivityDashboardBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+        binding.lifecycleOwner = this
     }
+
+    override val layoutResId: Int
+        get() = R.layout.activity_dashboard
 }
