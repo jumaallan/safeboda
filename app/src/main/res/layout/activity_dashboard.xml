@@ -18,13 +18,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/padding_normal"
+        android:padding="@dimen/padding_medium"
         tools:context=".ui.views.DashboardActivity">
 
         <ImageView
             android:id="@+id/user_profile_avatar"
             android:layout_width="@dimen/avatar_64"
             android:layout_height="@dimen/avatar_64"
+            android:contentDescription="@string/app_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:roundedCornerImageUrl="@{headerItem.avatarUrl}"
@@ -59,7 +60,7 @@
             android:id="@+id/status_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_medium"
             android:orientation="horizontal"
             android:padding="@dimen/padding_medium"
             android:visibility="@{TextUtils.isEmpty(headerItem.emojiHtml) &amp;&amp; TextUtils.isEmpty(headerItem.statusMessage) ? View.GONE : View.VISIBLE}"
@@ -94,7 +95,7 @@
             android:id="@+id/user_profile_bio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_medium"
             android:visibility="@{TextUtils.isEmpty(headerItem.bioHtml) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/status_background"
@@ -104,7 +105,7 @@
             android:id="@+id/user_profile_company"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_medium"
             android:drawablePadding="@dimen/padding_medium"
             android:ellipsize="end"
             android:maxLines="1"
@@ -118,7 +119,7 @@
             android:id="@+id/user_profile_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_medium"
             android:drawablePadding="@dimen/padding_medium"
             android:text="@{headerItem.location}"
             android:visibility="@{TextUtils.isEmpty(headerItem.location) ? View.GONE : View.VISIBLE}"
@@ -131,7 +132,7 @@
             android:id="@+id/user_profile_link"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_medium"
             android:drawablePadding="@dimen/padding_medium"
             android:text="@{headerItem.websiteUrl}"
             android:textStyle="bold"
@@ -145,7 +146,7 @@
             android:id="@+id/user_profile_followers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_medium"
             android:drawablePadding="@dimen/padding_medium"
             android:text="@{String.format(@string/n_followers_n_following, headerItem.followersCount, headerItem.followingCount)}"
             android:visibility="@{headerItem.followersCount >= 0 &amp;&amp; headerItem.followingCount >= 0 ? View.VISIBLE : View.GONE}"
@@ -153,6 +154,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_profile_link"
             tools:text="70 followers • 100 following" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_followers"
+            tools:itemCount="6"
+            tools:listitem="@layout/list_item_user" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
