@@ -47,8 +47,8 @@ dependencies {
     implementation(Libraries.crashlytics)
 
     // Network - Retrofit, OKHTTP
-    implementation(Libraries.retrofit)
-    implementation(Libraries.gson)
+    implementation(Libraries.apollo)
+    implementation(Libraries.apolloCoroutines)
     implementation(Libraries.ohttp)
     implementation(Libraries.loggingInterceptor)
     debugImplementation(Libraries.chunkDebug)

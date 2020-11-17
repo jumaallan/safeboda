@@ -2,19 +2,12 @@ package com.safeboda.di
 
 import androidx.room.Room
 import com.safeboda.data.local.Database
-import com.safeboda.data.remote.api.GithubAPI
 import com.safeboda.data.repository.UserRepository
 import com.safeboda.ui.viewmodel.UserViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.create
-
-val apiModule: Module = module {
-    single<GithubAPI> { get<Retrofit>().create() }
-}
 
 private val databaseModule: Module = module {
     single {
@@ -31,7 +24,7 @@ private val daoModule: Module = module {
 }
 
 private val repositoryModule: Module = module {
-    single { UserRepository(get(), get()) }
+    single { UserRepository(get()) }
 }
 
 private val viewModelModule: Module = module {
@@ -39,7 +32,6 @@ private val viewModelModule: Module = module {
 }
 
 val appModules: List<Module> = listOf(
-    apiModule,
     databaseModule,
     daoModule,
     repositoryModule,

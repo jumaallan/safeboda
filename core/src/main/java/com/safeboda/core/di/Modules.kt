@@ -1,7 +1,7 @@
 package com.safeboda.core.di
 
 import android.content.Context
-import com.google.gson.GsonBuilder
+import com.apollographql.apollo.ApolloClient
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.safeboda.core.BuildConfig
 import com.safeboda.core.network.AuthInterceptor
@@ -12,8 +12,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val networkingModule: Module = module(override = true) {
@@ -33,21 +31,17 @@ val networkingModule: Module = module(override = true) {
             .addInterceptor(interceptor)
             .addInterceptor(chuckInterceptor)
             .addInterceptor(authInterceptor)
-            .connectTimeout(10, TimeUnit.MINUTES)
-            .readTimeout(10, TimeUnit.MINUTES)
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
             .build()
     }
 
     single {
 
-        val gson = GsonBuilder()
-            .serializeNulls()
-            .create()
-
-        Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(get())
+        ApolloClient.builder()
+            .serverUrl(Constants.BASE_URL)
+            .okHttpClient(get())
+//            .addCustomTypeAdapter(CustomType.DATETIME, DateTimeAdapter())
             .build()
     }
 }

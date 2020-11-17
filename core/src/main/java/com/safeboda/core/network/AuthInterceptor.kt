@@ -11,7 +11,7 @@ class AuthInterceptor(
     override fun intercept(chain: Interceptor.Chain): Response {
         var chainRequest = chain.request()
         chainRequest =
-            chainRequest.newBuilder().header("Authorization", settings.bearerToken.orEmpty())
+            chainRequest.newBuilder().header("Authorization", "Bearer $settings.bearerToken.orEmpty()")
                 .build()
         return chain.proceed(chainRequest)
     }
