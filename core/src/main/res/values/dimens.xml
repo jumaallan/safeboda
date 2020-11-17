@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    toolbar-->
     <dimen name="app_bar_elevation">4dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="toolbar_inset_start">@dimen/margin_normal</dimen>
     <dimen name="toolbar_title_text_size">20sp</dimen>
 
+    <!--    corner radius-->
     <dimen name="corner_radius_large">8dp</dimen>
+    <dimen name="card_corner_radius">9dp</dimen>
+    <dimen name="corner_radius_small">4dp</dimen>
+
+    <!--    text size-->
     <dimen name="body_text_size_small">14sp</dimen>
 
+    <!--    elevation-->
     <dimen name="default_elevation">1dp</dimen>
+    <dimen name="bottom_sheet_elevation">12dp</dimen>
 
-    <dimen name="card_corner_radius">9dp</dimen>
+    <!--images-->
     <dimen name="image_view_height">64dp</dimen>
+    <dimen name="avatar_64">64dp</dimen>
+    <dimen name="avatar_44">44dp</dimen>
+    <dimen name="loading_image_size">24dp</dimen>
 
+    <!--    margin-->
     <dimen name="margin_largest">32dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_medium">12dp</dimen>
     <dimen name="margin_small">8dp</dimen>
 
+    <!--    padding-->
     <dimen name="padding_normal">16dp</dimen>
     <dimen name="padding_medium">12dp</dimen>
     <dimen name="padding_small">8dp</dimen>
 
-    <dimen name="bottom_sheet_elevation">12dp</dimen>
-    <dimen name="avatar_64">64dp</dimen>
-    <dimen name="corner_radius_small">4dp</dimen>
+    <!--    stroke-->
     <dimen name="transparent_label_stroke_width">1dp</dimen>
-    <dimen name="avatar_44">44dp</dimen>
+
 </resources>
