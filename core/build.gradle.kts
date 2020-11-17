@@ -45,6 +45,7 @@ dependencies {
 
     // Material Design
     implementation(Libraries.material)
+    implementation(Libraries.swiperefreshlayout)
 
     // Firebase crashlytics
     implementation(Libraries.crashlytics)
