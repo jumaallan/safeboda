@@ -21,4 +21,6 @@
 
     <color name="textTertiary">#ff525560</color>
 
+    <color name="snackbarTextColor">@android:color/white</color>
+    <color name="snackbarActionTextColor">#ffffd33d</color>
 </resources>

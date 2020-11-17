@@ -107,6 +107,10 @@ dependencies {
     implementation(Libraries.koin)
     implementation(Libraries.koinViewModel)
 
+    // Glide
+    implementation(Libraries.glide)
+    annotationProcessor(Libraries.glideCompiler)
+
     // Lifecycle
     implementation(Libraries.viewModel)
     implementation(Libraries.livedata)

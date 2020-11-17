@@ -14,6 +14,10 @@ fun Activity.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, duration).show()
 }
 
+fun Activity.toast(string: Int, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, string, duration).show()
+}
+
 /**
  * Responsible for creating a snackBar on an Activity
  *

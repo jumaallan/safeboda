@@ -14,13 +14,17 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle.State.RESUMED
 import androidx.lifecycle.Lifecycle.State.STARTED
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.safeboda.core.R
-import com.bumptech.glide.Glide
 import com.safeboda.core.network.ApiFailure
 import com.safeboda.core.network.ApiFailureType
 import com.safeboda.core.store.RecentSearchStore
 import com.safeboda.core.utils.toast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+
 /**
  * Base Activity class.
  */
@@ -68,7 +72,7 @@ abstract class SafebodaActivity : AppCompatActivity() {
         container: ViewGroup? = null
     ): Boolean {
         if (text != null && (lifecycle.currentState == STARTED || lifecycle.currentState == RESUMED)) {
-            val viewGroup = container ?: findViewById<ViewGroup>(android.R.id.content)
+            val viewGroup = container ?: findViewById(android.R.id.content)
             Snackbar.make(viewGroup, text, length).apply {
                 view.elevation =
                     resources.getDimensionPixelSize(R.dimen.bottom_sheet_elevation).toFloat()
@@ -111,17 +115,15 @@ abstract class SafebodaActivity : AppCompatActivity() {
     )
 
     @UiThread
-    private fun clearImageCaches() {
+    private fun clearImageCaches() =
         applicationContext?.let {
             Glide.get(it).clearMemory()
             GlobalScope.launch(Dispatchers.Default) {
                 blockingClearImageDiskCache(it)
             }
         }
-    }
 
     @WorkerThread
-    private fun blockingClearImageDiskCache(applicationContext: Context) {
+    private fun blockingClearImageDiskCache(applicationContext: Context) =
         Glide.get(applicationContext).clearDiskCache()
-    }
 }

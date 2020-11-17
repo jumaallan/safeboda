@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="app_bar_elevation">4dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="toolbar_inset_start">@dimen/margin_normal</dimen>
+    <dimen name="toolbar_title_text_size">20sp</dimen>
+
+    <dimen name="default_elevation">1dp</dimen>
+
     <dimen name="card_corner_radius">9dp</dimen>
     <dimen name="image_view_height">64dp</dimen>
 
@@ -11,4 +18,6 @@
     <dimen name="padding_normal">16dp</dimen>
     <dimen name="padding_medium">12dp</dimen>
     <dimen name="padding_small">8dp</dimen>
+
+    <dimen name="bottom_sheet_elevation">12dp</dimen>
 </resources>
