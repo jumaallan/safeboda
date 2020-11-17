@@ -3,6 +3,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.kapt)
+    id(BuildPlugins.apollo).version(Versions.apolloVersion)
 }
 
 android {
@@ -36,6 +37,11 @@ android {
             isMinifyEnabled = true
         }
     }
+}
+
+apollo {
+    // instruct the compiler to generate Kotlin models
+    generateKotlinModels.set(true)
 }
 
 dependencies {
