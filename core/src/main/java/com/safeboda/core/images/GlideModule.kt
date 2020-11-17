@@ -73,7 +73,5 @@ class GlideModule : AppGlideModule() {
             )
     }
 
-    override fun isManifestParsingEnabled(): Boolean {
-        return false
-    }
+    override fun isManifestParsingEnabled() = false
 }

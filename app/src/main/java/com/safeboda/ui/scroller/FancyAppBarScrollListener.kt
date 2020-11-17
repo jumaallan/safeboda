@@ -10,7 +10,9 @@ import timber.log.Timber
 import kotlin.math.abs
 import kotlin.math.min
 
-class FancyAppBarScrollListener(private val appBarLayout: AppBarLayout) : OnScrollListener() {
+class FancyAppBarScrollListener(
+    private val appBarLayout: AppBarLayout
+) : OnScrollListener() {
 
     companion object {
         private const val ELEVATION_MULTIPLIER_UNKNOWN = -1F
@@ -46,9 +48,9 @@ class FancyAppBarScrollListener(private val appBarLayout: AppBarLayout) : OnScro
 
         if (firstVisiblePosition == RecyclerView.NO_POSITION) return
 
-        if (elevationMultiplier == ELEVATION_MULTIPLIER_UNKNOWN
-            || (dy > 0 && elevationMultiplier < 1) // Scrolling down
-            || (dy < 0 && firstVisiblePosition == 0) // Scrolling up
+        if (elevationMultiplier == ELEVATION_MULTIPLIER_UNKNOWN ||
+            (dy > 0 && elevationMultiplier < 1) || // Scrolling down
+            (dy < 0 && firstVisiblePosition == 0) // Scrolling up
         ) {
             elevationMultiplier = if (firstVisiblePosition == 0) {
                 val firstViewTop = recyclerView.getChildAt(0).let {

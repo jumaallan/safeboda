@@ -77,7 +77,6 @@ class GitHubImageHandler(view: TextView) : ImageGetter {
             requestedWidth: Int,
             requestedHeight: Int
         ): SampleSizeRounding = QUALITY
-
     }
 
     private class ImageLoadedCallback(

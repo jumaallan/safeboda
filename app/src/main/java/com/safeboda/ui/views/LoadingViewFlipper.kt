@@ -121,9 +121,7 @@ class LoadingViewFlipper @JvmOverloads constructor(
         }
     }
 
-    override fun onSaveInstanceState(): Parcelable? {
-        return ViewFlipperState(displayedChild, super.onSaveInstanceState())
-    }
+    override fun onSaveInstanceState(): Parcelable? = ViewFlipperState(displayedChild, super.onSaveInstanceState())
 
     override fun onDetachedFromWindow() {
         fancyAppBarScrollListener?.let {
@@ -153,11 +151,12 @@ class LoadingViewFlipper @JvmOverloads constructor(
     ) {
         val isEmptyModel = model.data == null || (model.data as? List<*>)?.isNullOrEmpty() == true
         when (model.status) {
-            LOADING -> if (isEmptyModel) {
-                showLoading()
-            } else {
-                showContent(true)
-            }
+            LOADING ->
+                if (isEmptyModel) {
+                    showLoading()
+                } else {
+                    showContent(true)
+                }
             FAILURE -> if (activity is SafebodaActivity) {
                 activity.handleApiFailure(model.apiFailure)?.also { error ->
                     if (isEmptyModel) {
@@ -182,11 +181,12 @@ class LoadingViewFlipper @JvmOverloads constructor(
                     }
                 }
             }
-            SUCCESS -> if (isEmptyModel) {
-                showEmpty(emptyModel)
-            } else {
-                showContent(false)
-            }
+            SUCCESS ->
+                if (isEmptyModel) {
+                    showEmpty(emptyModel)
+                } else {
+                    showContent(false)
+                }
         }
     }
 

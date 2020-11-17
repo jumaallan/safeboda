@@ -7,7 +7,9 @@ import com.safeboda.core.span.LabelColor
 import com.safeboda.databinding.ActivityDashboardBinding
 import com.safeboda.ui.interfaces.OnUserSelectedListener
 
-class DashboardActivity : BindingActivity<ActivityDashboardBinding>(), OnUserSelectedListener,
+class DashboardActivity :
+    BindingActivity<ActivityDashboardBinding>(),
+    OnUserSelectedListener,
     OnRefreshListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
