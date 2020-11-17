@@ -28,8 +28,6 @@
             android:contentDescription="@string/app_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:roundedCornerImageUrl="@{headerItem.avatarUrl}"
-            app:roundedCornerRadius="@{@dimen/corner_radius_large}"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -148,7 +146,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:drawablePadding="@dimen/padding_medium"
-            android:text="@{String.format(@string/n_followers_n_following, headerItem.followersCount, headerItem.followingCount)}"
             android:visibility="@{headerItem.followersCount >= 0 &amp;&amp; headerItem.followingCount >= 0 ? View.VISIBLE : View.GONE}"
             app:drawableStartCompat="@drawable/ic_person"
             app:layout_constraintStart_toStartOf="parent"
