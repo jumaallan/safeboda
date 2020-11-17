@@ -11,16 +11,9 @@ data class ApiModel<out T>(
     val apiFailure: ApiFailure?
 ) {
     companion object {
-        fun <T> success(data: T): ApiModel<T> {
-            return ApiModel(SUCCESS, data, null)
-        }
-
-        fun <T> failure(apiFailure: ApiFailure, data: T?): ApiModel<T> {
-            return ApiModel(FAILURE, data, apiFailure)
-        }
-
-        fun <T> loading(data: T?): ApiModel<T> {
-            return ApiModel(LOADING, data, null)
-        }
+        fun <T> success(data: T): ApiModel<T> = ApiModel(SUCCESS, data, null)
+        fun <T> failure(apiFailure: ApiFailure, data: T?): ApiModel<T> =
+            ApiModel(FAILURE, data, apiFailure)
+        fun <T> loading(data: T?): ApiModel<T> = ApiModel(LOADING, data, null)
     }
 }
