@@ -11,13 +11,11 @@
     <color name="cyan">#00AAFF</color>
     <color name="cyan_dark">#0087CA</color>
 
-    <color name="nav_header_background">#0087CA</color>
-    <color name="drawer_background">#00AAFF</color>
+    <color name="gray_300">#ffbfc1c9</color>
+    <color name="gray_400">#ff9194a1</color>
 
-    <color name="home_green">#00C24E</color>
-    <color name="home_orange">#FF6F00</color>
-    <color name="home_purple">#A17EFF</color>
-    <color name="home_mustard">#FFAB00</color>
+    <color name="rippleColor">#33000000</color>
+    <color name="border">#4041434e</color>
 
     <color name="textTertiary">#ff525560</color>
 
