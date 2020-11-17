@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.safeboda.R
 import com.safeboda.core.span.LabelColor
-import com.safeboda.core.ui.BindingActivity
 import com.safeboda.databinding.ActivityDashboardBinding
 import com.safeboda.ui.interfaces.OnUserSelectedListener
 
