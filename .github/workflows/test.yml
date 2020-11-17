@@ -1,0 +1,73 @@
+name: ui-tests
+
+on:
+  pull_request:
+    paths:
+      - 'app/src/androidTest/*'
+  watch:
+    type: [started]
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight
+
+env:
+  APP_SIGN_KEYSTORE_PATH: /tmp/keystore
+  CACHE_BUNDLER: ~/.bundler
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        device: [google_pixel, google_pixel_xl]
+    #        device: [ google_pixel_xl ]
+
+    steps:
+      - name: Write key file
+        env:
+          AUTH: ${{ secrets.KEYSTORE }}
+        run: echo $AUTH | base64 --decode > /tmp/keystore
+
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Bundler cache
+        uses: actions/cache@v1
+        with:
+          path: $CACHE_BUNDLER
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Run fastlane, ui-tests lane, test configuration
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: ui_tests
+          options: '{ "conf": "ui_test" }'
+          skip-tracking: false
+          subdirectory: fastlane
+          bundle-install-path: CACHE_BUNDLER
+
+          DEVICE: ${{ matrix.device }}
+
+      - name: Upload jUnit report
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: ui_tests_results_${{ matrix.device }}
+          path: app/build/reports/androidTests/connected/flavors/QA
