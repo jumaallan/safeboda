@@ -62,6 +62,10 @@ dependencies {
     implementation(Libraries.roomRuntime)
     kapt(Libraries.roomCompiler)
 
+    // Glide
+    implementation(Libraries.glide)
+    kapt(Libraries.glideCompiler)
+
     // Coroutines
     implementation(Libraries.coroutines)
     implementation(Libraries.coroutinesAndroid)
