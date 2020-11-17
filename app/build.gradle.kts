@@ -4,6 +4,7 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.ktlintPlugin)
     id(BuildPlugins.kapt)
+    id(BuildPlugins.apollo).version(Versions.apolloVersion)
 }
 
 android {
@@ -63,6 +64,11 @@ kapt {
     }
 }
 
+apollo {
+    // instruct the compiler to generate Kotlin models
+    generateKotlinModels.set(true)
+}
+
 spotless {
     kotlin {
         licenseHeaderFile(
@@ -90,11 +96,8 @@ dependencies {
 
     // Network - Retrofit, OKHTTP
     implementation(Libraries.retrofit)
-    implementation(Libraries.gson)
-    implementation(Libraries.ohttp)
-    implementation(Libraries.loggingInterceptor)
-    implementation(Libraries.chunkDebug)
-    releaseImplementation(Libraries.chunkRelease)
+    implementation(Libraries.apollo)
+    implementation(Libraries.apolloCoroutines)
 
     // Room
     implementation(Libraries.room)
@@ -117,8 +120,8 @@ dependencies {
 
     // Debug - for debug builds only
     implementation(Libraries.timber)
-    implementation(Libraries.leakCanary)
-    implementation(Libraries.stetho)
+    debugImplementation(Libraries.leakCanary)
+    debugImplementation(Libraries.stetho)
 
     // UI Tests
     androidTestImplementation(TestLibraries.espresso)
