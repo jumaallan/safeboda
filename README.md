@@ -10,6 +10,12 @@ Before every commit, make sure you run the following commands:
 ./codeAnalysis
 ```
 
+If you have Fastlane installed, you can run the develop lane:
+
+```shell script
+fastlane branch conf:debug
+```
+
 To check for dependency updates, run the following command:
 
 ```shell script

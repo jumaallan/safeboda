@@ -5,17 +5,17 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000623">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000503">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: Switch to build lane" time="0.000543">
+      <testcase classname="fastlane.lanes" name="1: Switch to build lane" time="0.000405">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: ktlintFormat ktlintCheck detekt spotlessApply assembleDebug" time="39.031441">
+      <testcase classname="fastlane.lanes" name="2: ktlintFormat ktlintCheck detekt spotlessApply assembleDebug" time="21.784954">
         
       </testcase>
     
