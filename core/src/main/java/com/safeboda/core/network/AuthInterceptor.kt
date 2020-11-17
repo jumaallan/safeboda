@@ -1,15 +1,13 @@
 package com.safeboda.core.network
 
-import com.safeboda.core.preference.Settings
+import com.safeboda.core.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class AuthInterceptor(
-    private val settings: Settings,
-) : Interceptor {
+class AuthInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = settings.bearerToken.orEmpty()
+        val token = BuildConfig.GITHUB_TOKEN
         var chainRequest = chain.request()
         chainRequest =
             chainRequest.newBuilder().header("Authorization", "Bearer $token")

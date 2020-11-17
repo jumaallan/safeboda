@@ -1,12 +1,10 @@
 package com.safeboda.core.di
 
-import android.content.Context
 import com.apollographql.apollo.ApolloClient
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.safeboda.core.BuildConfig
 import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.core.network.AuthInterceptor
-import com.safeboda.core.preference.Settings
 import com.safeboda.core.utils.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,7 +24,7 @@ val networkingModule: Module = module(override = true) {
 
         val chuckInterceptor = ChuckInterceptor(androidContext()).showNotification(true)
 
-        val authInterceptor = AuthInterceptor(get())
+        val authInterceptor = AuthInterceptor()
 
         OkHttpClient.Builder()
             .addInterceptor(interceptor)
@@ -51,20 +49,7 @@ val repositoryModule: Module = module {
     single { UserOrganizationRepository(get()) }
 }
 
-val settingsModule: Module = module {
-
-    single {
-        androidContext().getSharedPreferences(
-            Settings.SAFEBODA_SETTINGS_NAME,
-            Context.MODE_PRIVATE
-        )
-    }
-
-    single { Settings(get()) }
-}
-
 val coreModules: List<Module> = listOf(
     networkingModule,
-    repositoryModule,
-    settingsModule
+    repositoryModule
 )

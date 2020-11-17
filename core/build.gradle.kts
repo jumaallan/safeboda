@@ -28,13 +28,19 @@ android {
         jvmTarget = "1.8"
     }
 
+    val GITHUB_TOKEN: String? =
+        com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)
+            .getProperty("GITHUB_TOKEN")
+
     buildTypes {
         getByName("debug") {
             isDebuggable = true
+            buildConfigField("String", "GITHUB_TOKEN", GITHUB_TOKEN.toString())
         }
 
         getByName("release") {
             isMinifyEnabled = true
+            buildConfigField("String", "GITHUB_TOKEN", GITHUB_TOKEN.toString())
         }
     }
 }
