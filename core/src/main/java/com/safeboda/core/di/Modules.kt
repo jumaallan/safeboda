@@ -4,6 +4,7 @@ import android.content.Context
 import com.apollographql.apollo.ApolloClient
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.safeboda.core.BuildConfig
+import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.core.network.AuthInterceptor
 import com.safeboda.core.preference.Settings
 import com.safeboda.core.utils.Constants
@@ -46,6 +47,10 @@ val networkingModule: Module = module(override = true) {
     }
 }
 
+val repositoryModule: Module = module {
+    single { UserOrganizationRepository(get()) }
+}
+
 val settingsModule: Module = module {
 
     single {
@@ -60,5 +65,6 @@ val settingsModule: Module = module {
 
 val coreModules: List<Module> = listOf(
     networkingModule,
+    repositoryModule,
     settingsModule
 )
