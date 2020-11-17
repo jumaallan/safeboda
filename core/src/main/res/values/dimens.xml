@@ -6,13 +6,17 @@
     <dimen name="toolbar_inset_start">@dimen/margin_normal</dimen>
     <dimen name="toolbar_title_text_size">20sp</dimen>
 
+    <!--    buttons-->
+    <dimen name="button_height">44dp</dimen>
+
     <!--    corner radius-->
     <dimen name="corner_radius_large">8dp</dimen>
-    <dimen name="card_corner_radius">9dp</dimen>
+    <dimen name="corner_radius_medium">6dp</dimen>
     <dimen name="corner_radius_small">4dp</dimen>
 
     <!--    text size-->
     <dimen name="body_text_size_small">14sp</dimen>
+    <dimen name="body_text_size">16sp</dimen>
 
     <!--    elevation-->
     <dimen name="default_elevation">1dp</dimen>
@@ -25,7 +29,7 @@
     <dimen name="loading_image_size">24dp</dimen>
 
     <!--    margin-->
-    <dimen name="margin_largest">32dp</dimen>
+    <dimen name="margin_largest">24dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_medium">12dp</dimen>
     <dimen name="margin_small">8dp</dimen>

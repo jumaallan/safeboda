@@ -8,6 +8,11 @@
     <color name="black">#000000</color>
     <color name="transparent">#0fff</color>
 
+    <color name="blue">#ff0366d6</color>
+
+    <color name="textSecondary">#ff2f3037</color>
+    <color name="backgroundTertiary">#ffffffff</color>
+
     <color name="cyan">#00AAFF</color>
     <color name="cyan_dark">#0087CA</color>
 

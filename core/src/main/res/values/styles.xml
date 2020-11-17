@@ -26,6 +26,27 @@
     <item name="android:fontFamily">@font/inter_semibold</item>
   </style>
 
+  <style name="Secondary">
+    <item name="android:textSize">@dimen/body_text_size</item>
+    <item name="android:textColor">@color/textSecondary</item>
+  </style>
+
+  <!-- Buttons -->
+  <style name="TextButton" parent="TextAppearance.AppCompat.Button">
+    <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    <item name="android:textSize">@dimen/body_text_size_small</item>
+    <item name="android:letterSpacing">0.01</item>
+    <item name="android:lineSpacingExtra">2sp</item>
+    <item name="android:textColor">@color/blue</item>
+    <item name="android:fontFamily">@font/inter_medium</item>
+  </style>
+
+  <style name="ButtonPrimary" parent="TextButton">
+    <item name="android:background">@drawable/button_primary</item>
+    <item name="android:gravity">center</item>
+    <item name="android:elevation">@dimen/default_elevation</item>
+  </style>
+
   <style name="Tertiary">
     <item name="android:textColor">@color/textTertiary</item>
   </style>
