@@ -19,23 +19,27 @@ enum class LabelColor {
     companion object {
 
         fun backgroundDrawable(context: Context, labelColor: LabelColor): Drawable {
-            return (ContextCompat.getDrawable(
-                context,
-                R.drawable.transparent_label_background
-            )?.mutate() as LayerDrawable).apply {
+            return (
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.transparent_label_background
+                )?.mutate() as LayerDrawable
+                ).apply {
                 getDrawable(0).mutate().colorFilter =
                     PorterDuffColorFilter(
                         backgroundColor(
                             context,
                             labelColor
-                        ), SRC_OVER
+                        ),
+                        SRC_OVER
                     )
                 getDrawable(1).mutate().colorFilter =
                     PorterDuffColorFilter(
                         strokeColor(
                             context,
                             labelColor
-                        ), SRC_ATOP
+                        ),
+                        SRC_ATOP
                     )
             }
         }

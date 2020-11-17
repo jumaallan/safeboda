@@ -8,6 +8,9 @@ plugins {
 android {
     compileSdkVersion(AndroidSdk.compileSdkVersion)
 
+    android.buildFeatures.dataBinding = true
+    android.buildFeatures.viewBinding = true
+
     defaultConfig {
         minSdkVersion(AndroidSdk.minSdkVersion)
         targetSdkVersion(AndroidSdk.targetSdkVersion)

@@ -3,6 +3,7 @@ package com.safeboda.ui.views
 import android.os.Bundle
 import com.safeboda.R
 import com.safeboda.core.span.LabelColor
+import com.safeboda.core.ui.BindingActivity
 import com.safeboda.databinding.ActivityDashboardBinding
 
 class DashboardActivity : BindingActivity<ActivityDashboardBinding>() {
