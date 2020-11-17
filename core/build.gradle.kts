@@ -49,6 +49,10 @@ dependencies {
     // Network - Retrofit, OKHTTP
     implementation(Libraries.retrofit)
     implementation(Libraries.gson)
+    implementation(Libraries.ohttp)
+    implementation(Libraries.loggingInterceptor)
+    debugImplementation(Libraries.chunkDebug)
+    releaseImplementation(Libraries.chunkRelease)
 
     // Room
     implementation(Libraries.room)
