@@ -11,7 +11,7 @@
 
         <variable
             name="headerItem"
-            type="com.safeboda.ui.model.HeaderItem" />
+            type="com.safeboda.core.data.models.UserOrOrganization" />
 
     </data>
 
@@ -61,7 +61,6 @@
             android:layout_marginTop="@dimen/margin_medium"
             android:orientation="horizontal"
             android:padding="@dimen/padding_medium"
-            android:visibility="@{TextUtils.isEmpty(headerItem.emojiHtml) &amp;&amp; TextUtils.isEmpty(headerItem.statusMessage) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_profile_avatar"
             tools:layout_editor_absoluteX="16dp">
@@ -74,7 +73,6 @@
                 android:layout_marginEnd="@dimen/margin_small"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:visibility="@{TextUtils.isEmpty(headerItem.emojiHtml) ? View.GONE : View.VISIBLE}"
                 tools:text="0" />
 
             <TextView
@@ -83,8 +81,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/margin_small"
-                android:text="@{headerItem.statusMessage}"
-                android:visibility="@{TextUtils.isEmpty(headerItem.statusMessage) ? View.GONE : View.VISIBLE}"
                 tools:text="Sample user status" />
 
         </LinearLayout>
@@ -146,7 +142,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:drawablePadding="@dimen/padding_medium"
-            android:visibility="@{headerItem.followersCount >= 0 &amp;&amp; headerItem.followingCount >= 0 ? View.VISIBLE : View.GONE}"
             app:drawableStartCompat="@drawable/ic_person"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_profile_link"
