@@ -15,6 +15,17 @@
     <item name="android:fontFamily">@font/inter_bold</item>
   </style>
 
+  <style name="EditText.Title" parent="TextAppearance.AppCompat">
+    <item name="android:textSize">18sp</item>
+    <item name="android:fontFamily">@font/inter_medium</item>
+  </style>
+
+  <style name="Header.Section" parent="Header">
+    <item name="android:textSize">16sp</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:fontFamily">@font/inter_semibold</item>
+  </style>
+
   <style name="Tertiary">
     <item name="android:textColor">@color/textTertiary</item>
   </style>

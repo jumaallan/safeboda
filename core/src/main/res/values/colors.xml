@@ -13,7 +13,7 @@
 
     <color name="gray_300">#ffbfc1c9</color>
     <color name="gray_400">#ff9194a1</color>
-
+    <color name="listItemBackground">#ffffffff</color>
     <color name="rippleColor">#33000000</color>
     <color name="border">#4041434e</color>
 
