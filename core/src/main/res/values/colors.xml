@@ -19,4 +19,6 @@
     <color name="home_purple">#A17EFF</color>
     <color name="home_mustard">#FFAB00</color>
 
+    <color name="textTertiary">#ff525560</color>
+
 </resources>

@@ -1,6 +1,6 @@
 package com.safeboda.core.network
 
-import com.safeboda.core.settings.Settings
+import com.safeboda.core.preference.Settings
 import okhttp3.Interceptor
 import okhttp3.Response
 

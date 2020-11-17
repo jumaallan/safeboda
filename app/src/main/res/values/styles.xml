@@ -7,4 +7,12 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+  <style name="Tertiary">
+    <item name="android:textColor">@color/textTertiary</item>
+  </style>
+
+  <style name="Tertiary.Small" parent="Tertiary">
+    <item name="android:textSize">@dimen/body_text_size_small</item>
+  </style>
+
 </resources>

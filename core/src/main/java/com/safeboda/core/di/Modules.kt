@@ -5,7 +5,7 @@ import com.apollographql.apollo.ApolloClient
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.safeboda.core.BuildConfig
 import com.safeboda.core.network.AuthInterceptor
-import com.safeboda.core.settings.Settings
+import com.safeboda.core.preference.Settings
 import com.safeboda.core.utils.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
