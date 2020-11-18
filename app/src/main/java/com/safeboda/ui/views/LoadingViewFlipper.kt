@@ -137,13 +137,6 @@ class LoadingViewFlipper @JvmOverloads constructor(
         swipeRefreshLayout?.setOnRefreshListener(listener)
     }
 
-    fun addFancyAppBarScrollListener(appBarLayout: AppBarLayout?) {
-        appBarLayout?.let {
-            fancyAppBarScrollListener = FancyAppBarScrollListener(it)
-            recyclerView?.addOnScrollListener(fancyAppBarScrollListener!!)
-        }
-    }
-
     fun showViewForApiStatus(
         model: ApiModel<Any>,
         activity: Activity?,
