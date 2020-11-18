@@ -2,8 +2,6 @@ package com.safeboda.ui.views
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.safeboda.R
 import com.safeboda.core.network.ApiModel

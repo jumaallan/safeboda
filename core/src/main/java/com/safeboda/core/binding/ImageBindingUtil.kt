@@ -13,8 +13,12 @@ import kotlin.math.roundToInt
 fun loadRoundedCornerImage(view: ImageView, imageUrl: String?, radius: Float) {
     when {
         view.context != null && !TextUtils.isEmpty(imageUrl) -> {
-            val cornerRadius = if (radius > 0) radius.roundToInt() else view.resources
-                .getDimensionPixelSize(R.dimen.corner_radius_small)
+            val cornerRadius = if (radius > 0) {
+                radius.roundToInt()
+            } else {
+                view.resources
+                    .getDimensionPixelSize(R.dimen.corner_radius_small)
+            }
             Glide.with(view.context)
                 .load(imageUrl)
                 .transition(DrawableTransitionOptions.withCrossFade())

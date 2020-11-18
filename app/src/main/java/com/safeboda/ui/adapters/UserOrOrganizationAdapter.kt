@@ -43,17 +43,11 @@ class UserOrOrganizationAdapter(
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
+    override fun getItemCount() = data.size
 
-    override fun getItemViewType(position: Int): Int {
-        return data[position].itemType
-    }
+    override fun getItemViewType(position: Int) = data[position].itemType
 
-    override fun getItemId(position: Int): Long {
-        return data[position].adapterId
-    }
+    override fun getItemId(position: Int) = data[position].adapterId
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
