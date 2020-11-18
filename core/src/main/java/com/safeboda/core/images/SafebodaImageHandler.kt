@@ -20,7 +20,7 @@ import java.lang.ref.WeakReference
 /**
  * Loads images into an [ImageSpan] asynchronously.
  */
-class GitHubImageHandler(view: TextView) : ImageGetter {
+class SafebodaImageHandler(view: TextView) : ImageGetter {
 
     companion object {
         private const val TAG = "GitHubImageHandler"
