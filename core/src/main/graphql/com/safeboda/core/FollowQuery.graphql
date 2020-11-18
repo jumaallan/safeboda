@@ -1,0 +1,32 @@
+query FollowQuery($id: ID!, $first: Int!, $after: String) {
+  node(id: $id) {
+    ... on User {
+      following(first: $first, after: $after) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          ... UserListItemFragment
+        }
+      }
+      followers(first: $first, after: $after) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          ... UserListItemFragment
+        }
+      }
+    }
+  }
+}
+
+fragment UserListItemFragment on User {
+  id
+  avatarUrl
+  name
+  login
+  bioHTML
+}
