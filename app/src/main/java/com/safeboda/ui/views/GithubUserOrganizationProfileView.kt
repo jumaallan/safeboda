@@ -17,8 +17,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
-import com.google.android.material.appbar.AppBarLayout
-import com.safeboda.core.R
+import com.safeboda.R
 import com.safeboda.core.network.ApiModel
 import com.safeboda.core.network.ApiRequestStatus.*
 import com.safeboda.ui.scroller.FancyAppBarScrollListener
@@ -27,7 +26,7 @@ import kotlinx.android.parcel.Parcelize
 /**
  * Custom view to toggle between loading, empty, error and successful UI states smoothly.
  */
-class LoadingViewFlipper @JvmOverloads constructor(
+class GithubUserOrganizationProfileView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : ViewAnimator(context, attrs) {
@@ -75,7 +74,7 @@ class LoadingViewFlipper @JvmOverloads constructor(
             try {
                 customViewResId = getResourceId(
                     R.styleable.LoadingViewFlipper_contentView,
-                    R.layout.default_recycler_view
+                    R.layout.user_organization_recycler_view
                 )
             } finally {
                 recycle()
@@ -135,13 +134,6 @@ class LoadingViewFlipper @JvmOverloads constructor(
         refreshCallback = listener
         swipeRefreshLayout?.isEnabled = true
         swipeRefreshLayout?.setOnRefreshListener(listener)
-    }
-
-    fun addFancyAppBarScrollListener(appBarLayout: AppBarLayout?) {
-        appBarLayout?.let {
-            fancyAppBarScrollListener = FancyAppBarScrollListener(it)
-            recyclerView?.addOnScrollListener(fancyAppBarScrollListener!!)
-        }
     }
 
     fun showViewForApiStatus(

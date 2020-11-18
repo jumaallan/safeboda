@@ -1,167 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout>
 
-    <data>
-
-        <import type="android.text.TextUtils" />
-
-        <import type="android.view.View" />
-
-        <variable
-            name="headerItem"
-            type="com.safeboda.ui.model.HeaderItem" />
-
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/padding_medium"
-        tools:context=".ui.views.DashboardActivity">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/user_profile_avatar"
-            android:layout_width="@dimen/avatar_64"
-            android:layout_height="@dimen/avatar_64"
-            android:contentDescription="@string/app_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/user_profile_name"
-            style="@style/Header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:text="@{headerItem.name}"
-            android:visibility="@{TextUtils.isEmpty(headerItem.name) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintStart_toEndOf="@id/user_profile_avatar"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Juma Allan" />
-
-        <TextView
-            android:id="@+id/user_profile_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{headerItem.login}"
-            android:textColor="@color/textTertiary"
-            android:textSize="17sp"
-            android:visibility="@{TextUtils.isEmpty(headerItem.login) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintStart_toStartOf="@id/user_profile_name"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_name"
-            tools:text="jumaallan" />
-
-        <LinearLayout
-            android:id="@+id/status_background"
+        <com.safeboda.ui.views.GithubUserOrganizationProfileView
+            android:id="@+id/view_user_org_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:orientation="horizontal"
-            android:padding="@dimen/padding_medium"
-            android:visibility="@{TextUtils.isEmpty(headerItem.emojiHtml) &amp;&amp; TextUtils.isEmpty(headerItem.statusMessage) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_avatar"
-            tools:layout_editor_absoluteX="16dp">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-            <TextView
-                android:id="@+id/user_profile_status_emoji"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/margin_small"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:visibility="@{TextUtils.isEmpty(headerItem.emojiHtml) ? View.GONE : View.VISIBLE}"
-                tools:text="0" />
-
-            <TextView
-                android:id="@+id/user_profile_status_message"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/margin_small"
-                android:text="@{headerItem.statusMessage}"
-                android:visibility="@{TextUtils.isEmpty(headerItem.statusMessage) ? View.GONE : View.VISIBLE}"
-                tools:text="Sample user status" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/user_profile_bio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:visibility="@{TextUtils.isEmpty(headerItem.bioHtml) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/status_background"
-            tools:text="A users bio" />
-
-        <TextView
-            android:id="@+id/user_profile_company"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:drawablePadding="@dimen/padding_medium"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:visibility="@{TextUtils.isEmpty(headerItem.companyHtml) ? View.GONE : View.VISIBLE}"
-            app:drawableStartCompat="@drawable/ic_organization"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_bio"
-            tools:text="GitHub" />
-
-        <TextView
-            android:id="@+id/user_profile_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:drawablePadding="@dimen/padding_medium"
-            android:text="@{headerItem.location}"
-            android:visibility="@{TextUtils.isEmpty(headerItem.location) ? View.GONE : View.VISIBLE}"
-            app:drawableStartCompat="@drawable/ic_location"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_company"
-            tools:text="San Francisco, CA" />
-
-        <TextView
-            android:id="@+id/user_profile_link"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:drawablePadding="@dimen/padding_medium"
-            android:text="@{headerItem.websiteUrl}"
-            android:textStyle="bold"
-            android:visibility="@{TextUtils.isEmpty(headerItem.websiteUrl) ? View.GONE : View.VISIBLE}"
-            app:drawableStartCompat="@drawable/ic_link"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_location"
-            tools:text="www.github.com" />
-
-        <TextView
-            android:id="@+id/user_profile_followers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:drawablePadding="@dimen/padding_medium"
-            android:visibility="@{headerItem.followersCount >= 0 &amp;&amp; headerItem.followingCount >= 0 ? View.VISIBLE : View.GONE}"
-            app:drawableStartCompat="@drawable/ic_person"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_link"
-            tools:text="70 followers • 100 following" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_followers"
-            tools:itemCount="6"
-            tools:listitem="@layout/list_item_user" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

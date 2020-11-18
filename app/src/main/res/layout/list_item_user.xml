@@ -33,6 +33,7 @@
             android:contentDescription="@string/app_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:roundedCornerImageUrl="@{user.avatarUrl}"
             tools:src="@tools:sample/avatars" />
 
         <TextView

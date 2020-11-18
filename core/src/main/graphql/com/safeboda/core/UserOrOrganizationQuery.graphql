@@ -1,0 +1,69 @@
+query UserOrOrganizationQuery($login: String!) {
+  repositoryOwner(login: $login) {
+    ... on User {
+      ...UserProfileFragment
+    }
+    ... on Organization {
+      ...OrganizationFragment
+    }
+  }
+}
+
+fragment UserProfileFragment on User {
+  id
+  url
+  avatarUrl
+  bioHTML
+  companyHTML
+  userEmail: email
+  followers(first: 10) {
+    totalCount
+    nodes {
+      id
+      login
+      avatarUrl
+    }
+  }
+  following {
+    totalCount
+  }
+  isDeveloperProgramMember
+  isEmployee
+  isViewer
+  location
+  login
+  name
+  organizations {
+    totalCount
+  }
+  repositories(ownerAffiliations: [OWNER]) {
+    totalCount
+  }
+  starredRepositories {
+    totalCount
+  }
+  status {
+    emojiHTML
+    indicatesLimitedAvailability
+    message
+  }
+  viewerCanFollow
+  viewerIsFollowing
+  websiteUrl
+}
+
+fragment OrganizationFragment on Organization {
+  id
+  url
+  avatarUrl
+  descriptionHTML
+  organizationEmail: email
+  isVerified
+  location
+  login
+  name
+  organizationRepositories: repositories(ownerAffiliations: [OWNER]) {
+    totalCount
+  }
+  websiteUrl
+}

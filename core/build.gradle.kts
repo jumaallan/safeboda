@@ -3,6 +3,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.kapt)
+    id(BuildPlugins.apollo).version(Versions.apolloVersion)
 }
 
 android {
@@ -27,15 +28,26 @@ android {
         jvmTarget = "1.8"
     }
 
+    val GITHUB_TOKEN: String? =
+        com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)
+            .getProperty("GITHUB_TOKEN")
+
     buildTypes {
         getByName("debug") {
             isDebuggable = true
+            buildConfigField("String", "GITHUB_TOKEN", GITHUB_TOKEN.toString())
         }
 
         getByName("release") {
             isMinifyEnabled = true
+            buildConfigField("String", "GITHUB_TOKEN", GITHUB_TOKEN.toString())
         }
     }
+}
+
+apollo {
+    // instruct the compiler to generate Kotlin models
+    generateKotlinModels.set(true)
 }
 
 dependencies {

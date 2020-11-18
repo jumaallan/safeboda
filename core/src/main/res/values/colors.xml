@@ -10,8 +10,13 @@
 
     <color name="blue">#ff0366d6</color>
 
+    <color name="textPrimary">#ff050505</color>
     <color name="textSecondary">#ff2f3037</color>
+    <color name="textTertiary">#ff525560</color>
+
     <color name="backgroundTertiary">#ffffffff</color>
+    <color name="backgroundSecondary">#ffffffff</color>
+    <color name="backgroundPrimary">#ffeff0f5</color>
 
     <color name="cyan">#00AAFF</color>
     <color name="cyan_dark">#0087CA</color>
@@ -23,7 +28,10 @@
     <color name="rippleColor">#33000000</color>
     <color name="border">#4041434e</color>
 
-    <color name="textTertiary">#ff525560</color>
+    <color name="iconPrimary">#ff525560</color>
+    <color name="iconSecondary">#ff9194a1</color>
+
+    <color name="link">#ff0366d6</color>
 
     <color name="snackbarTextColor">@android:color/white</color>
     <color name="snackbarActionTextColor">#ffffd33d</color>

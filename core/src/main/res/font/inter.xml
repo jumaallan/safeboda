@@ -13,12 +13,12 @@
     <!-- regular bold -->
     <font
         app:font="@font/inter_bold"
-        app:fontStyle="normal" />
+        />
 
     <!-- medium -->
     <font
         app:font="@font/inter_medium"
-        app:fontStyle="normal" />
+        />
 
     <!-- medium italic -->
     <font
@@ -28,7 +28,7 @@
     <!-- semibold -->
     <font
         app:font="@font/inter_semibold"
-        app:fontStyle="normal" />
+         />
 
     <!-- semibold italic -->
     <font

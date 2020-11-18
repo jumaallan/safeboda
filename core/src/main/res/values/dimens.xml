@@ -33,6 +33,7 @@
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_medium">12dp</dimen>
     <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_none">0dp</dimen>
 
     <!--    padding-->
     <dimen name="padding_normal">16dp</dimen>
@@ -41,5 +42,6 @@
 
     <!--    stroke-->
     <dimen name="transparent_label_stroke_width">1dp</dimen>
+    <dimen name="divider_height">1px</dimen>
 
 </resources>

@@ -1,12 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <!-- Base application theme. -->
-  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-    <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-  </style>
 
+  <!-- Text Styles -->
   <style name="Header" parent="TextAppearance.AppCompat">
     <item name="android:textSize">24sp</item>
     <item name="android:letterSpacing">-0.008</item>
@@ -26,9 +21,42 @@
     <item name="android:fontFamily">@font/inter_semibold</item>
   </style>
 
+  <style name="BodyText" parent="Widget.AppCompat.TextView">
+    <item name="android:textSize">@dimen/body_text_size</item>
+    <item name="android:lineSpacingExtra">2sp</item>
+    <item name="android:fontFamily">@font/inter_regular</item>
+  </style>
+
+  <style name="BodyText.Small" parent="BodyText">
+    <item name="android:textSize">@dimen/body_text_size_small</item>
+  </style>
+
+  <style name="HtmlText" parent="BodyText">
+    <item name="android:lineSpacingExtra">3sp</item>
+    <item name="android:textIsSelectable">true</item>
+    <item name="android:focusable">true</item>
+    <item name="android:focusableInTouchMode">true</item>
+  </style>
+
   <style name="Secondary">
     <item name="android:textSize">@dimen/body_text_size</item>
     <item name="android:textColor">@color/textSecondary</item>
+  </style>
+
+  <style name="Secondary.Small" parent="Secondary">
+    <item name="android:textSize">@dimen/body_text_size_small</item>
+  </style>
+
+  <style name="Tertiary">
+    <item name="android:textColor">@color/textTertiary</item>
+  </style>
+
+  <style name="Tertiary.Small" parent="Tertiary">
+    <item name="android:textSize">@dimen/body_text_size_small</item>
+  </style>
+
+  <style name="Bold">
+    <item name="android:fontFamily">@font/inter_semibold</item>
   </style>
 
   <!-- Buttons -->
@@ -41,18 +69,14 @@
     <item name="android:fontFamily">@font/inter_medium</item>
   </style>
 
+  <style name="TabButton" parent="TextButton">
+    <item name="android:textColor">@color/textPrimary</item>
+  </style>
+
   <style name="ButtonPrimary" parent="TextButton">
     <item name="android:background">@drawable/button_primary</item>
     <item name="android:gravity">center</item>
     <item name="android:elevation">@dimen/default_elevation</item>
-  </style>
-
-  <style name="Tertiary">
-    <item name="android:textColor">@color/textTertiary</item>
-  </style>
-
-  <style name="Tertiary.Small" parent="Tertiary">
-    <item name="android:textSize">@dimen/body_text_size_small</item>
   </style>
 
 </resources>
