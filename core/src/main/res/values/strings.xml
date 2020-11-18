@@ -10,4 +10,5 @@
     <string name="default_empty_text">Nothing to see here</string>
     <string name="empty_people">There aren\'t any users.</string>
 
+    <string name="n_followers_n_following">%1$,d followers • %2$,d following</string>
 </resources>

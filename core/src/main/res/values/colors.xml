@@ -28,6 +28,11 @@
     <color name="rippleColor">#33000000</color>
     <color name="border">#4041434e</color>
 
+    <color name="iconPrimary">#ff525560</color>
+    <color name="iconSecondary">#ff9194a1</color>
+
+    <color name="link">#ff0366d6</color>
+
     <color name="snackbarTextColor">@android:color/white</color>
     <color name="snackbarActionTextColor">#ffffd33d</color>
 </resources>
