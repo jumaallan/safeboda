@@ -22,10 +22,6 @@ import java.lang.ref.WeakReference
  */
 class SafebodaImageHandler(view: TextView) : ImageGetter {
 
-    companion object {
-        private const val TAG = "GitHubImageHandler"
-    }
-
     private val safeTextView = WeakReference(view)
 
     override fun getDrawable(source: String?): Drawable? {
