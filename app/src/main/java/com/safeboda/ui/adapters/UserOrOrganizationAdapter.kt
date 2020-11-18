@@ -1,6 +1,7 @@
 package com.safeboda.ui.adapters
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.safeboda.core.html.HtmlStyler
 import com.safeboda.core.html.HtmlStyler.OnLinkClickListener
 import com.safeboda.core.span.LabelColor
 import com.safeboda.core.span.LabelColor.GRAY
+import com.safeboda.core.utils.DeepLinkRouter
 import com.safeboda.databinding.ListItemSpacerBinding
 import com.safeboda.databinding.ListItemUserOrganizationProfileHeaderBinding
 import com.safeboda.ui.base.BindingViewHolder
@@ -120,5 +122,6 @@ class UserOrOrganizationAdapter(
 
     override fun onLinkClicked(view: View, url: String) {
         Timber.d("the clicked link is $url")
+        DeepLinkRouter.handleRoute(view.context, Uri.parse(url))
     }
 }
