@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="headerItem"
+            type="com.safeboda.core.data.models.UserOrOrganization" />
+
+        <variable
+            name="avatarUrl"
+            type="String" />
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="login"
+            type="String" />
+
+        <variable
+            name="websiteUrl"
+            type="String" />
+
+        <variable
+            name="bioHtml"
+            type="CharSequence" />
+
+        <variable
+            name="companyHtml"
+            type="CharSequence" />
+
+        <variable
+            name="emojiHtml"
+            type="CharSequence" />
+
+        <variable
+            name="statusMessage"
+            type="String" />
+
+        <variable
+            name="location"
+            type="String" />
+
+        <variable
+            name="followersCount"
+            type="int" />
+
+        <variable
+            name="followingCount"
+            type="int" />
+
+        <variable
+            name="showFollowButton"
+            type="Boolean" />
+
+        <variable
+            name="isFollowing"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium"
+        tools:context=".ui.views.DashboardActivity">
+
+        <ImageView
+            android:id="@+id/user_profile_avatar"
+            android:layout_width="@dimen/avatar_64"
+            android:layout_height="@dimen/avatar_64"
+            android:contentDescription="@string/app_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundedCornerImageUrl="@{avatarUrl}"
+            app:roundedCornerRadius="@{@dimen/corner_radius_large}"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/user_profile_name"
+            style="@style/Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:text="@{name}"
+            android:visibility="@{TextUtils.isEmpty(name) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@id/user_profile_avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Juma Allan" />
+
+        <TextView
+            android:id="@+id/user_profile_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{login}"
+            android:textColor="@color/textTertiary"
+            android:textSize="17sp"
+            android:visibility="@{TextUtils.isEmpty(login) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@id/user_profile_name"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_name"
+            tools:text="jumaallan" />
+
+        <LinearLayout
+            android:id="@+id/status_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_medium"
+            android:visibility="@{TextUtils.isEmpty(emojiHtml) &amp;&amp; TextUtils.isEmpty(statusMessage) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_avatar"
+            tools:layout_editor_absoluteX="16dp">
+
+            <TextView
+                android:id="@+id/user_profile_status_emoji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/user_profile_status_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:text="@{statusMessage}"
+                tools:text="Sample user status" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/user_profile_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:visibility="@{TextUtils.isEmpty(bioHtml) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/status_background"
+            tools:text="A users bio" />
+
+        <TextView
+            android:id="@+id/user_profile_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:drawablePadding="@dimen/padding_medium"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:visibility="@{TextUtils.isEmpty(companyHtml) ? View.GONE : View.VISIBLE}"
+            app:drawableStartCompat="@drawable/ic_organization"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_bio"
+            tools:text="GitHub" />
+
+        <TextView
+            android:id="@+id/user_profile_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:drawablePadding="@dimen/padding_medium"
+            android:text="@{location}"
+            android:visibility="@{TextUtils.isEmpty(location) ? View.GONE : View.VISIBLE}"
+            app:drawableStartCompat="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_company"
+            tools:text="San Francisco, CA" />
+
+        <TextView
+            android:id="@+id/user_profile_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:drawablePadding="@dimen/padding_medium"
+            android:text="@{websiteUrl}"
+            android:textStyle="bold"
+            android:visibility="@{TextUtils.isEmpty(websiteUrl) ? View.GONE : View.VISIBLE}"
+            app:drawableStartCompat="@drawable/ic_link"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_location"
+            tools:text="www.github.com" />
+
+        <TextView
+            android:id="@+id/user_profile_followers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:drawablePadding="@dimen/padding_medium"
+            android:text="@{String.format(@string/n_followers_n_following, followersCount, followingCount)}"
+            android:visibility="@{followersCount >= 0 &amp;&amp; followingCount >= 0 ? View.VISIBLE : View.GONE}"
+            app:drawableStartCompat="@drawable/ic_person"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_link"
+            tools:text="70 followers • 100 following" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
