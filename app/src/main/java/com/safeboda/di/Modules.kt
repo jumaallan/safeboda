@@ -3,6 +3,8 @@ package com.safeboda.di
 import androidx.room.Room
 import com.safeboda.data.local.Database
 import com.safeboda.data.repository.UserRepository
+import com.safeboda.ui.viewmodel.FollowersUsersViewModel
+import com.safeboda.ui.viewmodel.FollowingUsersViewModel
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -28,7 +30,9 @@ private val repositoryModule: Module = module {
 }
 
 private val viewModelModule: Module = module {
-    viewModel { UserOrganizationViewModel(get(), get()) }
+    viewModel { UserOrganizationViewModel(get()) }
+    viewModel { FollowersUsersViewModel(get()) }
+    viewModel { FollowingUsersViewModel(get()) }
 }
 
 val appModules: List<Module> = listOf(

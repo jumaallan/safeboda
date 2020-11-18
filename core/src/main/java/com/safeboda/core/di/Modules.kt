@@ -3,6 +3,7 @@ package com.safeboda.core.di
 import com.apollographql.apollo.ApolloClient
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.safeboda.core.BuildConfig
+import com.safeboda.core.data.remote.FollowersFollowingRepository
 import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.core.network.AuthInterceptor
 import com.safeboda.core.utils.Constants
@@ -40,13 +41,13 @@ val networkingModule: Module = module(override = true) {
         ApolloClient.builder()
             .serverUrl(Constants.BASE_URL)
             .okHttpClient(get())
-//            .addCustomTypeAdapter(CustomType.DATETIME, DateTimeAdapter())
             .build()
     }
 }
 
 val repositoryModule: Module = module {
     single { UserOrganizationRepository(get()) }
+    single { FollowersFollowingRepository(get()) }
 }
 
 val coreModules: List<Module> = listOf(
