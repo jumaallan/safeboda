@@ -18,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.safeboda.R
+import com.safeboda.core.R as core
 import com.safeboda.core.network.ApiModel
 import com.safeboda.core.network.ApiRequestStatus.*
+import com.safeboda.ui.base.SafebodaActivity
 import com.safeboda.ui.scroller.FancyAppBarScrollListener
 import kotlinx.android.parcel.Parcelize
 
@@ -68,12 +70,12 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
         val customViewResId: Int
         context.theme.obtainStyledAttributes(
             attrs,
-            R.styleable.LoadingViewFlipper,
+            core.styleable.LoadingViewFlipper,
             0, 0
         ).apply {
             try {
                 customViewResId = getResourceId(
-                    R.styleable.LoadingViewFlipper_contentView,
+                    core.styleable.LoadingViewFlipper_contentView,
                     R.layout.user_organization_recycler_view
                 )
             } finally {
@@ -83,24 +85,24 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
 
         // Inflation order matters for displaying children.
         val inflater = LayoutInflater.from(context)
-        loadingView = inflater.inflate(R.layout.default_loading_view, this, true)
+        loadingView = inflater.inflate(core.layout.default_loading_view, this, true)
         contentView = inflater.inflate(customViewResId, this, true) as ViewGroup
         recyclerView = contentView.findViewById(R.id.recycler_view)
         recyclerView?.setHasFixedSize(true)
         swipeRefreshLayout = contentView.findViewById(R.id.swipe_container)
         swipeRefreshLayout?.isEnabled = false
-        swipeRefreshLayout?.setProgressBackgroundColorSchemeResource(R.color.blue)
+        swipeRefreshLayout?.setProgressBackgroundColorSchemeResource(core.color.blue)
         swipeRefreshLayout?.setColorSchemeResources(android.R.color.white)
         swipeRefreshLayout?.setProgressViewOffset(
             true,
             swipeRefreshLayout.progressViewStartOffset,
             swipeRefreshLayout.progressViewEndOffset
         )
-        emptyView = inflater.inflate(R.layout.default_empty_view, this, true)
-        emptyTitleTextView = emptyView.findViewById(R.id.empty_state_title)
-        emptyDescriptionTextView = emptyView.findViewById(R.id.empty_state_description)
-        emptyImageView = emptyView.findViewById(R.id.empty_state_image)
-        emptyButton = emptyView.findViewById(R.id.empty_button)
+        emptyView = inflater.inflate(core.layout.default_empty_view, this, true)
+        emptyTitleTextView = emptyView.findViewById(core.id.empty_state_title)
+        emptyDescriptionTextView = emptyView.findViewById(core.id.empty_state_description)
+        emptyImageView = emptyView.findViewById(core.id.empty_state_image)
+        emptyButton = emptyView.findViewById(core.id.empty_button)
 
         inAnimation = AlphaAnimation(0.0f, 1.0f).apply { duration = FADE_DURATION_MS }
         outAnimation = AlphaAnimation(1.0f, 0.0f).apply { duration = FADE_DURATION_MS }
@@ -139,7 +141,7 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
     fun showViewForApiStatus(
         model: ApiModel<Any>,
         activity: Activity?,
-        emptyModel: EmptyModel = EmptyModel(context.getString(R.string.default_empty_text))
+        emptyModel: EmptyModel = EmptyModel(context.getString(core.string.default_empty_text))
     ) {
         val isEmptyModel = model.data == null || (model.data as? List<*>)?.isNullOrEmpty() == true
         when (model.status) {
@@ -160,7 +162,7 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
                                     error,
                                     null,
                                     null,
-                                    R.string.try_again,
+                                    core.string.try_again,
                                     refreshable::onRefresh
                                 )
                             )
@@ -204,7 +206,7 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
         }
     }
 
-    fun showEmpty(model: EmptyModel = EmptyModel(context.getString(R.string.default_empty_text))) {
+    fun showEmpty(model: EmptyModel = EmptyModel(context.getString(core.string.default_empty_text))) {
         ensureEmptyView(model)
         if (displayedChild != POSITION_EMPTY) {
             displayedChild = POSITION_EMPTY

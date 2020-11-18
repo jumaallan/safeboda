@@ -1,4 +1,4 @@
-package com.safeboda.ui.views
+package com.safeboda.ui.activity
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -7,6 +7,7 @@ import com.safeboda.R
 import com.safeboda.core.network.ApiModel
 import com.safeboda.databinding.ActivityDashboardBinding
 import com.safeboda.ui.adapters.UserOrOrganizationAdapter
+import com.safeboda.ui.base.BindingActivity
 import com.safeboda.ui.interfaces.OnUserSelectedListener
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile

@@ -1,4 +1,4 @@
-package com.safeboda.ui.views
+package com.safeboda.ui.base
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil

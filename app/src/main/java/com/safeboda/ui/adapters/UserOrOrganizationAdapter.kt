@@ -15,6 +15,7 @@ import com.safeboda.core.span.LabelColor
 import com.safeboda.core.span.LabelColor.GRAY
 import com.safeboda.databinding.ListItemSpacerBinding
 import com.safeboda.databinding.ListItemUserOrganizationProfileHeaderBinding
+import com.safeboda.ui.base.BindingViewHolder
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.*
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.Companion.ITEM_TYPE_DIVIDER
@@ -79,11 +80,11 @@ class UserOrOrganizationAdapter(
             ITEM_TYPE_SPACER -> {
                 binding =
                     DataBindingUtil.inflate(
-                    inflater,
-                    R.layout.list_item_spacer,
-                    parent,
-                    false
-                ) as ListItemSpacerBinding
+                        inflater,
+                        R.layout.list_item_spacer,
+                        parent,
+                        false
+                    ) as ListItemSpacerBinding
                 binding.height =
                     binding.root.resources.getDimensionPixelSize(R.dimen.margin_largest)
             }
@@ -98,19 +99,7 @@ class UserOrOrganizationAdapter(
         when (val item = data[position]) {
             is HeaderItem -> {
                 val binding = holder.binding as ListItemUserOrganizationProfileHeaderBinding
-                binding.avatarUrl = item.avatarUrl
-                binding.name = item.name
-                binding.login = item.login
-                binding.websiteUrl = item.websiteUrl
-                binding.companyHtml = item.companyHtml
-                binding.bioHtml = item.bioHtml
-                binding.emojiHtml = item.emojiHtml
-                binding.statusMessage = item.statusMessage
-                binding.location = item.location
-                binding.followersCount = item.followersCount
-                binding.followingCount = item.followingCount
-                binding.isFollowing = item.isFollowing
-                binding.showFollowButton = item.showFollowButton
+                binding.headerItem = item
 
                 binding.userProfileLink.tag = item.websiteUrl
                 HtmlStyler.styleText(binding.userProfileStatusEmoji, item.emojiHtml, this)

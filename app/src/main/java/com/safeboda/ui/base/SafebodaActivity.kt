@@ -1,4 +1,4 @@
-package com.safeboda.ui.views
+package com.safeboda.ui.base
 
 import android.content.Context
 import android.view.View

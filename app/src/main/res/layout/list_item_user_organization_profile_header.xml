@@ -11,66 +11,14 @@
 
         <variable
             name="headerItem"
-            type="com.safeboda.core.data.models.UserOrOrganization" />
-
-        <variable
-            name="avatarUrl"
-            type="String" />
-
-        <variable
-            name="name"
-            type="String" />
-
-        <variable
-            name="login"
-            type="String" />
-
-        <variable
-            name="websiteUrl"
-            type="String" />
-
-        <variable
-            name="bioHtml"
-            type="CharSequence" />
-
-        <variable
-            name="companyHtml"
-            type="CharSequence" />
-
-        <variable
-            name="emojiHtml"
-            type="CharSequence" />
-
-        <variable
-            name="statusMessage"
-            type="String" />
-
-        <variable
-            name="location"
-            type="String" />
-
-        <variable
-            name="followersCount"
-            type="int" />
-
-        <variable
-            name="followingCount"
-            type="int" />
-
-        <variable
-            name="showFollowButton"
-            type="Boolean" />
-
-        <variable
-            name="isFollowing"
-            type="Boolean" />
+            type="com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.HeaderItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_medium"
-        tools:context=".ui.views.DashboardActivity">
+        tools:context=".ui.activity.DashboardActivity">
 
         <ImageView
             android:id="@+id/user_profile_avatar"
@@ -79,7 +27,7 @@
             android:contentDescription="@string/app_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:roundedCornerImageUrl="@{avatarUrl}"
+            app:roundedCornerImageUrl="@{headerItem.avatarUrl}"
             app:roundedCornerRadius="@{@dimen/corner_radius_large}"
             tools:src="@tools:sample/avatars" />
 
@@ -89,8 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_normal"
-            android:text="@{name}"
-            android:visibility="@{TextUtils.isEmpty(name) ? View.GONE : View.VISIBLE}"
+            android:text="@{headerItem.name}"
+            android:visibility="@{TextUtils.isEmpty(headerItem.name) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@id/user_profile_avatar"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Juma Allan" />
@@ -99,10 +47,10 @@
             android:id="@+id/user_profile_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{login}"
+            android:text="@{headerItem.login}"
             android:textColor="@color/textTertiary"
             android:textSize="17sp"
-            android:visibility="@{TextUtils.isEmpty(login) ? View.GONE : View.VISIBLE}"
+            android:visibility="@{TextUtils.isEmpty(headerItem.login) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="@id/user_profile_name"
             app:layout_constraintTop_toBottomOf="@id/user_profile_name"
             tools:text="jumaallan" />
@@ -114,7 +62,7 @@
             android:layout_marginTop="@dimen/margin_medium"
             android:orientation="horizontal"
             android:padding="@dimen/padding_medium"
-            android:visibility="@{TextUtils.isEmpty(emojiHtml) &amp;&amp; TextUtils.isEmpty(statusMessage) ? View.GONE : View.VISIBLE}"
+            android:visibility="@{TextUtils.isEmpty(headerItem.emojiHtml) &amp;&amp; TextUtils.isEmpty(headerItem.statusMessage) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_profile_avatar"
             tools:layout_editor_absoluteX="16dp">
@@ -135,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/margin_small"
-                android:text="@{statusMessage}"
+                android:text="@{headerItem.statusMessage}"
                 tools:text="Sample user status" />
 
         </LinearLayout>
@@ -145,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
-            android:visibility="@{TextUtils.isEmpty(bioHtml) ? View.GONE : View.VISIBLE}"
+            android:visibility="@{TextUtils.isEmpty(headerItem.bioHtml) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/status_background"
             tools:text="A users bio" />
@@ -158,7 +106,7 @@
             android:drawablePadding="@dimen/padding_medium"
             android:ellipsize="end"
             android:maxLines="1"
-            android:visibility="@{TextUtils.isEmpty(companyHtml) ? View.GONE : View.VISIBLE}"
+            android:visibility="@{TextUtils.isEmpty(headerItem.companyHtml) ? View.GONE : View.VISIBLE}"
             app:drawableStartCompat="@drawable/ic_organization"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_profile_bio"
@@ -170,8 +118,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:drawablePadding="@dimen/padding_medium"
-            android:text="@{location}"
-            android:visibility="@{TextUtils.isEmpty(location) ? View.GONE : View.VISIBLE}"
+            android:text="@{headerItem.location}"
+            android:visibility="@{TextUtils.isEmpty(headerItem.location) ? View.GONE : View.VISIBLE}"
             app:drawableStartCompat="@drawable/ic_location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_profile_company"
@@ -183,9 +131,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:drawablePadding="@dimen/padding_medium"
-            android:text="@{websiteUrl}"
+            android:text="@{headerItem.websiteUrl}"
             android:textStyle="bold"
-            android:visibility="@{TextUtils.isEmpty(websiteUrl) ? View.GONE : View.VISIBLE}"
+            android:visibility="@{TextUtils.isEmpty(headerItem.websiteUrl) ? View.GONE : View.VISIBLE}"
             app:drawableStartCompat="@drawable/ic_link"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_profile_location"
@@ -197,8 +145,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:drawablePadding="@dimen/padding_medium"
-            android:text="@{String.format(@string/n_followers_n_following, followersCount, followingCount)}"
-            android:visibility="@{followersCount >= 0 &amp;&amp; followingCount >= 0 ? View.VISIBLE : View.GONE}"
+            android:text="@{String.format(@string/n_followers_n_following, headerItem.followersCount, headerItem.followingCount)}"
+            android:visibility="@{headerItem.followersCount >= 0 &amp;&amp; headerItem.followingCount >= 0 ? View.VISIBLE : View.GONE}"
             app:drawableStartCompat="@drawable/ic_person"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_profile_link"

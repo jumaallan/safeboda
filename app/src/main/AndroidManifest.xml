@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/SafeBodaTheme">
 
-        <activity android:name=".ui.views.DashboardActivity">
+        <activity android:name=".ui.activity.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
