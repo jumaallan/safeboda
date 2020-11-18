@@ -15,6 +15,6 @@ class FollowersUsersViewModel(
 
     override suspend fun fetchData(root: String, endCursor: String?): Flow<Pair<List<User>, Page>> =
         followersFollowingRepository.fetchFollowers(root, endCursor) {
-            _userModel.postValue(ApiModel.failure(it, userModel.value?.data))
+            followingFollowersUserModel.postValue(ApiModel.failure(it, userModel.value?.data))
         }
 }

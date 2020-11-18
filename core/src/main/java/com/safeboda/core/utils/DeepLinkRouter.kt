@@ -20,7 +20,6 @@ object DeepLinkRouter {
         // Launch external links using a VIEW intent. This allows opening native apps for
         // mailto urls or links supported by other third-party apps.
         launchExternalUrl(context, schemeUri)
-
     }
 
     private fun launchExternalUrl(context: Context, uri: Uri): Boolean {

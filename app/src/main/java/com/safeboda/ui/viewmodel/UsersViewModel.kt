@@ -21,10 +21,11 @@ abstract class UsersViewModel(
     private val defaultScheduler: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel(), PaginatedViewModel {
 
-    protected val _userModel: MutableLiveData<ApiModel<List<ListItemUser>>> = MutableLiveData()
+    protected val followingFollowersUserModel: MutableLiveData<ApiModel<List<ListItemUser>>> =
+        MutableLiveData()
 
     val userModel: LiveData<ApiModel<List<ListItemUser>>>
-        get() = _userModel
+        get() = followingFollowersUserModel
 
     override val requestStatus: ApiRequestStatus
         get() = userModel.value?.status ?: LOADING
@@ -44,7 +45,7 @@ abstract class UsersViewModel(
     }
 
     private fun loadUsers(after: String? = null) {
-        _userModel.postValue(ApiModel.loading(userModel.value?.data))
+        followingFollowersUserModel.postValue(ApiModel.loading(userModel.value?.data))
 
         viewModelScope.launch(defaultScheduler) {
             fetchData("MDQ6VXNlcjI1MDg1MTQ2", after)
@@ -52,7 +53,13 @@ abstract class UsersViewModel(
                     currentPage = page
                     val models =
                         if (after == null) emptyList() else userModel.value?.data.orEmpty()
-                    _userModel.postValue(ApiModel.success(models + parseListItems(users)))
+                    followingFollowersUserModel.postValue(
+                        ApiModel.success(
+                            models + parseListItems(
+                                users
+                            )
+                        )
+                    )
                 }
         }
     }
@@ -79,5 +86,4 @@ abstract class UsersViewModel(
         override val avatarUrl: String
             get() = user.avatarUrl
     }
-
 }

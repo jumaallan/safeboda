@@ -166,45 +166,44 @@ class UserOrganizationViewModel(
             ListItemProfile(ITEM_TYPE_HEADER, ID_HEADER) {
 
             constructor(profile: UserOrOrganization) :
-                    this(
-                        profile.avatarUrl,
-                        profile.name,
-                        profile.login,
-                        profile.websiteUrl,
-                        profile.bioHtml,
-                        profile.companyHtml,
-                        profile.status?.emojiHtml,
-                        profile.status?.message,
-                        profile.location,
-                        profile.followersTotalCount,
-                        profile.followingTotalCount,
-                        profile.viewerIsFollowing,
-                        !profile.isOrganization && !profile.isViewer,
-                        profile.id
-                    )
+                this(
+                    profile.avatarUrl,
+                    profile.name,
+                    profile.login,
+                    profile.websiteUrl,
+                    profile.bioHtml,
+                    profile.companyHtml,
+                    profile.status?.emojiHtml,
+                    profile.status?.message,
+                    profile.location,
+                    profile.followersTotalCount,
+                    profile.followingTotalCount,
+                    profile.viewerIsFollowing,
+                    !profile.isOrganization && !profile.isViewer,
+                    profile.id
+                )
 
             constructor(avatarUrl: String?, userName: String?, login: String?) :
-                    this(
-                        avatarUrl,
-                        userName,
-                        login,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        -1,
-                        -1,
-                        false,
-                        false,
-                        ""
-                    )
+                this(
+                    avatarUrl,
+                    userName,
+                    login,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    -1,
+                    -1,
+                    false,
+                    false,
+                    ""
+                )
         }
 
         class LoadingItem : ListItemProfile(ITEM_TYPE_LOADING, ID_LOADING)
 
         class ListItemDivider : ListItemProfile(ITEM_TYPE_DIVIDER, ID_DIVIDER)
     }
-
 }
