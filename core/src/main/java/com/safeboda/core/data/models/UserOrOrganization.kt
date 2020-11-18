@@ -1,7 +1,15 @@
 package com.safeboda.core.data.models
 
+import android.text.TextUtils
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.safeboda.core.R
 import com.safeboda.core.fragment.OrganizationFragment
 import com.safeboda.core.fragment.UserProfileFragment
+import kotlin.math.roundToInt
 
 /**
  * Shared response from [UserOrOrganizationQuery] and [ViewerUserProfileQuery].

@@ -16,7 +16,7 @@ fragment UserProfileFragment on User {
   bioHTML
   companyHTML
   userEmail: email
-  followers(first: 3) {
+  followers(first: 10) {
     totalCount
     nodes {
       id
