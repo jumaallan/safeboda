@@ -1,10 +1,12 @@
 package com.safeboda.core.data.remote
 
 import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.coroutines.toDeferred
 import com.safeboda.core.UserOrOrganizationQuery
 import com.safeboda.core.data.models.UserOrOrganization
 import com.safeboda.core.network.ApiFailure
+import com.safeboda.core.network.PAGE_SIZE
 import com.safeboda.core.network.data
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -15,9 +17,16 @@ class UserOrganizationRepository(
 
     suspend fun fetchUserOrOrganization(
         login: String,
+        cursor: String?,
         onFailure: (ApiFailure) -> Unit
     ): Flow<UserOrOrganization?> {
-        val data = apolloClient.query(UserOrOrganizationQuery(login)).toDeferred().data(onFailure)
+        val data = apolloClient.query(
+            UserOrOrganizationQuery(
+                login,
+                PAGE_SIZE,
+                Input.fromNullable(cursor)
+            )
+        ).toDeferred().data(onFailure)
             ?: return flowOf()
         return flowOf(
             data.repositoryOwner?.let {

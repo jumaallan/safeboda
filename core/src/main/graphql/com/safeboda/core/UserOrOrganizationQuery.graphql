@@ -1,4 +1,4 @@
-query UserOrOrganizationQuery($login: String!) {
+query UserOrOrganizationQuery($login: String!, $first: Int!, $after: String) {
   repositoryOwner(login: $login) {
     ... on User {
       ...UserProfileFragment
@@ -16,16 +16,29 @@ fragment UserProfileFragment on User {
   bioHTML
   companyHTML
   userEmail: email
-  followers(first: 10) {
+  followers(first: $first, after: $after) {
     totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
     nodes {
       id
       login
       avatarUrl
     }
   }
-  following {
+  following(first: $first, after: $after) {
     totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      id
+      login
+      avatarUrl
+    }
   }
   isDeveloperProgramMember
   isEmployee

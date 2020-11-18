@@ -6,6 +6,8 @@ import com.safeboda.core.network.ApiFailureType.*
 import kotlinx.coroutines.Deferred
 import java.net.UnknownHostException
 
+internal const val PAGE_SIZE = 100
+
 private fun onApolloException(e: ApolloException): ApiFailure {
     return when (e) {
         is ApolloNetworkException ->
