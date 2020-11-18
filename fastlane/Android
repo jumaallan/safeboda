@@ -57,7 +57,8 @@ def read_gradle_properties(env)
         "applicationId" => @configuration['app_identifier'],
         "versionName" =>  ENV["APP_VERSION_NAME"] != nil ? ENV["APP_VERSION_NAME"] : @configuration['version_name'],
         "versionCode" => ENV["APP_VERSION_CODE"] != nil ? ENV["APP_VERSION_CODE"] : @configuration['version_code'],
-        "appLabel" => @configuration['app_name']
+        "appLabel" => @configuration['app_name'],
+        "GITHUB_TOKEN" => ENV["GITHUB_TOKEN"]
     }
 
     @gradleProperties = _gradleProperties.merge(_mavenGradleCredentialsProperties)
