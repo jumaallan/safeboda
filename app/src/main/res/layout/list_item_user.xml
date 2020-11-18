@@ -13,9 +13,6 @@
             name="user"
             type="com.safeboda.ui.interfaces.ListItemUser" />
 
-        <variable
-            name="selectedListener"
-            type="com.safeboda.ui.interfaces.OnUserSelectedListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +20,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/list_item_background"
         android:elevation="@dimen/default_elevation"
-        android:onClick="@{(v) -> selectedListener.onUserOrOrgSelected(user.login)}"
         android:padding="@dimen/padding_medium">
 
         <ImageView
