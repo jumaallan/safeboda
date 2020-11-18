@@ -30,18 +30,15 @@ class DashboardActivity :
         userOrganizationViewModel.profileModel.observe(this, Observer(::onUserModelChanged))
 
         adapter = UserOrOrganizationAdapter(this)
-        binding.viewFlipper.recyclerView?.layoutManager =
-            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.viewFlipper.recyclerView?.adapter = adapter
-        binding.viewFlipper.enableSwipeToRefresh(this)
+        binding.viewUserOrgProfile.recyclerView?.adapter = adapter
+        binding.viewUserOrgProfile.enableSwipeToRefresh(this)
 
         onRefresh()
-
     }
 
     private fun onUserModelChanged(model: ApiModel<List<ListItemProfile>>) {
         adapter.setData(model.data)
-        binding.viewFlipper.showViewForApiStatus(model, this)
+        binding.viewUserOrgProfile.showViewForApiStatus(model, this)
     }
 
     override val layoutResId: Int
