@@ -10,7 +10,7 @@ import timber.log.Timber
 import kotlin.math.abs
 import kotlin.math.min
 
-class FancyAppBarScrollListener(
+class AppBarScrollListener(
     private val appBarLayout: AppBarLayout
 ) : OnScrollListener() {
 

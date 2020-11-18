@@ -22,7 +22,7 @@ import com.safeboda.core.R as core
 import com.safeboda.core.network.ApiModel
 import com.safeboda.core.network.ApiRequestStatus.*
 import com.safeboda.ui.base.SafebodaActivity
-import com.safeboda.ui.scroller.FancyAppBarScrollListener
+import com.safeboda.ui.scroller.AppBarScrollListener
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -57,7 +57,7 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
     val recyclerView: RecyclerView?
     private val swipeRefreshLayout: SwipeRefreshLayout?
     private var refreshCallback: OnRefreshListener? = null
-    private var fancyAppBarScrollListener: FancyAppBarScrollListener? = null
+    private var appBarScrollListener: AppBarScrollListener? = null
 
     // Error and empty states share the same view.
     private val emptyTitleTextView: TextView
@@ -125,9 +125,9 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
     override fun onSaveInstanceState(): Parcelable? = ViewFlipperState(displayedChild, super.onSaveInstanceState())
 
     override fun onDetachedFromWindow() {
-        fancyAppBarScrollListener?.let {
+        appBarScrollListener?.let {
             recyclerView?.removeOnScrollListener(it)
-            fancyAppBarScrollListener = null
+            appBarScrollListener = null
         }
         super.onDetachedFromWindow()
     }
@@ -214,7 +214,7 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
     }
 
     private fun ensureLoadingView() {
-        fancyAppBarScrollListener?.elevate()
+        appBarScrollListener?.elevate()
     }
 
     private fun ensureContentView(isLoading: Boolean) {
@@ -244,7 +244,7 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
         } else {
             emptyButton.visibility = View.GONE
         }
-        fancyAppBarScrollListener?.elevate()
+        appBarScrollListener?.elevate()
         hidePullToRefresh()
     }
 
