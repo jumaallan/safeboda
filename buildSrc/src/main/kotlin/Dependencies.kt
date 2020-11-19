@@ -5,6 +5,9 @@ object Versions {
     const val constraintLayout = "2.0.1"
     const val swiperefreshlayout = "1.2.0-alpha01"
 
+    // Lottie
+    const val lottieVersion = "3.4.0"
+
     // Firebase
     const val crashlytics = "17.2.1"
 
@@ -90,12 +93,16 @@ object Libraries {
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
+    // Lottie
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
+
     // Firebase
     const val crashlytics = "com.google.firebase:firebase-crashlytics:${Versions.crashlytics}"
 
     // Networking - apollo, OKHTTP and loggingInterceptor
     const val apollo = "com.apollographql.apollo:apollo-runtime:${Versions.apolloVersion}"
-    const val apolloCoroutines = "com.apollographql.apollo:apollo-coroutines-support:${Versions.apolloVersion}"
+    const val apolloCoroutines =
+        "com.apollographql.apollo:apollo-coroutines-support:${Versions.apolloVersion}"
     const val ohttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val loggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"

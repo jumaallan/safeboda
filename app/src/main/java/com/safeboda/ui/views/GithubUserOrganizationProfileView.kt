@@ -17,15 +17,12 @@ package com.safeboda.ui.views
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ViewAnimator
 import androidx.annotation.VisibleForTesting
@@ -61,16 +58,12 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
     }
 
     data class EmptyModel(
-        val title: String,
-        val description: String? = null,
-        val imageDrawable: Drawable? = null,
-        val buttonTextResId: Int? = null,
-        val buttonAction: () -> Unit = { }
+        val title: String
     )
 
-    val loadingView: View
-    val contentView: ViewGroup
-    val emptyView: View
+    private val loadingView: View
+    private val contentView: ViewGroup
+    private val emptyView: View
     val recyclerView: RecyclerView?
     private val swipeRefreshLayout: SwipeRefreshLayout?
     private var refreshCallback: OnRefreshListener? = null
@@ -78,8 +71,6 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
 
     // Error and empty states share the same view.
     private val emptyTitleTextView: TextView
-    private val emptyDescriptionTextView: TextView
-    private val emptyImageView: ImageView
 
     init {
         // Allows overrides of the main contentView, emptyText and errorText in xml.
@@ -116,8 +107,6 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
         )
         emptyView = inflater.inflate(core.layout.default_empty_view, this, true)
         emptyTitleTextView = emptyView.findViewById(core.id.empty_state_title)
-        emptyDescriptionTextView = emptyView.findViewById(core.id.empty_state_description)
-        emptyImageView = emptyView.findViewById(core.id.empty_state_image)
 
         inAnimation = AlphaAnimation(0.0f, 1.0f).apply { duration = FADE_DURATION_MS }
         outAnimation = AlphaAnimation(1.0f, 0.0f).apply { duration = FADE_DURATION_MS }
@@ -175,11 +164,7 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
                             // Add a refresh button for no network failures.
                             showEmpty(
                                 EmptyModel(
-                                    error,
-                                    null,
-                                    null,
-                                    core.string.try_again,
-                                    refreshable::onRefresh
+                                    error
                                 )
                             )
                         } else {
@@ -187,6 +172,11 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
                         }
                     } else {
                         showContent(false)
+                        showEmpty(
+                            EmptyModel(
+                                context.resources.getString(R.string.default_empty_text)
+                            )
+                        )
                         activity.showSnackbar(error)
                     }
                 }
@@ -200,14 +190,6 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
         }
     }
 
-    fun refreshViewForItemCount(count: Int, model: EmptyModel) {
-        if (count == 0) {
-            showEmpty(model)
-        } else {
-            showContent(false)
-        }
-    }
-
     fun showLoading() {
         ensureLoadingView()
         if (displayedChild != POSITION_LOADING) {
@@ -215,18 +197,18 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
         }
     }
 
-    fun showContent(isLoading: Boolean) {
+    private fun showContent(isLoading: Boolean) {
         ensureContentView(isLoading)
         if (displayedChild != POSITION_CONTENT) {
             displayedChild = POSITION_CONTENT
         }
     }
 
-    fun showEmpty(model: EmptyModel = EmptyModel(
-        context.getString(core.string.default_empty_text),
-        context.getString(core.string.empty_people),
-        context.getDrawable(R.drawable.ic_empty_view)
-    )) {
+    fun showEmpty(
+        model: EmptyModel = EmptyModel(
+            context.getString(core.string.default_empty_text)
+        )
+    ) {
         ensureEmptyView(model)
         if (displayedChild != POSITION_EMPTY) {
             displayedChild = POSITION_EMPTY
@@ -243,20 +225,6 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
 
     private fun ensureEmptyView(model: EmptyModel) {
         emptyTitleTextView.text = model.title
-        if (model.imageDrawable != null) {
-            emptyImageView.setImageDrawable(model.imageDrawable)
-            emptyImageView.visibility = View.VISIBLE
-        } else {
-            emptyImageView.visibility = View.GONE
-        }
-
-        if (model.description != null) {
-            emptyDescriptionTextView.text = model.description
-            emptyDescriptionTextView.visibility = View.VISIBLE
-        } else {
-            emptyDescriptionTextView.visibility = View.GONE
-        }
-
         appBarScrollListener?.elevate()
         hidePullToRefresh()
     }

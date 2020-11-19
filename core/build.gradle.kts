@@ -59,6 +59,9 @@ dependencies {
     implementation(Libraries.material)
     implementation(Libraries.swiperefreshlayout)
 
+    // Lottie
+    implementation(Libraries.lottie)
+
     // Firebase crashlytics
     implementation(Libraries.crashlytics)
 
