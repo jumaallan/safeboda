@@ -79,7 +79,6 @@ class DashboardActivity :
                 return true
             }
         })
-
     }
 
     private fun onUserModelChanged(model: ApiModel<List<ListItemProfile>>) {
