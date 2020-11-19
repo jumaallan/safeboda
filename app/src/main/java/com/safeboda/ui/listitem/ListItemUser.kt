@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda.ui.interfaces
+package com.safeboda.ui.listitem
 
 interface ListItemUser {
     val id: String
