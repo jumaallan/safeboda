@@ -45,8 +45,18 @@ buildscript {
 
 subprojects {
     apply(plugin = BuildPlugins.detektPlugin)
+    apply(plugin = BuildPlugins.spotlessPlugin)
     detekt {
         config = files("${project.rootDir}/detekt.yml")
         parallel = true
+    }
+    spotless {
+        kotlin {
+            target("**/*.kt")
+            licenseHeaderFile(
+                rootProject.file("${project.rootDir}/spotless/copyright.kt"),
+                "^(package|object|import|interface)"
+            )
+        }
     }
 }

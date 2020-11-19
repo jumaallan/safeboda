@@ -63,15 +63,6 @@ kapt {
     }
 }
 
-spotless {
-    kotlin {
-        licenseHeaderFile(
-            rootProject.file("spotless/copyright.kt"),
-            "^(package|object|import|interface)"
-        )
-    }
-}
-
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(BuildModules.coreModule))

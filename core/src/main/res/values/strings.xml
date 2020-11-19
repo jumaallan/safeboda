@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Server errors -->
-    <string name="error_unauthorized">Unauthorized</string>
-    <string name="error_no_network">No network connection</string>
-    <string name="error_default">Something went wrong</string>
-    <string name="try_again">Try again</string>
 
     <!-- Empty Strings -->
     <string name="default_empty_text">Nothing to see here</string>
     <string name="empty_people">There aren\'t any users.</string>
 
-    <string name="n_followers_n_following">%1$,d followers • %2$,d following</string>
-
+    <!-- Search Menu-->
     <string name="menu_search">Search</string>
 
+    <!-- Main UI -->
+    <string name="n_followers_n_following">%1$,d followers • %2$,d following</string>
     <string name="repositories">Repositories</string>
     <string name="organizations">Organizations</string>
+
+    <!-- Server errors -->
+    <string name="error_unauthorized">Unauthorized</string>
+    <string name="error_no_network">No network connection</string>
+    <string name="error_default">Something went wrong</string>
+    <string name="try_again">Try again</string>
 
 </resources>

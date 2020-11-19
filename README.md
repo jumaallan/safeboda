@@ -66,6 +66,7 @@ Develop an application that uses Github APIs to achieve the following features:
         * [jacoco](https://github.com/jacoco/jacoco) - a Code Coverage Library
 * CI/CD
     * Github Actions
+    * [Fastlane](https://fastlane.tools)
 
 
 ## Dependencies
@@ -78,7 +79,7 @@ This sections mentions some of the issues that I have come across:
 
 - dokka documentation task doesn't work when run from the top level Safeboda task
 
-- The spotless plugin doesn't apply the license header, and the jacoco plugin doesn't work as expected. Need more research on how to set them up using gradle plugins
+- The jacoco plugin doesn't work as expected. Need more research on how to set them up using gradle plugins
 
 ## License
 ```
