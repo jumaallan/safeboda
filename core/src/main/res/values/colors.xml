@@ -13,6 +13,7 @@
     <color name="textPrimary">#ff050505</color>
     <color name="textSecondary">#ff2f3037</color>
     <color name="textTertiary">#ff525560</color>
+    <color name="textQuarternary">#ff9194a1</color>
 
     <color name="backgroundTertiary">#ffffffff</color>
     <color name="backgroundSecondary">#ffffffff</color>

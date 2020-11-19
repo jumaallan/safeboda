@@ -11,4 +11,10 @@
     <string name="empty_people">There aren\'t any users.</string>
 
     <string name="n_followers_n_following">%1$,d followers • %2$,d following</string>
+
+    <string name="menu_search">Search</string>
+
+    <string name="repositories">Repositories</string>
+    <string name="organizations">Organizations</string>
+
 </resources>

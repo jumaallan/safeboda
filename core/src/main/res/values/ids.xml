@@ -2,4 +2,5 @@
 <resources>
     <item name="image_handler" type="id" />
     <item name="tag_handler" type="id" />
+    <item name="tag_profile" type="id" />
 </resources>
