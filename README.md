@@ -4,10 +4,16 @@
 
 ### Prerequisites
 
-Before every commit, make sure you run the following commands:
+Before every commit, make sure you run the following bash script:
 
 ```shell script
 ./codeAnalysis
+```
+
+To test code coverage, ruh the following bash script:
+
+```shell script
+./coverage
 ```
 
 If you have Fastlane installed, you can run the develop lane:
@@ -16,7 +22,7 @@ If you have Fastlane installed, you can run the develop lane:
 fastlane branch conf:debug
 ```
 
-To check for dependency updates, run the following command:
+To check for dependency updates, run the following gradlew command:
 
 ```shell script
 ./gradlew dependencyUpdate
@@ -66,19 +72,12 @@ Develop an application that uses Github APIs to achieve the following features:
         * [jacoco](https://github.com/jacoco/jacoco) - a Code Coverage Library
 * CI/CD
     * Github Actions
+    * [Fastlane](https://fastlane.tools)
 
 
 ## Dependencies
 
 All the dependencies (external libraries) are defined in the single place - Gradle `buildSrc` folder. This approach allows to easily manage dependencies and use the same dependency version across all modules.
-
-## Some notable issues
-
-This sections mentions some of the issues that I have come across:
-
-- dokka documentation task doesn't work when run from the top level Safeboda task
-
-- The spotless plugin doesn't apply the license header, and the jacoco plugin doesn't work as expected. Need more research on how to set them up using gradle plugins
 
 ## License
 ```

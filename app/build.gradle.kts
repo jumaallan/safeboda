@@ -4,6 +4,11 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.ktlintPlugin)
     id(BuildPlugins.kapt)
+    id(BuildPlugins.jacocoAndroid)
+}
+
+jacoco {
+    toolVersion = Versions.jacoco
 }
 
 android {
@@ -22,6 +27,15 @@ android {
         versionName = AndroidSdk.versionName
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    testOptions {
+        execution = "androidx_test_orchestrator"
+        animationsDisabled = true
+        unitTests.apply {
+            isReturnDefaultValues = true
+            isIncludeAndroidResources = true
+        }
     }
 
     compileOptions {
@@ -60,15 +74,6 @@ android {
 kapt {
     arguments {
         arg("room.incremental", "true")
-    }
-}
-
-spotless {
-    kotlin {
-        licenseHeaderFile(
-            rootProject.file("spotless/copyright.kt"),
-            "^(package|object|import|interface)"
-        )
     }
 }
 
