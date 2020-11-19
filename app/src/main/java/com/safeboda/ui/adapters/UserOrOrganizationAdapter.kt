@@ -164,7 +164,7 @@ class UserOrOrganizationAdapter(
             is FollowingItem -> {
                 val binding = holder.binding as RowUserFollowingBinding
                 binding.userTitle.text =
-                     """Following (""" + item.followingTotalCount + """)"""
+                    """Following (""" + item.followingTotalCount + """)"""
                 binding.userTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
                     R.drawable.ic_person,
                     0,
@@ -181,7 +181,7 @@ class UserOrOrganizationAdapter(
             is FollowersItem -> {
                 val binding = holder.binding as RowUserFollowersBinding
                 binding.userTitle.text =
-                     """Followers (""" + item.followersTotalCount + """)"""
+                    """Followers (""" + item.followersTotalCount + """)"""
                 binding.userTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
                     R.drawable.ic_person,
                     0,
