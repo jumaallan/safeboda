@@ -56,7 +56,7 @@ class DashboardActivity :
 
         userOrganizationViewModel.profileModel.observe(this, Observer(::onUserModelChanged))
 
-        userOrOrganizationAdapter = UserOrOrganizationAdapter(this)
+        userOrOrganizationAdapter = UserOrOrganizationAdapter(this, this)
         binding.viewUserOrgProfile.recyclerView?.adapter = userOrOrganizationAdapter
         binding.viewUserOrgProfile.enableSwipeToRefresh(this)
 

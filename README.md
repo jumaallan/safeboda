@@ -4,6 +4,12 @@
 
 ### Prerequisites
 
+Before running this app, you need to add your Github Personal Access Token, in your `local.properties` file:
+
+```yaml
+GITHUB_TOKEN="xxxx-xxxx-xxx"
+```
+
 Before every commit, make sure you run the following bash script:
 
 ```shell script
