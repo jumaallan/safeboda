@@ -44,6 +44,7 @@ object Versions {
     const val ktlint = "9.3.0"
     const val detekt = "1.12.0"
     const val spotless = "5.3.0"
+    const val jacoco = "0.8.4"
     const val dokka = "1.4.0-rc-24"
     const val gradleVersionsPlugin = "0.29.0"
     const val slackKeeper = "0.7.0"
@@ -80,6 +81,7 @@ object BuildPlugins {
     const val kotlinAndroidExtensions = "org.jetbrains.kotlin.android.extensions"
     const val gradleVersionsPlugin = "com.github.ben-manes.versions"
     const val slackKeeper = "com.slack.keeper"
+    const val jacocoAndroid = "com.hiya.jacoco-android"
 }
 
 object Libraries {

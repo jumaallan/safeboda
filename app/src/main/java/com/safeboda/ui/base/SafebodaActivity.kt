@@ -108,7 +108,6 @@ abstract class SafebodaActivity : AppCompatActivity() {
         @StringRes textResId: Int,
         length: Int = Snackbar.LENGTH_SHORT,
         action: SnackbarAction? = null,
-        container: ViewGroup? = null
     ): Boolean = showSnackbar(getString(textResId), length, action)
 
     internal data class SnackbarAction(

@@ -27,7 +27,6 @@ import org.koin.core.error.KoinAppAlreadyStartedException
 import org.koin.core.logger.Level
 import org.koin.core.module.Module
 import timber.log.Timber
-import javax.annotation.Nullable
 
 open class Safeboda : Application() {
 
@@ -57,7 +56,6 @@ open class Safeboda : Application() {
     private fun initTimber() = when {
         BuildConfig.DEBUG -> {
             Timber.plant(object : Timber.DebugTree() {
-                @Nullable
                 override fun createStackElementTag(@NotNull element: StackTraceElement): String? {
                     return super.createStackElementTag(element) + ":" + element.lineNumber
                 }
