@@ -3,7 +3,7 @@
 
     <!-- Empty Strings -->
     <string name="default_empty_text">Nothing to see here</string>
-    <string name="empty_people">Search for People and Organizations.</string>
+    <string name="empty_people">Raise your eyes, and focus on the search.</string>
 
     <!-- Search Menu-->
     <string name="menu_search">Search</string>
