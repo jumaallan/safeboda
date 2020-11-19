@@ -53,9 +53,11 @@ fun setRatio(view: View, widthRatio: Float, heightRatio: Float, isRelativeToOrie
     }
     if (heightRatio > 0) {
         val screenHeight =
-            if (isRelativeToOrientation) res.displayMetrics.heightPixels else getFixedScreenHeight(
-                res
-            )
+            if (isRelativeToOrientation) {
+                res.displayMetrics.heightPixels
+            } else {
+                getFixedScreenHeight(res)
+            }
         view.layoutParams.height = (screenHeight * heightRatio).roundToInt()
     }
 }

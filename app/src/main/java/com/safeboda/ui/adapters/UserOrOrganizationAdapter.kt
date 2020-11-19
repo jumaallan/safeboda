@@ -114,11 +114,11 @@ class UserOrOrganizationAdapter(
             ITEM_TYPE_SPACER -> {
                 binding =
                     DataBindingUtil.inflate(
-                        inflater,
-                        R.layout.list_item_spacer,
-                        parent,
-                        false
-                    ) as ListItemSpacerBinding
+                    inflater,
+                    R.layout.list_item_spacer,
+                    parent,
+                    false
+                ) as ListItemSpacerBinding
                 binding.height =
                     binding.root.resources.getDimensionPixelSize(R.dimen.margin_medium)
             }
