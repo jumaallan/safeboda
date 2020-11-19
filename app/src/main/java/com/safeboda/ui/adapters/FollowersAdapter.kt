@@ -24,7 +24,6 @@ import com.safeboda.core.data.models.UserOrOrganization.Follower
 import com.safeboda.core.html.HtmlStyler
 import com.safeboda.databinding.ListItemUserFollowersBinding
 import com.safeboda.ui.interfaces.OnUserOrOrganizationSelectedListener
-import timber.log.Timber
 
 object FollowersDiffer : DiffUtil.ItemCallback<Follower>() {
 
