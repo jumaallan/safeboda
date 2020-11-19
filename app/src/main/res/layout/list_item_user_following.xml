@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="user"
+            type="com.safeboda.core.data.models.UserOrOrganization.Following" />
+
+        <variable
+            name="widthRatio"
+            type="float" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:background="@drawable/background_with_outline"
+        android:elevation="@dimen/default_elevation"
+        android:padding="@dimen/padding_small"
+        app:screenWidthRatio="@{widthRatio}">
+
+        <ImageView
+            android:id="@+id/user_profile_avatar"
+            android:layout_width="@dimen/avatar_44"
+            android:layout_height="@dimen/avatar_44"
+            android:contentDescription="@string/app_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundedCornerImageUrl="@{user.avatarUrl}"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/user_name"
+            style="@style/Header.Section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{user.name}"
+            app:layout_constraintStart_toEndOf="@id/user_profile_avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Juma Allan" />
+
+        <TextView
+            android:id="@+id/user_login"
+            style="@style/Tertiary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.login}"
+            app:layout_constraintStart_toStartOf="@id/user_name"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
+            tools:text="jumaallan" />
+
+        <TextView
+            android:id="@+id/user_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:singleLine="true"
+            app:layout_constraintStart_toStartOf="@id/user_login"
+            app:layout_constraintTop_toBottomOf="@id/user_login"
+            tools:text="shipping code" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
