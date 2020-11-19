@@ -5,10 +5,10 @@ adb shell settings put global transition_animation_scale 0 &
 adb shell settings put global animator_duration_scale 0 &
 
 clear
-./gradlew clean jacocoFullReport
-./gradlew jacocoFullReport
+./gradlew clean jacocoTestReport
+./gradlew jacocoTestReport
 
-REPORT_PATH="file://$(pwd)/build/reports/jacoco/jacocoFullReport/html/index.html"
+REPORT_PATH="file://$(pwd)/app/build/jacoco/jacocoHtml/index.html"
 
 echo ${REPORT_PATH} | pbcopy
 
