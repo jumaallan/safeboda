@@ -21,13 +21,13 @@
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
 
-        <item name="searchViewStyle">@style/GitHubSearchView</item>
+        <item name="searchViewStyle">@style/SafebodaSearchView</item>
     </style>
 
     <style name="SafeBodaTheme" parent="BaseTheme">
         <!-- Status bar styling -->
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/backgroundSecondary</item>
     </style>
 
     <style name="NoDisplayTheme" parent="Theme.AppCompat.NoActionBar">
@@ -37,7 +37,7 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="GitHubSearchView" parent="Widget.AppCompat.SearchView">
+    <style name="SafebodaSearchView" parent="Widget.AppCompat.SearchView">
         <item name="searchHintIcon">@null</item>
         <item name="searchIcon">@drawable/ic_search_24</item>
     </style>

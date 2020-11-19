@@ -13,18 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda.core.data
+package com.safeboda.ui.interfaces
 
-import androidx.room.TypeConverter
-import java.util.*
-
-object DateConverter {
-
-    @TypeConverter
-    @JvmStatic
-    fun fromTimestamp(value: Long?): Date? = if (value == null) null else Date(value)
-
-    @TypeConverter
-    @JvmStatic
-    fun dateToTimestamp(date: Date?): Long? = date?.time
+interface OnBackPressedListener {
+    fun onBackPressed()
 }

@@ -50,21 +50,22 @@ class UserOrganizationViewModel(
         get() = userOrganizationProfileModel
 
     @UiThread
-    fun fetchUserOrOrganization(login: String, avatarUrl: String?, userName: String?) {
-        handleProfileLoading(login, avatarUrl, userName)
+    fun fetchUserOrOrganization(login: String) {
+        handleProfileLoading(login)
         viewModelScope.launch(coroutineDispatcher) {
             userOrganizationRepository.fetchUserOrOrganization(login, null) {
-                handleProfileFailure(it, avatarUrl, userName, login)
+                handleProfileFailure(it, login)
             }.collect { profile ->
-                if (profile != null) {
-                    handleProfileSuccess(profile)
-                } else {
-                    handleProfileFailure(
-                        ApiFailure(PARSE_ERROR, null, null),
-                        login,
-                        avatarUrl,
-                        userName
-                    )
+                when {
+                    profile != null -> {
+                        handleProfileSuccess(profile)
+                    }
+                    else -> {
+                        handleProfileFailure(
+                            ApiFailure(PARSE_ERROR, null, null),
+                            login
+                        )
+                    }
                 }
             }
         }
@@ -79,24 +80,20 @@ class UserOrganizationViewModel(
     @UiThread
     private fun handleProfileLoading(
         login: String?,
-        avatarUrl: String?,
-        userName: String?
     ) {
         userOrganizationProfileModel.value = ApiModel.loading(
-            cachedListItems(true, login, avatarUrl, userName)
+            cachedListItems(true, login)
         )
     }
 
     @WorkerThread
     private fun handleProfileFailure(
         failure: ApiFailure,
-        login: String?,
-        avatarUrl: String?,
-        userName: String?
+        login: String?
     ) {
         Timber.d("Failed to fetch profile due to $failure")
         userOrganizationProfileModel.postValue(
-            ApiModel.failure(failure, cachedListItems(false, login, avatarUrl, userName))
+            ApiModel.failure(failure, cachedListItems(false, login))
         )
     }
 
@@ -106,9 +103,7 @@ class UserOrganizationViewModel(
      */
     private fun cachedListItems(
         isLoading: Boolean,
-        login: String?,
-        avatarUrl: String?,
-        userName: String?
+        login: String?
     ): List<ListItemProfile> {
 
         userOrganizationProfileModel.value?.data?.also {
@@ -121,14 +116,10 @@ class UserOrganizationViewModel(
             }
         }
 
-        if (avatarUrl.isNullOrBlank()) {
-            return emptyList()
-        }
-
         val data = mutableListOf<ListItemProfile>()
 
         // Profile header
-        data.add(HeaderItem(avatarUrl, userName, login))
+        data.add(HeaderItem(null, null, login))
 
         // Loading
         if (isLoading) {

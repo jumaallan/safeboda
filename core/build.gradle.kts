@@ -59,21 +59,19 @@ dependencies {
     implementation(Libraries.material)
     implementation(Libraries.swiperefreshlayout)
 
+    // Lottie
+    implementation(Libraries.lottie)
+
     // Firebase crashlytics
     implementation(Libraries.crashlytics)
 
-    // Network - Retrofit, OKHTTP
+    // Network - ApolloClient, OKHTTP, Chuck
     implementation(Libraries.apollo)
     implementation(Libraries.apolloCoroutines)
     implementation(Libraries.ohttp)
     implementation(Libraries.loggingInterceptor)
     debugImplementation(Libraries.chunkDebug)
     releaseImplementation(Libraries.chunkRelease)
-
-    // Room
-    implementation(Libraries.room)
-    implementation(Libraries.roomRuntime)
-    kapt(Libraries.roomCompiler)
 
     // Glide
     implementation(Libraries.glide)
@@ -90,8 +88,7 @@ dependencies {
     // debug
     implementation(Libraries.timber)
 
-    // tests
+    // Unit Tests
     testImplementation(TestLibraries.jUnit)
-    androidTestImplementation(TestLibraries.jUnitTest)
     testImplementation(TestLibraries.truth)
 }

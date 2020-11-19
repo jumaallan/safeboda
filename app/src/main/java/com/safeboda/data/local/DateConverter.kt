@@ -13,12 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda.ui.interfaces
+package com.safeboda.data.local
 
-interface ListItemUser {
-    val id: String
-    val name: String?
-    val login: String
-    val bioHtml: String
-    val avatarUrl: String
+import androidx.room.TypeConverter
+import java.util.*
+
+object DateConverter {
+
+    @TypeConverter
+    @JvmStatic
+    fun fromTimestamp(value: Long?): Date? = if (value == null) null else Date(value)
+
+    @TypeConverter
+    @JvmStatic
+    fun dateToTimestamp(date: Date?): Long? = date?.time
 }

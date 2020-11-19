@@ -9,6 +9,7 @@
     <color name="transparent">#0fff</color>
 
     <color name="blue">#ff0366d6</color>
+    <color name="systemRed">#ffd73a49</color>
 
     <color name="textPrimary">#ff050505</color>
     <color name="textSecondary">#ff2f3037</color>
@@ -31,6 +32,7 @@
 
     <color name="iconPrimary">#ff525560</color>
     <color name="iconSecondary">#ff9194a1</color>
+    <color name="iconTertiary">#ffbfc1c9</color>
 
     <color name="link">#ff0366d6</color>
 

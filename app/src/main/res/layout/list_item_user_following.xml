@@ -16,14 +16,19 @@
         <variable
             name="widthRatio"
             type="float" />
+
+        <variable
+            name="selectedListener"
+            type="com.safeboda.ui.interfaces.OnUserOrOrganizationSelectedListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_medium"
         android:background="@drawable/background_with_outline"
         android:elevation="@dimen/default_elevation"
+        android:onClick="@{(v) -> selectedListener.onUserOrOrgSelected(user.login)}"
         android:padding="@dimen/padding_small"
         app:screenWidthRatio="@{widthRatio}">
 

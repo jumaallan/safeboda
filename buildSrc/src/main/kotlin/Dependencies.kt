@@ -3,15 +3,15 @@ object Versions {
     const val material = "1.3.0-alpha02"
     const val appCompat = "1.3.0-alpha02"
     const val constraintLayout = "2.0.1"
-    const val navigation = "2.3.1"
     const val swiperefreshlayout = "1.2.0-alpha01"
-    const val preference = "1.1.1"
+
+    // Lottie
+    const val lottieVersion = "3.4.0"
 
     // Firebase
     const val crashlytics = "17.2.1"
 
     //Networking
-    const val retrofit = "2.9.0"
     const val okhttp = "4.8.1"
     const val loggingInterceptor = "4.8.1"
 
@@ -88,24 +88,21 @@ object Libraries {
     // androidX and Material
     const val material = "com.google.android.material:material:${Versions.material}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
-    const val preference = "androidx.preference:preference-ktx:${Versions.preference}"
     const val swiperefreshlayout =
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
-    // Navigation
-    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
-    const val navigation = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    // Lottie
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
 
     // Firebase
     const val crashlytics = "com.google.firebase:firebase-crashlytics:${Versions.crashlytics}"
 
-    // Networking
+    // Networking - apollo, OKHTTP and loggingInterceptor
     const val apollo = "com.apollographql.apollo:apollo-runtime:${Versions.apolloVersion}"
-    const val apolloCoroutines = "com.apollographql.apollo:apollo-coroutines-support:${Versions.apolloVersion}"
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val apolloCoroutines =
+        "com.apollographql.apollo:apollo-coroutines-support:${Versions.apolloVersion}"
     const val ohttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val loggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
@@ -177,7 +174,7 @@ object BuildModules {
 object AndroidSdk {
     const val minSdkVersion = 23
     const val compileSdkVersion = 30
-    const val targetSdkVersion = compileSdkVersion
+    const val targetSdkVersion = 30
     const val versionCode = 1
     const val versionName = "1.0"
 }

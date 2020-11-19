@@ -13,23 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda.data.local
+package com.safeboda.ui.interfaces
 
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.safeboda.data.local.dao.UserDao
-import com.safeboda.data.local.entities.User
-
-@androidx.room.Database(
-    entities = [
-        User::class
-    ],
-    version = 1,
-    exportSchema = false
-)
-
-@TypeConverters(DateConverter::class)
-abstract class Database : RoomDatabase() {
-
-    abstract fun userDao(): UserDao
+interface OnUserOrOrganizationSelectedListener {
+    fun onUserOrOrgSelected(login: String)
 }

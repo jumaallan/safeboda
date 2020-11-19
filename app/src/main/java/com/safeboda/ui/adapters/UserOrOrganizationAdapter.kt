@@ -91,12 +91,13 @@ class UserOrOrganizationAdapter(
             ITEM_TYPE_FOLLOWING -> {
                 binding = DataBindingUtil.inflate(
                     inflater,
+
                     R.layout.row_user_following,
                     parent,
                     false
                 )
 
-                val followingAdapter = FollowingAdapter {}
+                val followingAdapter = FollowingAdapter()
                 val rowUserFollowingBinding = binding as RowUserFollowingBinding
                 rowUserFollowingBinding.userFollowersFollowingRecyclerView.adapter =
                     followingAdapter
@@ -109,7 +110,7 @@ class UserOrOrganizationAdapter(
                     false
                 )
 
-                val followersAdapter = FollowersAdapter {}
+                val followersAdapter = FollowersAdapter()
                 val rowUserFollowersBinding = binding as RowUserFollowersBinding
                 rowUserFollowersBinding.userFollowersFollowingRecyclerView.adapter =
                     followersAdapter
@@ -166,7 +167,7 @@ class UserOrOrganizationAdapter(
                 binding.userTitle.text =
                     """Following (""" + item.followingTotalCount + """)"""
                 binding.userTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    R.drawable.ic_person,
+                    R.drawable.ic_followers_following,
                     0,
                     0,
                     0
@@ -183,7 +184,7 @@ class UserOrOrganizationAdapter(
                 binding.userTitle.text =
                     """Followers (""" + item.followersTotalCount + """)"""
                 binding.userTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    R.drawable.ic_person,
+                    R.drawable.ic_followers_following,
                     0,
                     0,
                     0
