@@ -11,16 +11,21 @@
 
         <variable
             name="user"
-            type="com.safeboda.ui.interfaces.ListItemUser" />
+            type="com.safeboda.core.data.models.UserOrOrganization.Follower" />
 
+        <variable
+            name="widthRatio"
+            type="float" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/list_item_background"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:background="@drawable/background_with_outline"
         android:elevation="@dimen/default_elevation"
-        android:padding="@dimen/padding_medium">
+        android:padding="@dimen/padding_small"
+        app:screenWidthRatio="@{widthRatio}">
 
         <ImageView
             android:id="@+id/user_profile_avatar"
@@ -41,7 +46,6 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{user.name}"
-            android:visibility="@{TextUtils.isEmpty(user.name) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@id/user_profile_avatar"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Juma Allan" />
@@ -63,7 +67,7 @@
             android:layout_marginTop="@dimen/margin_small"
             android:ellipsize="end"
             android:maxLines="3"
-            android:visibility="@{TextUtils.isEmpty(user.bioHtml) ? View.GONE : View.VISIBLE}"
+            android:singleLine="true"
             app:layout_constraintStart_toStartOf="@id/user_login"
             app:layout_constraintTop_toBottomOf="@id/user_login"
             tools:text="shipping code" />
