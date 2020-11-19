@@ -15,28 +15,21 @@
  */
 package com.safeboda.ui.base
 
-import android.content.Context
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.annotation.UiThread
-import androidx.annotation.WorkerThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle.State.RESUMED
 import androidx.lifecycle.Lifecycle.State.STARTED
-import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.safeboda.R
 import com.safeboda.core.network.ApiFailure
 import com.safeboda.core.network.ApiFailureType.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 /**
  * Base Activity class.
@@ -53,7 +46,6 @@ abstract class SafebodaActivity : AppCompatActivity() {
             UNAUTHORIZED -> {
                 Toast.makeText(applicationContext, R.string.error_unauthorized, Toast.LENGTH_SHORT)
                     .show()
-                clearImageCaches()
                 null
             }
             NO_NETWORK -> getString(R.string.error_no_network)
@@ -114,19 +106,4 @@ abstract class SafebodaActivity : AppCompatActivity() {
         @StringRes val actionText: Int,
         val listener: OnClickListener
     )
-
-    @UiThread
-    private fun clearImageCaches() {
-        applicationContext?.let {
-            Glide.get(it).clearMemory()
-            GlobalScope.launch(Dispatchers.Default) {
-                blockingClearImageDiskCache(it)
-            }
-        }
-    }
-
-    @WorkerThread
-    private fun blockingClearImageDiskCache(applicationContext: Context) {
-        Glide.get(applicationContext).clearDiskCache()
-    }
 }

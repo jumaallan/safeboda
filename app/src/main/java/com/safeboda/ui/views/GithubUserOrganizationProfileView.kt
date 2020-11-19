@@ -33,12 +33,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.safeboda.R
-import com.safeboda.core.R as core
 import com.safeboda.core.network.ApiModel
 import com.safeboda.core.network.ApiRequestStatus.*
 import com.safeboda.ui.base.SafebodaActivity
 import com.safeboda.ui.scroller.AppBarScrollListener
 import kotlinx.android.parcel.Parcelize
+import com.safeboda.core.R as core
 
 /**
  * Custom view to toggle between loading, empty, error and successful UI states smoothly.
@@ -51,8 +51,10 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
     companion object {
         @VisibleForTesting
         const val POSITION_LOADING = 0
+
         @VisibleForTesting
         const val POSITION_CONTENT = 1
+
         @VisibleForTesting
         const val POSITION_EMPTY = 2
         private const val FADE_DURATION_MS = 200L
@@ -137,7 +139,8 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
         }
     }
 
-    override fun onSaveInstanceState(): Parcelable? = ViewFlipperState(displayedChild, super.onSaveInstanceState())
+    override fun onSaveInstanceState(): Parcelable? =
+        ViewFlipperState(displayedChild, super.onSaveInstanceState())
 
     override fun onDetachedFromWindow() {
         appBarScrollListener?.let {

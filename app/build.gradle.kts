@@ -88,10 +88,7 @@ dependencies {
     implementation(Libraries.constraintLayout)
     implementation(Libraries.appCompat)
     implementation(Libraries.swiperefreshlayout)
-    implementation(Libraries.preference)
     implementation(Libraries.material)
-    implementation(Libraries.navigation)
-    implementation(Libraries.navigationFragment)
 
     // Room
     implementation(Libraries.room)
@@ -105,10 +102,6 @@ dependencies {
     // DI - KOIN
     implementation(Libraries.koin)
     implementation(Libraries.koinViewModel)
-
-    // Glide
-    implementation(Libraries.glide)
-    kapt(Libraries.glideCompiler)
 
     // Lifecycle
     implementation(Libraries.viewModel)
