@@ -32,6 +32,7 @@ import com.safeboda.core.span.LabelColor.GRAY
 import com.safeboda.core.utils.DeepLinkRouter
 import com.safeboda.databinding.*
 import com.safeboda.ui.base.BindingViewHolder
+import com.safeboda.ui.interfaces.OnUserOrOrganizationSelectedListener
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.*
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.Companion.ITEM_TYPE_DIVIDER
@@ -44,7 +45,8 @@ import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.Compa
 import timber.log.Timber
 
 class UserOrOrganizationAdapter(
-    context: Context?
+    context: Context?,
+    private val onUserOrOrganizationSelectedListener: OnUserOrOrganizationSelectedListener
 ) : RecyclerView.Adapter<BindingViewHolder<ViewDataBinding>>(), OnLinkClickListener {
 
     init {
@@ -97,7 +99,7 @@ class UserOrOrganizationAdapter(
                     false
                 )
 
-                val followingAdapter = FollowingAdapter()
+                val followingAdapter = FollowingAdapter(onUserOrOrganizationSelectedListener)
                 val rowUserFollowingBinding = binding as RowUserFollowingBinding
                 rowUserFollowingBinding.userFollowersFollowingRecyclerView.adapter =
                     followingAdapter
@@ -110,7 +112,7 @@ class UserOrOrganizationAdapter(
                     false
                 )
 
-                val followersAdapter = FollowersAdapter()
+                val followersAdapter = FollowersAdapter(onUserOrOrganizationSelectedListener)
                 val rowUserFollowersBinding = binding as RowUserFollowersBinding
                 rowUserFollowersBinding.userFollowersFollowingRecyclerView.adapter =
                     followersAdapter
@@ -130,11 +132,11 @@ class UserOrOrganizationAdapter(
             ITEM_TYPE_SPACER -> {
                 binding =
                     DataBindingUtil.inflate(
-                    inflater,
-                    R.layout.list_item_spacer,
-                    parent,
-                    false
-                ) as ListItemSpacerBinding
+                        inflater,
+                        R.layout.list_item_spacer,
+                        parent,
+                        false
+                    ) as ListItemSpacerBinding
                 binding.height =
                     binding.root.resources.getDimensionPixelSize(R.dimen.margin_medium)
             }

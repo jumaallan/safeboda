@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.safeboda.core.data.models.UserOrOrganization.Follower
 import com.safeboda.core.html.HtmlStyler
 import com.safeboda.databinding.ListItemUserFollowersBinding
+import com.safeboda.ui.interfaces.OnUserOrOrganizationSelectedListener
+import timber.log.Timber
 
 object FollowersDiffer : DiffUtil.ItemCallback<Follower>() {
 
@@ -33,7 +35,7 @@ object FollowersDiffer : DiffUtil.ItemCallback<Follower>() {
         oldItem == newItem
 }
 
-internal class FollowersAdapter :
+internal class FollowersAdapter(val onUserOrOrganizationSelectedListener: OnUserOrOrganizationSelectedListener) :
     ListAdapter<Follower, FollowersAdapter.ViewHolder>(FollowersDiffer) {
 
     companion object {
@@ -56,8 +58,11 @@ internal class FollowersAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Follower) {
             binding.user = item
+            binding.followers.setOnClickListener {
+                onUserOrOrganizationSelectedListener.onUserOrOrgSelected(item.login)
+            }
             binding.userName.text = item.name
-            binding.userName.text = item.login
+            binding.userLogin.text = item.login
             HtmlStyler.styleText(binding.userBio, item.bioHtml, null)
             binding.widthRatio = ITEM_WIDTH_RATIO
             binding.executePendingBindings()

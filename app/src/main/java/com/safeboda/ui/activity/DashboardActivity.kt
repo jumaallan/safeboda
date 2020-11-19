@@ -31,6 +31,7 @@ import com.safeboda.ui.interfaces.OnUserOrOrganizationSelectedListener
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class DashboardActivity :
     BindingActivity<ActivityDashboardBinding>(),
@@ -56,7 +57,7 @@ class DashboardActivity :
 
         userOrganizationViewModel.profileModel.observe(this, Observer(::onUserModelChanged))
 
-        userOrOrganizationAdapter = UserOrOrganizationAdapter(this)
+        userOrOrganizationAdapter = UserOrOrganizationAdapter(this, this)
         binding.viewUserOrgProfile.recyclerView?.adapter = userOrOrganizationAdapter
         binding.viewUserOrgProfile.enableSwipeToRefresh(this)
 
