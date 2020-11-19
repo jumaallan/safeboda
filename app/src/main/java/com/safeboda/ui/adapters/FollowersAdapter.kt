@@ -24,8 +24,6 @@ import com.safeboda.core.data.models.UserOrOrganization.Follower
 import com.safeboda.core.html.HtmlStyler
 import com.safeboda.databinding.ListItemUserFollowersBinding
 
-internal typealias FollowersClickListener = (Follower) -> Unit
-
 object FollowersDiffer : DiffUtil.ItemCallback<Follower>() {
 
     override fun areItemsTheSame(oldItem: Follower, newItem: Follower) =
@@ -35,9 +33,8 @@ object FollowersDiffer : DiffUtil.ItemCallback<Follower>() {
         oldItem == newItem
 }
 
-internal class FollowersAdapter(
-    private val listener: FollowersClickListener
-) : ListAdapter<Follower, FollowersAdapter.ViewHolder>(FollowersDiffer) {
+internal class FollowersAdapter :
+    ListAdapter<Follower, FollowersAdapter.ViewHolder>(FollowersDiffer) {
 
     companion object {
         private const val ITEM_WIDTH_RATIO = 0.75f
@@ -53,14 +50,11 @@ internal class FollowersAdapter(
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(getItem(position), listener)
+        holder.bind(getItem(position))
 
     inner class ViewHolder(val binding: ListItemUserFollowersBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Follower, listener: FollowersClickListener) {
-            binding.root.setOnClickListener {
-                listener.invoke(item)
-            }
+        fun bind(item: Follower) {
             binding.user = item
             binding.userName.text = item.name
             binding.userName.text = item.login
