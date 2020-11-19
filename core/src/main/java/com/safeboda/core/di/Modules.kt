@@ -3,7 +3,6 @@ package com.safeboda.core.di
 import com.apollographql.apollo.ApolloClient
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.safeboda.core.BuildConfig
-import com.safeboda.core.data.remote.FollowersFollowingRepository
 import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.core.network.AuthInterceptor
 import com.safeboda.core.utils.Constants
@@ -47,7 +46,6 @@ val networkingModule: Module = module(override = true) {
 
 val repositoryModule: Module = module {
     single { UserOrganizationRepository(get()) }
-    single { FollowersFollowingRepository(get()) }
 }
 
 val coreModules: List<Module> = listOf(

@@ -13,8 +13,9 @@ data class UserOrOrganization(
     val bioHtml: String,
     val companyHtml: String,
     val email: String,
+    val follower: List<Follower>,
+    val following: List<Following>,
     val followersTotalCount: Int,
-    val followersFacepile: FollowersFacepile?,
     val followingTotalCount: Int,
     val isDeveloperProgramMember: Boolean,
     val isVerified: Boolean,
@@ -44,8 +45,9 @@ data class UserOrOrganization(
         fragment.descriptionHTML ?: "",
         "",
         fragment.organizationEmail ?: "",
+        emptyList(),
+        emptyList(),
         INVALID_COUNT,
-        null,
         INVALID_COUNT,
         false,
         fragment.isVerified,
@@ -71,8 +73,9 @@ data class UserOrOrganization(
         fragment.bioHTML as String,
         fragment.companyHTML as String,
         fragment.userEmail,
+        fragment.followers.nodes.orEmpty().mapNotNull { Follower(it) },
+        fragment.following.nodes.orEmpty().mapNotNull { Following(it) },
         fragment.followers.totalCount,
-        FollowersFacepile(fragment.followers),
         fragment.following.totalCount,
         fragment.isDeveloperProgramMember,
         false,
@@ -97,14 +100,20 @@ data class UserOrOrganization(
         false
     )
 
-    data class FollowersFacepile(private val fragment: UserProfileFragment.Followers?) {
-        val followers: List<Follower> = fragment?.nodes.orEmpty().map(::Follower)
+    data class Follower(private val fragment: UserProfileFragment.Node?) {
+        val id: String = fragment?.id ?: ""
+        val login: String = fragment?.login ?: ""
+        val name: String = fragment?.name ?: ""
+        val avatarUrl: String = (fragment?.avatarUrl ?: "") as String
+        val bioHtml: String = (fragment?.bioHTML ?: "") as String
+    }
 
-        data class Follower(private val fragment: UserProfileFragment.Node?) {
-            val id: String = fragment?.id ?: ""
-            val login: String = fragment?.login ?: ""
-            val avatarUrl: String = (fragment?.avatarUrl ?: "") as String
-        }
+    data class Following(private val fragment: UserProfileFragment.Node1?) {
+        val id: String = fragment?.id ?: ""
+        val login: String = fragment?.login ?: ""
+        val name: String = fragment?.name ?: ""
+        val avatarUrl: String = (fragment?.avatarUrl ?: "") as String
+        val bioHtml: String = (fragment?.bioHTML ?: "") as String
     }
 
     data class Status(

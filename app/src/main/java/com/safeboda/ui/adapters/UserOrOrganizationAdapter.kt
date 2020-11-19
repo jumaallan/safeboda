@@ -15,14 +15,16 @@ import com.safeboda.core.html.HtmlStyler.OnLinkClickListener
 import com.safeboda.core.span.LabelColor
 import com.safeboda.core.span.LabelColor.GRAY
 import com.safeboda.core.utils.DeepLinkRouter
-import com.safeboda.databinding.ListItemSpacerBinding
-import com.safeboda.databinding.ListItemUserOrganizationProfileHeaderBinding
+import com.safeboda.databinding.*
 import com.safeboda.ui.base.BindingViewHolder
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.*
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.Companion.ITEM_TYPE_DIVIDER
+import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.Companion.ITEM_TYPE_FOLLOWERS
+import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.Companion.ITEM_TYPE_FOLLOWING
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.Companion.ITEM_TYPE_HEADER
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.Companion.ITEM_TYPE_LOADING
+import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.Companion.ITEM_TYPE_MENU_BUTTON
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.Companion.ITEM_TYPE_SPACER
 import timber.log.Timber
 
@@ -71,6 +73,36 @@ class UserOrOrganizationAdapter(
                 binding.statusBackground.background =
                     LabelColor.backgroundDrawable(parent.context, GRAY)
             }
+            ITEM_TYPE_FOLLOWING -> {
+                binding = DataBindingUtil.inflate(
+                    inflater,
+                    R.layout.row_user_following,
+                    parent,
+                    false
+                )
+
+                val followingAdapter = FollowingAdapter {}
+                val rowUserFollowingBinding = binding as RowUserFollowingBinding
+                rowUserFollowingBinding.userFollowersFollowingRecyclerView.adapter =
+                    followingAdapter
+            }
+            ITEM_TYPE_FOLLOWERS -> {
+                binding = DataBindingUtil.inflate(
+                    inflater,
+                    R.layout.row_user_followers,
+                    parent,
+                    false
+                )
+
+                val followersAdapter = FollowersAdapter {}
+                val rowUserFollowersBinding = binding as RowUserFollowersBinding
+                rowUserFollowersBinding.userFollowersFollowingRecyclerView.adapter =
+                    followersAdapter
+            }
+            ITEM_TYPE_MENU_BUTTON -> {
+                binding =
+                    DataBindingUtil.inflate(inflater, R.layout.list_item_menu_button, parent, false)
+            }
             ITEM_TYPE_LOADING -> {
                 binding =
                     DataBindingUtil.inflate(inflater, R.layout.list_item_loading, parent, false)
@@ -88,7 +120,7 @@ class UserOrOrganizationAdapter(
                     false
                 ) as ListItemSpacerBinding
                 binding.height =
-                    binding.root.resources.getDimensionPixelSize(R.dimen.margin_largest)
+                    binding.root.resources.getDimensionPixelSize(R.dimen.margin_medium)
             }
             else -> {
                 throw IllegalStateException("Unimplemented list item type $viewType.")
@@ -113,6 +145,47 @@ class UserOrOrganizationAdapter(
                 binding.userProfileLocation.compoundDrawablesRelative.first().setTint(iconTint)
                 binding.userProfileLink.compoundDrawablesRelative.first().setTint(iconTint)
             }
+
+            is FollowingItem -> {
+                val binding = holder.binding as RowUserFollowingBinding
+                binding.userTitle.text = "Following"
+                binding.userTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    R.drawable.ic_person,
+                    0,
+                    0,
+                    0
+                )
+                binding.userTitle.compoundDrawablesRelative.first().mutate().setTint(iconTint)
+                val followingAdapter = binding.userFollowersFollowingRecyclerView.adapter
+                if (followingAdapter is FollowingAdapter) {
+                    followingAdapter.submitList(item.following)
+                }
+            }
+
+            is FollowersItem -> {
+                val binding = holder.binding as RowUserFollowersBinding
+                binding.userTitle.text = "Followers"
+                binding.userTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    R.drawable.ic_person,
+                    0,
+                    0,
+                    0
+                )
+                binding.userTitle.compoundDrawablesRelative.first().mutate().setTint(iconTint)
+                val followersAdapter = binding.userFollowersFollowingRecyclerView.adapter
+                if (followersAdapter is FollowersAdapter) {
+                    followersAdapter.submitList(item.followers)
+                }
+            }
+
+            is MenuButtonItem -> {
+                val binding = holder.binding as ListItemMenuButtonBinding
+                binding.menuName.text = binding.root.context.getString(item.text)
+                binding.menuNumberSize.text = item.value.toString()
+                binding.root.setTag(R.id.tag_profile, item.profile)
+                binding.root.tag = item.type
+            }
+
             is LoadingItem -> Unit
             is ListItemDivider -> Unit
             is Spacer -> Unit

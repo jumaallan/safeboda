@@ -1,17 +1,23 @@
 package com.safeboda.ui.viewmodel
 
+import androidx.annotation.StringRes
 import androidx.annotation.UiThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.safeboda.R
 import com.safeboda.core.data.models.UserOrOrganization
+import com.safeboda.core.data.models.UserOrOrganization.Follower
+import com.safeboda.core.data.models.UserOrOrganization.Following
 import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.core.network.ApiFailure
 import com.safeboda.core.network.ApiFailureType.PARSE_ERROR
 import com.safeboda.core.network.ApiModel
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.*
+import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.*
+import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -127,6 +133,38 @@ class UserOrganizationViewModel(
 
         data.add(ListItemDivider())
 
+        if (profile.repositoriesCount >= 0) {
+            data.add(
+                MenuButtonItem(
+                    profile,
+                    R.string.repositories,
+                    profile.repositoriesCount,
+                    REPOSITORIES
+                )
+            )
+        }
+
+        data.add(ListItemDivider())
+
+        if (profile.organizationsCount >= 0) {
+            data.add(
+                MenuButtonItem(
+                    profile,
+                    R.string.organizations,
+                    profile.organizationsCount,
+                    ORGANIZATIONS
+                )
+            )
+        }
+
+        if (profile.following.isNotEmpty()) {
+            data.add(FollowingItem(profile.following))
+        }
+
+        if (profile.follower.isNotEmpty()) {
+            data.add(FollowersItem(profile.follower))
+        }
+
         data.add(Spacer("footer"))
 
         return data
@@ -136,13 +174,18 @@ class UserOrganizationViewModel(
 
         companion object {
             const val ITEM_TYPE_HEADER = 1
-            const val ITEM_TYPE_LOADING = 2
-            const val ITEM_TYPE_SPACER = 3
-            const val ITEM_TYPE_DIVIDER = 4
+            const val ITEM_TYPE_FOLLOWERS = 2
+            const val ITEM_TYPE_FOLLOWING = 3
+            const val ITEM_TYPE_MENU_BUTTON = 4
+            const val ITEM_TYPE_LOADING = 5
+            const val ITEM_TYPE_SPACER = 6
+            const val ITEM_TYPE_DIVIDER = 7
 
             private const val ID_HEADER = 1L
-            private const val ID_LOADING = 2L
-            private const val ID_DIVIDER = 3L
+            private const val ID_FOLLOWERS = 2L
+            private const val ID_FOLLOWING = 3L
+            private const val ID_LOADING = 4L
+            private const val ID_DIVIDER = 5L
         }
 
         class Spacer(id: String) : ListItemProfile(ITEM_TYPE_SPACER, id.hashCode().toLong())
@@ -200,6 +243,29 @@ class UserOrganizationViewModel(
                     false,
                     ""
                 )
+        }
+
+        data class FollowersItem(
+            val followers: List<Follower>?
+        ) :
+            ListItemProfile(ITEM_TYPE_FOLLOWERS, ID_FOLLOWERS)
+
+        data class FollowingItem(
+            val following: List<Following>
+        ) :
+            ListItemProfile(ITEM_TYPE_FOLLOWING, ID_FOLLOWING)
+
+        data class MenuButtonItem(
+            val profile: UserOrOrganization,
+            @StringRes val text: Int,
+            val value: Int,
+            val type: ButtonType
+        ) :
+            ListItemProfile(ITEM_TYPE_MENU_BUTTON, type.hashCode().toLong()) {
+
+            enum class ButtonType {
+                REPOSITORIES, ORGANIZATIONS
+            }
         }
 
         class LoadingItem : ListItemProfile(ITEM_TYPE_LOADING, ID_LOADING)

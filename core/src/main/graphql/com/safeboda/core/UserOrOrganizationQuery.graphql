@@ -25,7 +25,9 @@ fragment UserProfileFragment on User {
     nodes {
       id
       login
+      name
       avatarUrl
+      bioHTML
     }
   }
   following(first: $first, after: $after) {
@@ -35,9 +37,11 @@ fragment UserProfileFragment on User {
       endCursor
     }
     nodes {
-      id
+       id
       login
+      name
       avatarUrl
+      bioHTML
     }
   }
   isDeveloperProgramMember
