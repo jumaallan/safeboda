@@ -1,3 +1,18 @@
+/*
+ * Copyright 2020 Safeboda
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.safeboda.ui.viewmodel
 
 import androidx.annotation.StringRes
@@ -16,8 +31,8 @@ import com.safeboda.core.network.ApiFailure
 import com.safeboda.core.network.ApiFailureType.PARSE_ERROR
 import com.safeboda.core.network.ApiModel
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.*
-import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.*
-import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.*
+import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.ORGANIZATIONS
+import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.REPOSITORIES
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -158,11 +173,11 @@ class UserOrganizationViewModel(
         }
 
         if (profile.following.isNotEmpty()) {
-            data.add(FollowingItem(profile.following))
+            data.add(FollowingItem(profile.following, profile.followingTotalCount))
         }
 
         if (profile.follower.isNotEmpty()) {
-            data.add(FollowersItem(profile.follower))
+            data.add(FollowersItem(profile.follower, profile.followersTotalCount))
         }
 
         data.add(Spacer("footer"))
@@ -246,12 +261,14 @@ class UserOrganizationViewModel(
         }
 
         data class FollowersItem(
-            val followers: List<Follower>?
+            val followers: List<Follower>?,
+            val followersTotalCount: Int
         ) :
             ListItemProfile(ITEM_TYPE_FOLLOWERS, ID_FOLLOWERS)
 
         data class FollowingItem(
-            val following: List<Following>
+            val following: List<Following>,
+            val followingTotalCount: Int
         ) :
             ListItemProfile(ITEM_TYPE_FOLLOWING, ID_FOLLOWING)
 
