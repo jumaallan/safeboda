@@ -16,6 +16,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <include
+            android:id="@+id/app_bar_layout"
+            layout="@layout/app_bar_layout" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
