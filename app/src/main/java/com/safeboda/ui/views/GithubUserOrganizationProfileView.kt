@@ -80,7 +80,6 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
     private val emptyTitleTextView: TextView
     private val emptyDescriptionTextView: TextView
     private val emptyImageView: ImageView
-    private val emptyButton: Button
 
     init {
         // Allows overrides of the main contentView, emptyText and errorText in xml.
@@ -119,7 +118,6 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
         emptyTitleTextView = emptyView.findViewById(core.id.empty_state_title)
         emptyDescriptionTextView = emptyView.findViewById(core.id.empty_state_description)
         emptyImageView = emptyView.findViewById(core.id.empty_state_image)
-        emptyButton = emptyView.findViewById(core.id.empty_button)
 
         inAnimation = AlphaAnimation(0.0f, 1.0f).apply { duration = FADE_DURATION_MS }
         outAnimation = AlphaAnimation(1.0f, 0.0f).apply { duration = FADE_DURATION_MS }
@@ -224,7 +222,11 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
         }
     }
 
-    fun showEmpty(model: EmptyModel = EmptyModel(context.getString(core.string.default_empty_text))) {
+    fun showEmpty(model: EmptyModel = EmptyModel(
+        context.getString(core.string.default_empty_text),
+        context.getString(core.string.empty_people),
+        context.getDrawable(R.drawable.ic_empty_view)
+    )) {
         ensureEmptyView(model)
         if (displayedChild != POSITION_EMPTY) {
             displayedChild = POSITION_EMPTY
@@ -255,13 +257,6 @@ class GithubUserOrganizationProfileView @JvmOverloads constructor(
             emptyDescriptionTextView.visibility = View.GONE
         }
 
-        if (model.buttonTextResId != null) {
-            emptyButton.setText(model.buttonTextResId)
-            emptyButton.visibility = View.VISIBLE
-            emptyButton.setOnClickListener { model.buttonAction() }
-        } else {
-            emptyButton.visibility = View.GONE
-        }
         appBarScrollListener?.elevate()
         hidePullToRefresh()
     }
