@@ -38,6 +38,23 @@ To check for dependency updates, run the following gradlew command:
 ./gradlew dependencyUpdate
 ```
 
+To inspect the local db/cache, there are two ways to do it:
+
+Open Chrome, and type in this URL. Uses [Stetho](https://github.com/facebook/stetho), which is bundled on the debug APK
+
+```yaml
+chrome://inspect/
+```
+
+Using Android Studio database inspector - Bump up the minimum version to 26, inside the `Dependencies.kt`
+
+```kotlin
+object AndroidSdk {
+    const val minSdkVersion = 26 // is set to 23 on the repo
+    ...
+}
+```
+
 Refer to this [issue](https://github.com/gradle/gradle/issues/10248), if you get any issues running the lint commands on the terminal :rocket:
 
 ### Background
