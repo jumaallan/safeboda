@@ -4,7 +4,7 @@
 
 The final app looks like this:
 
-<img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/profile.gif" width="260"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/wangerekaharun.png" width="260"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/tamzi.png" width="260"/>
+<img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/profile.gif" width="270"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/wangerekaharun.png" width="260"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/tamzi.png" width="260"/>
 
 ### Prerequisites
 
