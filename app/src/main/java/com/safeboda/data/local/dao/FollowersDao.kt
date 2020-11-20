@@ -18,7 +18,6 @@ package com.safeboda.data.local.dao
 import androidx.room.Dao
 import androidx.room.Query
 import com.safeboda.data.local.entities.Followers
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FollowersDao : BaseDao<Followers> {
