@@ -15,16 +15,31 @@
  */
 package com.safeboda.data.repository
 
-import androidx.lifecycle.LiveData
+import com.safeboda.data.local.dao.FollowersDao
+import com.safeboda.data.local.dao.FollowingDao
 import com.safeboda.data.local.dao.UserDao
+import com.safeboda.data.local.entities.Followers
+import com.safeboda.data.local.entities.Followings
 import com.safeboda.data.local.entities.User
-import kotlinx.coroutines.flow.Flow
 
 class UserRepository(
-    private val userDao: UserDao
+    private val userDao: UserDao,
+    private val followersDao: FollowersDao,
+    private val followingDao: FollowingDao,
 ) {
 
-    fun getUserByUserID(userID: String): LiveData<User> = userDao.getUserByUserID(userID)
+    suspend fun saveUser(user: User) = userDao.insert(user)
 
-    fun fetchUsers(): Flow<List<User>> = userDao.fetchUsers()
+    suspend fun getUserByGithubUsername(login: String): User? =
+        userDao.getUserByGithubUsername(login)
+
+    suspend fun saveUserFollowers(followers: List<Followers>) = followersDao.insert(followers)
+
+    suspend fun getFollowersByGithubUsername(userLogin: String): List<Followers> =
+        followersDao.getFollowersByGithubUsername(userLogin)
+
+    suspend fun saveUserFollowing(following: List<Followings>) = followingDao.insert(following)
+
+    suspend fun getFollowingByGithubUsername(userLogin: String): List<Followings> =
+        followingDao.getFollowingByGithubUsername(userLogin)
 }

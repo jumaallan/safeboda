@@ -17,7 +17,6 @@ package com.safeboda.ui.viewmodel
 
 import androidx.annotation.StringRes
 import androidx.annotation.UiThread
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,6 +29,9 @@ import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.core.network.ApiFailure
 import com.safeboda.core.network.ApiFailureType.PARSE_ERROR
 import com.safeboda.core.network.ApiModel
+import com.safeboda.data.local.entities.User
+import com.safeboda.data.local.mapper.toResponse
+import com.safeboda.data.repository.UserRepository
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.*
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.ORGANIZATIONS
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.REPOSITORIES
@@ -41,6 +43,7 @@ import timber.log.Timber
 
 class UserOrganizationViewModel(
     private val userOrganizationRepository: UserOrganizationRepository,
+    private val userRepository: UserRepository,
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
@@ -49,12 +52,13 @@ class UserOrganizationViewModel(
     val profileModel: LiveData<ApiModel<List<ListItemProfile>>>
         get() = userOrganizationProfileModel
 
-    @UiThread
     fun fetchUserOrOrganization(login: String) {
         handleProfileLoading(login)
         viewModelScope.launch(coroutineDispatcher) {
             userOrganizationRepository.fetchUserOrOrganization(login, null) {
-                handleProfileFailure(it, login)
+                viewModelScope.launch {
+                    handleProfileFailure(it, login)
+                }
             }.collect { profile ->
                 when {
                     profile != null -> {
@@ -71,10 +75,49 @@ class UserOrganizationViewModel(
         }
     }
 
-    @WorkerThread
-    private fun handleProfileSuccess(profile: UserOrOrganization) {
+    private suspend fun handleProfileSuccess(profile: UserOrOrganization) {
         Timber.d("Updating user profile list items.")
         userOrganizationProfileModel.postValue(ApiModel.success(successListItems(profile)))
+        // save to local cache
+        val indicatesLimitedAvailability: Boolean = !profile.isOrganization
+
+        userRepository.saveUser(
+            User(
+                0,
+                profile.url,
+                profile.avatarUrl,
+                profile.bioHtml,
+                profile.companyHtml,
+                profile.email,
+                profile.followersTotalCount,
+                profile.followingTotalCount,
+                profile.isDeveloperProgramMember,
+                profile.isVerified,
+                profile.isEmployee,
+                profile.isViewer,
+                profile.location,
+                profile.login,
+                profile.name,
+                profile.organizationsCount,
+                profile.repositoriesCount,
+                profile.starredRepositoriesCount,
+                profile.viewerCanFollow,
+                profile.viewerIsFollowing,
+                profile.websiteUrl,
+                profile.isOrganization,
+                profile.status?.emojiHtml.toString(),
+                indicatesLimitedAvailability,
+                profile.status?.message.toString(),
+            )
+        )
+
+        userRepository.saveUserFollowers(
+            profile.follower.map { it.toResponse(profile.login) }
+        )
+
+        userRepository.saveUserFollowing(
+            profile.following.map { it.toResponse(profile.login) }
+        )
     }
 
     @UiThread
@@ -86,15 +129,62 @@ class UserOrganizationViewModel(
         )
     }
 
-    @WorkerThread
-    private fun handleProfileFailure(
+    private suspend fun handleProfileFailure(
         failure: ApiFailure,
         login: String?
     ) {
-        Timber.d("Failed to fetch profile due to $failure")
-        userOrganizationProfileModel.postValue(
-            ApiModel.failure(failure, cachedListItems(false, login))
-        )
+
+        val it = userRepository.getUserByGithubUsername(login.toString())
+        if (it?.login.isNullOrEmpty()) {
+            userOrganizationProfileModel.postValue(
+                ApiModel.failure(failure, cachedListItems(false, login))
+            )
+        } else {
+
+            val followers = userRepository.getFollowersByGithubUsername(login.toString())
+            val followersList = mutableListOf<Follower>()
+            followers.forEach {
+                followersList.add(it.toResponse())
+            }
+
+            val following = userRepository.getFollowingByGithubUsername(login.toString())
+            val followingList = mutableListOf<Following>()
+            following.forEach {
+                followingList.add(it.toResponse())
+            }
+
+            val profile = UserOrOrganization(
+                it!!.id.toString(),
+                it.url,
+                it.avatarUrl,
+                it.bioHtml,
+                it.companyHtml,
+                it.email,
+                followersList,
+                followingList,
+                it.followersTotalCount,
+                it.followingTotalCount,
+                it.isDeveloperProgramMember,
+                it.isVerified,
+                it.isEmployee,
+                it.isViewer,
+                it.location,
+                it.login.toString(),
+                it.name,
+                it.organizationsCount,
+                it.repositoriesCount,
+                it.starredRepositoriesCount,
+                it.viewerCanFollow,
+                it.viewerIsFollowing,
+                it.websiteUrl,
+                UserOrOrganization.Status(
+                    it.emojiHtml, it.indicatesLimitedAvailability, it.message
+                ),
+                it.isOrganization,
+            )
+
+            handleProfileSuccess(profile)
+        }
     }
 
     /**

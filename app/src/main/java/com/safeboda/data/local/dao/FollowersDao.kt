@@ -17,11 +17,11 @@ package com.safeboda.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.safeboda.data.local.entities.User
+import com.safeboda.data.local.entities.Followers
 
 @Dao
-interface UserDao : BaseDao<User> {
+interface FollowersDao : BaseDao<Followers> {
 
-    @Query("SELECT * FROM User WHERE login =:login")
-    suspend fun getUserByGithubUsername(login: String): User
+    @Query("SELECT * FROM Followers WHERE userLogin =:userLogin")
+    suspend fun getFollowersByGithubUsername(userLogin: String): List<Followers>
 }
