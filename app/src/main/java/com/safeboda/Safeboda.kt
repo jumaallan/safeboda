@@ -16,6 +16,7 @@
 package com.safeboda
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 import com.safeboda.core.di.coreModules
 import com.safeboda.core.utils.CrashlyticsTree
 import com.safeboda.di.appModules
@@ -33,6 +34,7 @@ open class Safeboda : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        FirebaseApp.initializeApp(this)
         initKoin()
         initTimber()
     }

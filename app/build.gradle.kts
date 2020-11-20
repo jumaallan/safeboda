@@ -90,6 +90,9 @@ dependencies {
     implementation(Libraries.swiperefreshlayout)
     implementation(Libraries.material)
 
+    // Firebase crashlytics
+    implementation(Libraries.crashlytics)
+
     // Room
     implementation(Libraries.room)
     implementation(Libraries.roomRuntime)
@@ -131,7 +134,6 @@ dependencies {
     testImplementation(TestLibraries.roomTest)
     testImplementation(TestLibraries.koinTest)
     testImplementation(TestLibraries.mockK)
-    testImplementation(TestLibraries.mockWebServer)
     testImplementation(TestLibraries.roboelectric)
     testImplementation(TestLibraries.truth)
     testImplementation(TestLibraries.runner)
@@ -140,3 +142,4 @@ dependencies {
     testImplementation(TestLibraries.archComponentTest)
     testImplementation(TestLibraries.liveDataTesting)
 }
+
