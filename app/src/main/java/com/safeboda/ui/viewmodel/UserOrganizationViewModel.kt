@@ -30,6 +30,9 @@ import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.core.network.ApiFailure
 import com.safeboda.core.network.ApiFailureType.PARSE_ERROR
 import com.safeboda.core.network.ApiModel
+import com.safeboda.data.local.entities.User
+import com.safeboda.data.local.mapper.toResponse
+import com.safeboda.data.repository.UserRepository
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.*
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.ORGANIZATIONS
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.REPOSITORIES
@@ -41,6 +44,7 @@ import timber.log.Timber
 
 class UserOrganizationViewModel(
     private val userOrganizationRepository: UserOrganizationRepository,
+    private val userRepository: UserRepository,
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
@@ -71,10 +75,44 @@ class UserOrganizationViewModel(
         }
     }
 
-    @WorkerThread
-    private fun handleProfileSuccess(profile: UserOrOrganization) {
+    private suspend fun handleProfileSuccess(profile: UserOrOrganization) {
         Timber.d("Updating user profile list items.")
         userOrganizationProfileModel.postValue(ApiModel.success(successListItems(profile)))
+        // save to local cache
+        userRepository.saveUser(
+            User(
+                0,
+                profile.url,
+                profile.avatarUrl,
+                profile.bioHtml,
+                profile.companyHtml,
+                profile.email,
+                profile.followersTotalCount,
+                profile.followingTotalCount,
+                profile.isDeveloperProgramMember,
+                profile.isVerified,
+                profile.isEmployee,
+                profile.isViewer,
+                profile.location,
+                profile.login,
+                profile.name,
+                profile.organizationsCount,
+                profile.repositoriesCount,
+                profile.starredRepositoriesCount,
+                profile.viewerCanFollow,
+                profile.viewerIsFollowing,
+                profile.websiteUrl,
+                profile.isOrganization
+            )
+        )
+
+        userRepository.saveUserFollowers(
+            profile.follower.map { it.toResponse(profile.login) }
+        )
+
+        userRepository.saveUserFollowing(
+            profile.following.map { it.toResponse(profile.login) }
+        )
     }
 
     @UiThread
@@ -92,6 +130,9 @@ class UserOrganizationViewModel(
         login: String?
     ) {
         Timber.d("Failed to fetch profile due to $failure")
+
+        // try to see if we have a cached record for the user, if not show error
+
         userOrganizationProfileModel.postValue(
             ApiModel.failure(failure, cachedListItems(false, login))
         )
@@ -215,40 +256,40 @@ class UserOrganizationViewModel(
             ListItemProfile(ITEM_TYPE_HEADER, ID_HEADER) {
 
             constructor(profile: UserOrOrganization) :
-                this(
-                    profile.avatarUrl,
-                    profile.name,
-                    profile.login,
-                    profile.websiteUrl,
-                    profile.bioHtml,
-                    profile.companyHtml,
-                    profile.status?.emojiHtml,
-                    profile.status?.message,
-                    profile.location,
-                    profile.followersTotalCount,
-                    profile.followingTotalCount,
-                    profile.viewerIsFollowing,
-                    !profile.isOrganization && !profile.isViewer,
-                    profile.id
-                )
+                    this(
+                        profile.avatarUrl,
+                        profile.name,
+                        profile.login,
+                        profile.websiteUrl,
+                        profile.bioHtml,
+                        profile.companyHtml,
+                        profile.status?.emojiHtml,
+                        profile.status?.message,
+                        profile.location,
+                        profile.followersTotalCount,
+                        profile.followingTotalCount,
+                        profile.viewerIsFollowing,
+                        !profile.isOrganization && !profile.isViewer,
+                        profile.id
+                    )
 
             constructor(avatarUrl: String?, userName: String?, login: String?) :
-                this(
-                    avatarUrl,
-                    userName,
-                    login,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    -1,
-                    -1,
-                    false,
-                    false,
-                    ""
-                )
+                    this(
+                        avatarUrl,
+                        userName,
+                        login,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        -1,
+                        -1,
+                        false,
+                        false,
+                        ""
+                    )
         }
 
         data class FollowersItem(
