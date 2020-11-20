@@ -20,7 +20,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(indices = [Index(value = ["login"], unique = true)])
-data class Following(
+data class Followings(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
     val userLogin: String,

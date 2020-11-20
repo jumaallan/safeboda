@@ -45,7 +45,7 @@ private val repositoryModule: Module = module {
 }
 
 private val viewModelModule: Module = module {
-    viewModel { UserOrganizationViewModel(get()) }
+    viewModel { UserOrganizationViewModel(get(), get()) }
 }
 
 val appModules: List<Module> = listOf(

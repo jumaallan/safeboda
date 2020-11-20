@@ -21,14 +21,14 @@ import com.safeboda.data.local.dao.FollowersDao
 import com.safeboda.data.local.dao.FollowingDao
 import com.safeboda.data.local.dao.UserDao
 import com.safeboda.data.local.entities.Followers
-import com.safeboda.data.local.entities.Following
+import com.safeboda.data.local.entities.Followings
 import com.safeboda.data.local.entities.User
 
 @androidx.room.Database(
     entities = [
         User::class,
         Followers::class,
-        Following::class
+        Followings::class
     ],
     version = 1,
     exportSchema = false

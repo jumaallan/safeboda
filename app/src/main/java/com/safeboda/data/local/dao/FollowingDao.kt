@@ -17,12 +17,12 @@ package com.safeboda.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.safeboda.data.local.entities.Following
+import com.safeboda.data.local.entities.Followings
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface FollowingDao : BaseDao<Following> {
+interface FollowingDao : BaseDao<Followings> {
 
-    @Query("SELECT * FROM Following WHERE userLogin =:userLogin")
-    fun getFollowingByGithubUsername(userLogin: String): Flow<List<Following>>
+    @Query("SELECT * FROM Followings WHERE userLogin =:userLogin")
+    fun getFollowingByGithubUsername(userLogin: String): Flow<List<Followings>>
 }

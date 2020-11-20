@@ -19,7 +19,7 @@ import com.safeboda.data.local.dao.FollowersDao
 import com.safeboda.data.local.dao.FollowingDao
 import com.safeboda.data.local.dao.UserDao
 import com.safeboda.data.local.entities.Followers
-import com.safeboda.data.local.entities.Following
+import com.safeboda.data.local.entities.Followings
 import com.safeboda.data.local.entities.User
 import kotlinx.coroutines.flow.Flow
 
@@ -29,12 +29,18 @@ class UserRepository(
     private val followingDao: FollowingDao,
 ) {
 
+    suspend fun saveUser(user: User) = userDao.insert(user)
+
     fun getUserByGithubUsername(login: String): Flow<User> =
         userDao.getUserByGithubUsername(login)
+
+    suspend fun saveUserFollowers(followers: List<Followers>) = followersDao.insert(followers)
 
     fun getFollowersByGithubUsername(userLogin: String): Flow<List<Followers>> =
         followersDao.getFollowersByGithubUsername(userLogin)
 
-    fun getFollowingByGithubUsername(userLogin: String): Flow<List<Following>> =
+    suspend fun saveUserFollowing(following: List<Followings>) = followingDao.insert(following)
+
+    fun getFollowingByGithubUsername(userLogin: String): Flow<List<Followings>> =
         followingDao.getFollowingByGithubUsername(userLogin)
 }
