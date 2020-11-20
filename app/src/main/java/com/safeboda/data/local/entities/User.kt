@@ -35,7 +35,7 @@ data class User(
     val isEmployee: Boolean,
     val isViewer: Boolean,
     val location: String,
-    val login: String,
+    val login: String?,
     val name: String,
     val organizationsCount: Int,
     val repositoriesCount: Int,
@@ -43,5 +43,8 @@ data class User(
     val viewerCanFollow: Boolean,
     val viewerIsFollowing: Boolean,
     val websiteUrl: String,
-    val isOrganization: Boolean
+    val isOrganization: Boolean,
+    val emojiHtml: String,
+    val indicatesLimitedAvailability: Boolean,
+    val message: String
 )
