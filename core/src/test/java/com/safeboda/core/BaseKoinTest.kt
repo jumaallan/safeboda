@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda
+package com.safeboda.core
 
-import com.safeboda.util.KoinTestRule
+import com.safeboda.core.util.KoinTestRule
 import org.junit.Rule
 import org.koin.test.KoinTest
 

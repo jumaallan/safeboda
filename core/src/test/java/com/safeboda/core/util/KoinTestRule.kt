@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda.util
+package com.safeboda.core.util
 
-import com.safeboda.di.appModules
+import com.safeboda.core.di.coreModules
 import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
@@ -29,7 +29,7 @@ class KoinTestRule : TestRule {
 
             override fun evaluate() {
                 stopKoin()
-                startKoin { modules(appModules) }
+                startKoin { modules(coreModules) }
                 base.evaluate()
                 stopKoin()
             }
