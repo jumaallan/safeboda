@@ -1,0 +1,67 @@
+{
+  "data": {
+    "repositoryOwner": {
+      "id": "MDQ6VXNlcjI1MDg1MTQ2",
+      "url": "https://github.com/jumaallan",
+      "avatarUrl": "https://avatars2.githubusercontent.com/u/25085146?u=ce5247f3c267df4cdbe2af79efee9c848d1791e0&v=4",
+      "bioHTML": "<div>Android @ Backbase</div>",
+      "companyHTML": "<div>Backbase</div>",
+      "userEmail": "allanjuma@gmail.com",
+      "followers": {
+        "totalCount": 610,
+        "pageInfo": {
+          "hasNextPage": true,
+          "endCursor": "Y3Vyc29yOnYyOpK5MjAyMC0xMS0xOVQwMDowODoxMiswMzowMM4D8yi_"
+        },
+        "nodes": [
+          {
+            "id": "MDQ6VXNlcjk5OTk5MTQ=",
+            "login": "el-fasoh",
+            "name": null,
+            "avatarUrl": "https://avatars2.githubusercontent.com/u/9999914?v=4",
+            "bioHTML": ""
+          }
+        ]
+      },
+      "following": {
+        "totalCount": 13,
+        "pageInfo": {
+          "hasNextPage": true,
+          "endCursor": "Y3Vyc29yOnYyOpK5MjAyMC0xMC0yNlQxOTo1Mjo1MiswMzowMM4D4v5e"
+        },
+        "nodes": [
+          {
+            "id": "MDQ6VXNlcjE3Mjk1MTc1",
+            "login": "akabiru",
+            "name": "Kabiru Mwenja",
+            "avatarUrl": "https://avatars3.githubusercontent.com/u/17295175?u=554245ab33cd1c1d2d32c87064098c18c154ca0e&v=4",
+            "bioHTML": "<div>Software Composer</div>"
+          }
+        ]
+      },
+      "isDeveloperProgramMember": true,
+      "isEmployee": false,
+      "isViewer": true,
+      "location": "Nairobi Kenya",
+      "login": "jumaallan",
+      "name": "Juma Allan",
+      "organizations": {
+        "totalCount": 16
+      },
+      "repositories": {
+        "totalCount": 45
+      },
+      "starredRepositories": {
+        "totalCount": 108
+      },
+      "status": {
+        "emojiHTML": "<div><g-emoji class=\"g-emoji\" alias=\"beach_umbrella\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f3d6.png\">🏖️</g-emoji></div>",
+        "indicatesLimitedAvailability": false,
+        "message": "Just a man, shipping code"
+      },
+      "viewerCanFollow": false,
+      "viewerIsFollowing": false,
+      "websiteUrl": "https://androidstudy.com"
+    }
+  }
+}
