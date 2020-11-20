@@ -142,4 +142,3 @@ dependencies {
     testImplementation(TestLibraries.archComponentTest)
     testImplementation(TestLibraries.liveDataTesting)
 }
-
