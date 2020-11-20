@@ -2,7 +2,9 @@
 
 👀  Writing Safeboda Interview Solution App using [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/), in 100% Kotlin, using Android Jetpack Components.
 
-<img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/wangerekaharun.png" width="280"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/tamzi.png" width="280"/>
+The final app looks like this:
+
+<img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/profile.gif" width="280"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/wangerekaharun.png" width="280"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/tamzi.png" width="280"/>
 
 ### Prerequisites
 
