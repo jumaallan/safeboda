@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda.core
+package com.safeboda.core.utils
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.toList
 
 /**
- * Example local unit test, which will execute on the development machine (host).
+ * Responsible for converting Flow<List<T>> to a List<>
  *
- * See [testing documentation](http://d.android.com/tools/testing).
+ * @param T
+ * @return a List from a Flow<List<>>
  */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
-}
+@FlowPreview
+suspend fun <T> Flow<List<T>>.flattenToList() =
+    flatMapConcat { it.asFlow() }.toList()

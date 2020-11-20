@@ -91,4 +91,8 @@ dependencies {
     // Unit Tests
     testImplementation(TestLibraries.jUnit)
     testImplementation(TestLibraries.truth)
+    testImplementation(TestLibraries.koinTest)
+    testImplementation(TestLibraries.mockK)
+    testImplementation(TestLibraries.mockWebServer)
+    testImplementation(TestLibraries.roboelectric)
 }
