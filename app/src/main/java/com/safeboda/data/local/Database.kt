@@ -17,12 +17,18 @@ package com.safeboda.data.local
 
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.safeboda.data.local.dao.FollowersDao
+import com.safeboda.data.local.dao.FollowingDao
 import com.safeboda.data.local.dao.UserDao
+import com.safeboda.data.local.entities.Followers
+import com.safeboda.data.local.entities.Following
 import com.safeboda.data.local.entities.User
 
 @androidx.room.Database(
     entities = [
-        User::class
+        User::class,
+        Followers::class,
+        Following::class
     ],
     version = 1,
     exportSchema = false
@@ -32,4 +38,6 @@ import com.safeboda.data.local.entities.User
 abstract class Database : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+    abstract fun followersDao(): FollowersDao
+    abstract fun followingDao(): FollowingDao
 }

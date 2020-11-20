@@ -36,10 +36,12 @@ private val databaseModule: Module = module {
 
 private val daoModule: Module = module {
     single { get<Database>().userDao() }
+    single { get<Database>().followersDao() }
+    single { get<Database>().followingDao() }
 }
 
 private val repositoryModule: Module = module {
-    single { UserRepository(get()) }
+    single { UserRepository(get(), get(), get()) }
 }
 
 private val viewModelModule: Module = module {
