@@ -15,7 +15,6 @@
  */
 package com.safeboda.data.local.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import com.safeboda.data.local.entities.User
@@ -25,8 +24,6 @@ import kotlinx.coroutines.flow.Flow
 interface UserDao : BaseDao<User> {
 
     @Query("SELECT * FROM User WHERE userId =:userID")
-    fun getUserByUserID(userID: String): LiveData<User>
+    fun getUserByGithubUsername(userID: String): Flow<User>
 
-    @Query("SELECT * FROM User")
-    fun fetchUsers(): Flow<List<User>>
 }
