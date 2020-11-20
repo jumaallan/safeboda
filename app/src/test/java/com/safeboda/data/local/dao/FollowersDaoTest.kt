@@ -19,6 +19,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.safeboda.BaseTest
 import com.safeboda.data.local.sample.testFollower
+import com.safeboda.data.local.sample.username
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.CoreMatchers.`is`
@@ -39,7 +40,7 @@ internal class FollowersDaoTest : BaseTest() {
     @Test
     fun `test inserting and retrieving followers`() = runBlockingTest {
         followersDao.insert(testFollower)
-        val followers = followersDao.getFollowersByGithubUsername("jumaallan")
+        val followers = followersDao.getFollowersByGithubUsername(username)
         assertThat(followers[0].login, `is`(testFollower[0].login))
     }
 }

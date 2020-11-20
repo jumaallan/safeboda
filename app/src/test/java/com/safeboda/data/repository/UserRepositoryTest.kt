@@ -18,9 +18,7 @@ package com.safeboda.data.repository
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth
 import com.safeboda.BaseTest
-import com.safeboda.data.local.sample.testFollower
-import com.safeboda.data.local.sample.testFollowing
-import com.safeboda.data.local.sample.testUser
+import com.safeboda.data.local.sample.*
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert
@@ -45,7 +43,7 @@ internal class UserRepositoryTest : BaseTest() {
     fun `test fetching user by username`() {
         runBlocking {
             userRepository.saveUser(testUser[0])
-            val user = userRepository.getUserByGithubUsername("jumaallan")
+            val user = userRepository.getUserByGithubUsername(username)
             MatcherAssert.assertThat(user?.name, `is`(testUser[0].name))
         }
     }
@@ -54,7 +52,7 @@ internal class UserRepositoryTest : BaseTest() {
     fun `test fetching user followers by username`() {
         runBlocking {
             userRepository.saveUserFollowers(testFollower)
-            val followers = userRepository.getFollowersByGithubUsername("jumaallan")
+            val followers = userRepository.getFollowersByGithubUsername(username)
             Truth.assertThat(followers.size).isAtLeast(1)
         }
     }
@@ -63,8 +61,8 @@ internal class UserRepositoryTest : BaseTest() {
     fun `test fetching user following by username`() {
         runBlocking {
             userRepository.saveUserFollowing(testFollowing)
-            val following = userRepository.getFollowingByGithubUsername("jumaallan")
-            Truth.assertThat(following[0].name).matches("Kabiru Mwenja")
+            val following = userRepository.getFollowingByGithubUsername(username)
+            Truth.assertThat(following[0].name).matches(name)
         }
     }
 }

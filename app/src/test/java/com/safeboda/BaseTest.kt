@@ -18,6 +18,7 @@ package com.safeboda
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import com.safeboda.core.BaseKoinTest
 import com.safeboda.data.local.Database
 import com.safeboda.data.local.dao.FollowersDao
 import com.safeboda.data.local.dao.FollowingDao

@@ -16,6 +16,7 @@
 package com.safeboda
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.safeboda.core.BaseKoinTest
 import com.safeboda.util.CoroutineTestRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule

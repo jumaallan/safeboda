@@ -19,6 +19,9 @@ import com.safeboda.data.local.entities.Followers
 import com.safeboda.data.local.entities.Followings
 import com.safeboda.data.local.entities.User
 
+const val username = "jumaallan"
+const val name = "Kabiru Mwenja"
+
 val testUser = listOf(
     User(
         0,

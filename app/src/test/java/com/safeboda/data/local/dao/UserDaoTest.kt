@@ -19,6 +19,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.safeboda.BaseTest
 import com.safeboda.data.local.sample.testUser
+import com.safeboda.data.local.sample.username
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.CoreMatchers.`is`
@@ -39,7 +40,7 @@ internal class UserDaoTest : BaseTest() {
     @Test
     fun `test inserting and retrieving users`() = runBlockingTest {
         userDao.insert(testUser)
-        val user = userDao.getUserByGithubUsername("jumaallan")
+        val user = userDao.getUserByGithubUsername(username)
         assertThat(user.name, `is`(testUser[0].name))
     }
 }
