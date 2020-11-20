@@ -17,7 +17,6 @@ package com.safeboda.ui.viewmodel
 
 import androidx.annotation.StringRes
 import androidx.annotation.UiThread
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -53,12 +52,13 @@ class UserOrganizationViewModel(
     val profileModel: LiveData<ApiModel<List<ListItemProfile>>>
         get() = userOrganizationProfileModel
 
-    @UiThread
     fun fetchUserOrOrganization(login: String) {
         handleProfileLoading(login)
         viewModelScope.launch(coroutineDispatcher) {
             userOrganizationRepository.fetchUserOrOrganization(login, null) {
-                handleProfileFailure(it, login)
+                viewModelScope.launch {
+                    handleProfileFailure(it, login)
+                }
             }.collect { profile ->
                 when {
                     profile != null -> {
@@ -79,6 +79,8 @@ class UserOrganizationViewModel(
         Timber.d("Updating user profile list items.")
         userOrganizationProfileModel.postValue(ApiModel.success(successListItems(profile)))
         // save to local cache
+        val indicatesLimitedAvailability: Boolean = !profile.isOrganization
+
         userRepository.saveUser(
             User(
                 0,
@@ -102,7 +104,10 @@ class UserOrganizationViewModel(
                 profile.viewerCanFollow,
                 profile.viewerIsFollowing,
                 profile.websiteUrl,
-                profile.isOrganization
+                profile.isOrganization,
+                profile.status?.emojiHtml.toString(),
+                indicatesLimitedAvailability,
+                profile.status?.message.toString(),
             )
         )
 
@@ -124,18 +129,63 @@ class UserOrganizationViewModel(
         )
     }
 
-    @WorkerThread
-    private fun handleProfileFailure(
+    private suspend fun handleProfileFailure(
         failure: ApiFailure,
         login: String?
     ) {
-        Timber.d("Failed to fetch profile due to $failure")
 
-        // try to see if we have a cached record for the user, if not show error
+        val it = userRepository.getUserByGithubUsername(login.toString())
+        if (it?.login.isNullOrEmpty()) {
+            userOrganizationProfileModel.postValue(
+                ApiModel.failure(failure, cachedListItems(false, login))
+            )
+        } else {
 
-        userOrganizationProfileModel.postValue(
-            ApiModel.failure(failure, cachedListItems(false, login))
-        )
+            val followers = userRepository.getFollowersByGithubUsername(login.toString())
+            val followersList = mutableListOf<Follower>()
+            followers.forEach {
+                followersList.add(it.toResponse())
+            }
+
+            val following = userRepository.getFollowingByGithubUsername(login.toString())
+            val followingList = mutableListOf<Following>()
+            following.forEach {
+                followingList.add(it.toResponse())
+            }
+
+            val profile = UserOrOrganization(
+                it!!.id.toString(),
+                it.url,
+                it.avatarUrl,
+                it.bioHtml,
+                it.companyHtml,
+                it.email,
+                followersList,
+                followingList,
+                it.followersTotalCount,
+                it.followingTotalCount,
+                it.isDeveloperProgramMember,
+                it.isVerified,
+                it.isEmployee,
+                it.isViewer,
+                it.location,
+                it.login.toString(),
+                it.name,
+                it.organizationsCount,
+                it.repositoriesCount,
+                it.starredRepositoriesCount,
+                it.viewerCanFollow,
+                it.viewerIsFollowing,
+                it.websiteUrl,
+                UserOrOrganization.Status(
+                    it.emojiHtml, it.indicatesLimitedAvailability, it.message
+                ),
+                it.isOrganization,
+            )
+
+            handleProfileSuccess(profile)
+
+        }
     }
 
     /**
