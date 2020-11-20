@@ -16,7 +16,7 @@ Before every commit, make sure you run the following bash script:
 ./codeAnalysis
 ```
 
-To test code coverage, ruh the following bash script:
+To test code coverage, run the following bash script:
 
 ```shell script
 ./coverage
