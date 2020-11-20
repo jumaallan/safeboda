@@ -56,6 +56,7 @@ Develop an application that uses Github APIs to achieve the following features:
     * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) - handle the stream of data asynchronously that executes sequentially.
     * [KOIN](https://insert-koin.io/) - a pragmatic lightweight dependency injection framework.
     * [Apollo GraphQL Client](https://www.apollographql.com/docs/android/essentials/get-started-kotlin/) - Apollo is a platform for building a data graph.
+    * [Chuck](https://github.com/jgilfelt/chuck) - An in-app HTTP inspector for Android OkHttp clients
     * [Jetpack](https://developer.android.com/jetpack)
         * [Room](https://developer.android.com/topic/libraries/architecture/room) - a persistence library provides an abstraction layer over SQLite.
         * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - is an observable data holder.
