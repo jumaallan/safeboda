@@ -25,5 +25,4 @@ interface FollowingDao : BaseDao<Following> {
 
     @Query("SELECT * FROM Following WHERE userLogin =:userLogin")
     fun getFollowingByGithubUsername(userLogin: String): Flow<List<Following>>
-
 }

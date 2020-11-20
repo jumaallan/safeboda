@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface UserDao : BaseDao<User> {
 
-    @Query("SELECT * FROM User WHERE userId =:userID")
-    fun getUserByGithubUsername(userID: String): Flow<User>
-
+    @Query("SELECT * FROM User WHERE login =:login")
+    fun getUserByGithubUsername(login: String): Flow<User>
 }
