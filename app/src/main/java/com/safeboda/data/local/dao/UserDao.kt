@@ -18,11 +18,10 @@ package com.safeboda.data.local.dao
 import androidx.room.Dao
 import androidx.room.Query
 import com.safeboda.data.local.entities.User
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao : BaseDao<User> {
 
     @Query("SELECT * FROM User WHERE login =:login")
-    fun getUserByGithubUsername(login: String): Flow<User>
+    suspend fun getUserByGithubUsername(login: String): User
 }

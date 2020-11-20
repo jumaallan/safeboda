@@ -24,5 +24,5 @@ import kotlinx.coroutines.flow.Flow
 interface FollowersDao : BaseDao<Followers> {
 
     @Query("SELECT * FROM Followers WHERE userLogin =:userLogin")
-    fun getFollowersByGithubUsername(userLogin: String): Flow<List<Followers>>
+    suspend fun getFollowersByGithubUsername(userLogin: String): List<Followers>
 }
