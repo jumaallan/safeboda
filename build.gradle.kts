@@ -37,16 +37,28 @@ allprojects {
 
 buildscript {
     val kotlinVersion by extra("1.4.10")
+    val jacocoVersion by extra("0.2")
 
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+        classpath("com.hiya:jacoco-android:$jacocoVersion")
     }
 }
 
 subprojects {
     apply(plugin = BuildPlugins.detektPlugin)
+    apply(plugin = BuildPlugins.spotlessPlugin)
     detekt {
         config = files("${project.rootDir}/detekt.yml")
         parallel = true
+    }
+    spotless {
+        kotlin {
+            target("**/*.kt")
+            licenseHeaderFile(
+                rootProject.file("${project.rootDir}/spotless/copyright.kt"),
+                "^(package|object|import|interface)"
+            )
+        }
     }
 }

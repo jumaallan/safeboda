@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Empty Strings -->
+    <string name="default_empty_text">Nothing to see here</string>
+    <string name="empty_people">Raise your eyes, and focus on the search.</string>
+
+    <!-- Search Menu-->
+    <string name="menu_search">Search</string>
+
+    <!-- Search -->
+    <string name="people_with_query">People with \"%s\"</string>
+    <string name="orgs_with_query">Organizations with \"%s\"</string>
+    <string name="jump_to">Jump to \"%s\"</string>
+    <string name="clear">Clear</string>
+    <string name="recent_searches">Recent searches</string>
+    <string name="search_empty_title">Find your stuff.</string>
+    <string name="search_empty_description">Search all of GitHub for People and Organizations.</string>
+    <plurals name="number_of_users">
+        <item quantity="one">See %,d more person</item>
+        <item quantity="other">See %,d more people</item>
+    </plurals>
+    <plurals name="number_of_orgs">
+        <item quantity="one">See %,d more organization</item>
+        <item quantity="other">See %,d more organizations</item>
+    </plurals>
+    <string name="repositories">Repositories</string>
+    <string name="people">People</string>
+
+    <!-- Main UI -->
+    <string name="n_followers_n_following">%1$,d followers • %2$,d following</string>
+    <string name="organizations">Organizations</string>
+
+    <!-- Server errors -->
+    <string name="error_unauthorized">Unauthorized</string>
+    <string name="error_no_network">No network connection</string>
+    <string name="error_default">Something went wrong</string>
+    <string name="try_again">Try again</string>
+
+</resources>

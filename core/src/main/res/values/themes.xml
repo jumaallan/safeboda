@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/backgroundSecondary</item>
+        <item name="colorPrimaryDark">@color/backgroundSecondary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:colorBackground">@color/backgroundPrimary</item>
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textColorPrimary">@color/textPrimary</item>
+        <item name="android:textColorSecondary">@color/textSecondary</item>
+        <item name="android:textColorLink">@color/colorAccent</item>
+
+        <item name="android:textViewStyle">@style/BodyText</item>
+        <item name="android:buttonStyle">@style/ButtonPrimary</item>
+        <item name="android:actionMenuTextColor">@color/blue</item>
+
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+
+        <item name="searchViewStyle">@style/SafebodaSearchView</item>
+    </style>
+
+    <style name="SafeBodaTheme" parent="BaseTheme">
+        <!-- Status bar styling -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/backgroundSecondary</item>
+    </style>
+
+    <style name="NoDisplayTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="SafebodaSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="searchHintIcon">@null</item>
+        <item name="searchIcon">@drawable/ic_search_24</item>
+    </style>
+
+</resources>

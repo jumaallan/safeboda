@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="headerItem"
+            type="com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.HeaderItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium"
+        tools:context=".ui.activity.DashboardActivity">
+
+        <ImageView
+            android:id="@+id/user_profile_avatar"
+            android:layout_width="@dimen/avatar_64"
+            android:layout_height="@dimen/avatar_64"
+            android:contentDescription="@string/app_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundedCornerImageUrl="@{headerItem.avatarUrl}"
+            app:roundedCornerRadius="@{@dimen/corner_radius_large}"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/user_profile_name"
+            style="@style/Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:text="@{headerItem.name}"
+            android:visibility="@{TextUtils.isEmpty(headerItem.name) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@id/user_profile_avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Juma Allan" />
+
+        <TextView
+            android:id="@+id/user_profile_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{headerItem.login}"
+            android:textColor="@color/textTertiary"
+            android:textSize="17sp"
+            android:visibility="@{TextUtils.isEmpty(headerItem.login) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@id/user_profile_name"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_name"
+            tools:text="jumaallan" />
+
+        <LinearLayout
+            android:id="@+id/status_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_medium"
+            android:visibility="@{TextUtils.isEmpty(headerItem.emojiHtml) &amp;&amp; TextUtils.isEmpty(headerItem.statusMessage) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_avatar"
+            tools:layout_editor_absoluteX="16dp">
+
+            <TextView
+                android:id="@+id/user_profile_status_emoji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/user_profile_status_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:text="@{headerItem.statusMessage}"
+                tools:text="Sample user status" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/user_profile_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:visibility="@{TextUtils.isEmpty(headerItem.bioHtml) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/status_background"
+            tools:text="A users bio" />
+
+        <TextView
+            android:id="@+id/user_profile_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:drawablePadding="@dimen/padding_medium"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:visibility="@{TextUtils.isEmpty(headerItem.companyHtml) ? View.GONE : View.VISIBLE}"
+            app:drawableStartCompat="@drawable/ic_organization"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_bio"
+            tools:text="GitHub" />
+
+        <TextView
+            android:id="@+id/user_profile_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:drawablePadding="@dimen/padding_medium"
+            android:text="@{headerItem.location}"
+            android:visibility="@{TextUtils.isEmpty(headerItem.location) ? View.GONE : View.VISIBLE}"
+            app:drawableStartCompat="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_company"
+            tools:text="San Francisco, CA" />
+
+        <TextView
+            android:id="@+id/user_profile_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:drawablePadding="@dimen/padding_medium"
+            android:text="@{headerItem.websiteUrl}"
+            android:textStyle="bold"
+            android:visibility="@{TextUtils.isEmpty(headerItem.websiteUrl) ? View.GONE : View.VISIBLE}"
+            app:drawableStartCompat="@drawable/ic_link"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_location"
+            tools:text="www.github.com" />
+
+        <TextView
+            android:id="@+id/user_profile_followers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:drawablePadding="@dimen/padding_medium"
+            android:text="@{String.format(@string/n_followers_n_following, headerItem.followersCount, headerItem.followingCount)}"
+            android:visibility="@{headerItem.followersCount >= 0 &amp;&amp; headerItem.followingCount >= 0 ? View.VISIBLE : View.GONE}"
+            app:drawableStartCompat="@drawable/ic_person"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_profile_link"
+            tools:text="70 followers • 100 following" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

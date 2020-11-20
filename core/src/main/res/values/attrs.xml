@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LoadingViewFlipper">
+        <attr name="contentView" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ProgressButton">
+        <attr name="buttonBackground" format="reference" />
+        <attr name="buttonTextColor" format="color" />
+        <attr name="buttonProgressTint" format="color" />
+        <attr name="buttonText" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="TransparentLabelView">
+        <attr name="labelColor" format="enum">
+            <enum name="blue" value="0" />
+            <enum name="gray" value="1" />
+            <enum name="green" value="2" />
+            <enum name="orange" value="3" />
+            <enum name="pink" value="4" />
+            <enum name="purple" value="5" />
+            <enum name="red" value="6" />
+            <enum name="yellow" value="7" />
+        </attr>
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000725">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: Switch to build lane" time="0.000501">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: ktlintFormat ktlintCheck detekt spotlessApply assembleDebug" time="92.563855">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

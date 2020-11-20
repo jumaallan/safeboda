@@ -4,6 +4,11 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.ktlintPlugin)
     id(BuildPlugins.kapt)
+    id(BuildPlugins.jacocoAndroid)
+}
+
+jacoco {
+    toolVersion = Versions.jacoco
 }
 
 android {
@@ -22,6 +27,15 @@ android {
         versionName = AndroidSdk.versionName
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    testOptions {
+        execution = "androidx_test_orchestrator"
+        animationsDisabled = true
+        unitTests.apply {
+            isReturnDefaultValues = true
+            isIncludeAndroidResources = true
+        }
     }
 
     compileOptions {
@@ -63,15 +77,6 @@ kapt {
     }
 }
 
-spotless {
-    kotlin {
-        licenseHeaderFile(
-            rootProject.file("spotless/copyright.kt"),
-            "^(package|object|import|interface)"
-        )
-    }
-}
-
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(BuildModules.coreModule))
@@ -83,18 +88,7 @@ dependencies {
     implementation(Libraries.constraintLayout)
     implementation(Libraries.appCompat)
     implementation(Libraries.swiperefreshlayout)
-    implementation(Libraries.preference)
     implementation(Libraries.material)
-    implementation(Libraries.navigation)
-    implementation(Libraries.navigationFragment)
-
-    // Network - Retrofit, OKHTTP
-    implementation(Libraries.retrofit)
-    implementation(Libraries.gson)
-    implementation(Libraries.ohttp)
-    implementation(Libraries.loggingInterceptor)
-    implementation(Libraries.chunkDebug)
-    releaseImplementation(Libraries.chunkRelease)
 
     // Room
     implementation(Libraries.room)
@@ -117,8 +111,8 @@ dependencies {
 
     // Debug - for debug builds only
     implementation(Libraries.timber)
-    implementation(Libraries.leakCanary)
-    implementation(Libraries.stetho)
+    debugImplementation(Libraries.leakCanary)
+    debugImplementation(Libraries.stetho)
 
     // UI Tests
     androidTestImplementation(TestLibraries.espresso)

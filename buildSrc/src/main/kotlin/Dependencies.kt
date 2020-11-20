@@ -3,20 +3,23 @@ object Versions {
     const val material = "1.3.0-alpha02"
     const val appCompat = "1.3.0-alpha02"
     const val constraintLayout = "2.0.1"
-    const val navigation = "2.3.1"
     const val swiperefreshlayout = "1.2.0-alpha01"
-    const val preference = "1.1.1"
+
+    // Lottie
+    const val lottieVersion = "3.4.0"
 
     // Firebase
     const val crashlytics = "17.2.1"
 
     //Networking
-    const val retrofit = "2.9.0"
     const val okhttp = "4.8.1"
     const val loggingInterceptor = "4.8.1"
 
     //DI - KOIN
     const val koin = "2.1.5"
+
+    // Glide
+    const val glideVersion = "4.11.0"
 
     // Room db
     const val room = "2.3.0-alpha02"
@@ -41,9 +44,11 @@ object Versions {
     const val ktlint = "9.3.0"
     const val detekt = "1.12.0"
     const val spotless = "5.3.0"
+    const val jacoco = "0.8.4"
     const val dokka = "1.4.0-rc-24"
     const val gradleVersionsPlugin = "0.29.0"
     const val slackKeeper = "0.7.0"
+    const val apolloVersion = "2.2.0"
 
     // tests
     const val junit = "4.13"
@@ -66,6 +71,7 @@ object BuildPlugins {
     //All the build plugins are added here
     const val androidLibrary = "com.android.library"
     const val kapt = "kotlin-kapt"
+    const val apollo = "com.apollographql.apollo"
     const val ktlintPlugin = "org.jlleitschuh.gradle.ktlint"
     const val detektPlugin = "io.gitlab.arturbosch.detekt"
     const val dokkaPlugin = "org.jetbrains.dokka"
@@ -75,28 +81,28 @@ object BuildPlugins {
     const val kotlinAndroidExtensions = "org.jetbrains.kotlin.android.extensions"
     const val gradleVersionsPlugin = "com.github.ben-manes.versions"
     const val slackKeeper = "com.slack.keeper"
+    const val jacocoAndroid = "com.hiya.jacoco-android"
 }
 
 object Libraries {
     // androidX and Material
     const val material = "com.google.android.material:material:${Versions.material}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
-    const val preference = "androidx.preference:preference-ktx:${Versions.preference}"
     const val swiperefreshlayout =
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
-    // Navigation
-    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
-    const val navigation = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    // Lottie
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
 
     // Firebase
     const val crashlytics = "com.google.firebase:firebase-crashlytics:${Versions.crashlytics}"
 
-    // Networking
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    // Networking - apollo, OKHTTP and loggingInterceptor
+    const val apollo = "com.apollographql.apollo:apollo-runtime:${Versions.apolloVersion}"
+    const val apolloCoroutines =
+        "com.apollographql.apollo:apollo-coroutines-support:${Versions.apolloVersion}"
     const val ohttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val loggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
@@ -104,6 +110,10 @@ object Libraries {
     // DI - KOIN
     const val koin = "org.koin:koin-android:${Versions.koin}"
     const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+
+    // Glide
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
 
     // Room db
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
@@ -162,9 +172,9 @@ object BuildModules {
 }
 
 object AndroidSdk {
-    const val minSdkVersion = 21
+    const val minSdkVersion = 23
     const val compileSdkVersion = 30
-    const val targetSdkVersion = compileSdkVersion
+    const val targetSdkVersion = 30
     const val versionCode = 1
     const val versionName = "1.0"
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Sets our AppBarLayout to the same elevation as our lists and then raises it by translationZ -->
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/app_bar_elevation"
+    android:gravity="center_vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/toolbar_height"
+        app:contentInsetStart="@dimen/toolbar_inset_start"
+        app:contentInsetStartWithNavigation="@dimen/toolbar_inset_start">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="start"
+                android:fontFamily="@font/inter_bold"
+                android:singleLine="true"
+                android:textSize="@dimen/toolbar_title_text_size"
+                tools:text="Toolbar title" />
+
+            <TextView
+                android:id="@+id/subtitle"
+                style="@style/Tertiary.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="start"
+                android:singleLine="true"
+                android:visibility="gone"
+                tools:text="Toolbar subtitle"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+</com.google.android.material.appbar.AppBarLayout>

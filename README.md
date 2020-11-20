@@ -2,15 +2,37 @@
 
 👀  Writing Safeboda Interview Solution App using [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/), in 100% Kotlin, using Android Jetpack Components.
 
+The final app looks like this:
+
+<img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/profile.gif" width="270"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/wangerekaharun.png" width="270"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/tamzi.png" width="270"/>
+
 ### Prerequisites
 
-Before every commit, make sure you run the following commands:
+Before running this app, you need to add your Github Personal Access Token, in your `local.properties` file:
+
+```yaml
+GITHUB_TOKEN="xxxx-xxxx-xxx"
+```
+
+Before every commit, make sure you run the following bash script:
 
 ```shell script
 ./codeAnalysis
 ```
 
-To check for dependency updates, run the following command:
+To test code coverage, run the following bash script:
+
+```shell script
+./coverage
+```
+
+If you have Fastlane installed, you can run the develop lane:
+
+```shell script
+fastlane branch conf:debug
+```
+
+To check for dependency updates, run the following gradlew command:
 
 ```shell script
 ./gradlew dependencyUpdate
@@ -33,7 +55,7 @@ Develop an application that uses Github APIs to achieve the following features:
     * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operations.
     * [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) - handle the stream of data asynchronously that executes sequentially.
     * [KOIN](https://insert-koin.io/) - a pragmatic lightweight dependency injection framework.
-    * [Retrofit](https://square.github.io/retrofit/) - a type-safe REST client for Android.
+    * [Apollo GraphQL Client](https://www.apollographql.com/docs/android/essentials/get-started-kotlin/) - Apollo is a platform for building a data graph.
     * [Jetpack](https://developer.android.com/jetpack)
         * [Room](https://developer.android.com/topic/libraries/architecture/room) - a persistence library provides an abstraction layer over SQLite.
         * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - is an observable data holder.
@@ -60,19 +82,12 @@ Develop an application that uses Github APIs to achieve the following features:
         * [jacoco](https://github.com/jacoco/jacoco) - a Code Coverage Library
 * CI/CD
     * Github Actions
+    * [Fastlane](https://fastlane.tools)
 
 
 ## Dependencies
 
 All the dependencies (external libraries) are defined in the single place - Gradle `buildSrc` folder. This approach allows to easily manage dependencies and use the same dependency version across all modules.
-
-## Some notable issues
-
-This sections mentions some of the issues that I have come across:
-
-- dokka documentation task doesn't work when run from the top level Safeboda task
-
-- The spotless plugin doesn't apply the license header, and the jacoco plugin doesn't work as expected. Need more research on how to set them up using gradle plugins
 
 ## License
 ```

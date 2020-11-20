@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="showMarginStart"
+            type="boolean" />
+
+        <variable
+            name="showMarginEnd"
+            type="boolean" />
+
+        <variable
+            name="showMarginTop"
+            type="boolean" />
+
+        <variable
+            name="showMarginBottom"
+            type="boolean" />
+    </data>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:background="@color/border"
+        app:marginBottom="@{showMarginBottom ? @dimen/margin_normal : @dimen/margin_none}"
+        app:marginEnd="@{showMarginEnd ? @dimen/margin_normal : @dimen/margin_none}"
+        app:marginStart="@{showMarginStart ? @dimen/margin_normal : @dimen/margin_none}"
+        app:marginTop="@{showMarginTop ? @dimen/margin_normal : @dimen/margin_none}" />
+</layout>
