@@ -29,14 +29,14 @@ android {
         testInstrumentationRunner = "com.safeboda.runner.MockTestRunner"
     }
 
-    testOptions {
-        execution = "androidx_test_orchestrator"
-        animationsDisabled = true
-        unitTests.apply {
-            isReturnDefaultValues = true
-            isIncludeAndroidResources = true
-        }
-    }
+//    testOptions {
+////        execution = "androidx_test_orchestrator"
+//        animationsDisabled = true
+//        unitTests.apply {
+//            isReturnDefaultValues = true
+//            isIncludeAndroidResources = true
+//        }
+//    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

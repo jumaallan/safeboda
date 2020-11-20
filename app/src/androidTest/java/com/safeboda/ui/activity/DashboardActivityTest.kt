@@ -15,13 +15,19 @@
  */
 package com.safeboda.ui.activity
 
+import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import com.agoda.kakao.screen.Screen
+import com.agoda.kakao.text.KTextView
+import com.safeboda.R
 import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.data.repository.UserRepository
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel
+import io.mockk.every
 import io.mockk.mockk
 import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.core.inject
 import org.koin.test.KoinTest
@@ -44,5 +50,25 @@ class DashboardActivityTest : KoinTest {
                 userRepository
             )
         }
+    }
+
+    @Test
+    fun testBlankPlaceholder_isDisplayed_whenNoUsers_haveBeenSearched() {
+
+        every { userOrganizationViewModel.fetchUserOrOrganization("jumaallan") }
+
+        ActivityScenario.launch(DashboardActivity::class.java)
+
+        Screen.onScreen<SafebodaEmptyUserScreen> {
+            noUserTitle.isDisplayed()
+            noUserDescription.isDisplayed()
+        }
+
+        Screen.idle(3000)
+    }
+
+    class SafebodaEmptyUserScreen : Screen<SafebodaEmptyUserScreen>() {
+        val noUserTitle = KTextView { withId(R.id.empty_state_title) }
+        val noUserDescription = KTextView { withId(R.id.empty_state_description) }
     }
 }
