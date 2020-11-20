@@ -11,7 +11,7 @@ import org.junit.After
 import org.junit.Before
 import java.io.IOException
 
-internal open class BaseTest {
+internal open class BaseTest : BaseKoinTest() {
 
     // database and dao
     private lateinit var database: Database
@@ -34,7 +34,6 @@ internal open class BaseTest {
     @After
     @Throws(IOException::class)
     open fun tearDown() {
-
         database.close()
     }
 }
