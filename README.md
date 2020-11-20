@@ -2,6 +2,10 @@
 
 👀  Writing Safeboda Interview Solution App using [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/), in 100% Kotlin, using Android Jetpack Components.
 
+The final app looks like this:
+
+<img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/profile.gif" width="270"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/wangerekaharun.png" width="270"/> <img src="https://github.com/jumaallan/safeboda/blob/feature/update-profile/screenshots/tamzi.png" width="270"/>
+
 ### Prerequisites
 
 Before running this app, you need to add your Github Personal Access Token, in your `local.properties` file:
@@ -16,7 +20,7 @@ Before every commit, make sure you run the following bash script:
 ./codeAnalysis
 ```
 
-To test code coverage, ruh the following bash script:
+To test code coverage, run the following bash script:
 
 ```shell script
 ./coverage
