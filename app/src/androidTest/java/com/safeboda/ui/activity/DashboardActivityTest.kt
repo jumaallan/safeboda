@@ -24,7 +24,6 @@ import com.safeboda.R
 import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.data.repository.UserRepository
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel
-import io.mockk.every
 import io.mockk.mockk
 import org.junit.Before
 import org.junit.Test
