@@ -24,7 +24,6 @@ import com.safeboda.R
 import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.data.repository.UserRepository
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel
-import io.mockk.every
 import io.mockk.mockk
 import org.junit.Before
 import org.junit.Test
@@ -55,13 +54,11 @@ class DashboardActivityTest : KoinTest {
     @Test
     fun testBlankPlaceholder_isDisplayed_whenNoUsers_haveBeenSearched() {
 
-        every { userOrganizationViewModel.fetchUserOrOrganization("jumaallan") }
-
         ActivityScenario.launch(DashboardActivity::class.java)
 
         Screen.onScreen<SafebodaEmptyUserScreen> {
             noUserTitle.isDisplayed()
-            noUserDescription.isDisplayed()
+            noUserDescription.hasAnyText()
         }
 
         Screen.idle(3000)

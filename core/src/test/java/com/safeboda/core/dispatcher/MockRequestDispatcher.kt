@@ -28,7 +28,7 @@ open class MockRequestDispatcher : Dispatcher() {
         return when (request.path) {
             EXISTING_SEARCH_PARAMS -> {
                 MockResponse()
-                    .setResponseCode(HttpURLConnection.HTTP_NOT_FOUND)
+                    .setResponseCode(HttpURLConnection.HTTP_OK)
                     .setBody(getJson("json/user_search.json"))
             }
             else -> throw IllegalArgumentException("Unknown Request Path ${request.path}")
