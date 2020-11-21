@@ -55,8 +55,6 @@ class DashboardActivityTest : KoinTest {
     @Test
     fun testBlankPlaceholder_isDisplayed_whenNoUsers_haveBeenSearched() {
 
-        every { userOrganizationViewModel.fetchUserOrOrganization("jumaallan") }
-
         ActivityScenario.launch(DashboardActivity::class.java)
 
         Screen.onScreen<SafebodaEmptyUserScreen> {
