@@ -59,7 +59,7 @@ class DashboardActivityTest : KoinTest {
 
         Screen.onScreen<SafebodaEmptyUserScreen> {
             noUserTitle.isDisplayed()
-            noUserDescription.isDisplayed()
+            noUserDescription.hasAnyText()
         }
 
         Screen.idle(3000)
