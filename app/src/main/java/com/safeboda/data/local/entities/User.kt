@@ -16,11 +16,35 @@
 package com.safeboda.data.local.entities
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(indices = [Index(value = ["login"], unique = true)])
 data class User(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
-    var userId: String
+    val url: String,
+    val avatarUrl: String,
+    val bioHtml: String,
+    val companyHtml: String,
+    val email: String,
+    val followersTotalCount: Int,
+    val followingTotalCount: Int,
+    val isDeveloperProgramMember: Boolean,
+    val isVerified: Boolean,
+    val isEmployee: Boolean,
+    val isViewer: Boolean,
+    val location: String,
+    val login: String?,
+    val name: String,
+    val organizationsCount: Int,
+    val repositoriesCount: Int,
+    val starredRepositoriesCount: Int,
+    val viewerCanFollow: Boolean,
+    val viewerIsFollowing: Boolean,
+    val websiteUrl: String,
+    val isOrganization: Boolean,
+    val emojiHtml: String,
+    val indicatesLimitedAvailability: Boolean,
+    val message: String
 )

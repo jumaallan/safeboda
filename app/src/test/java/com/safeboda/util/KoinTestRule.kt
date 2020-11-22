@@ -13,20 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda
+package com.safeboda.util
 
-import org.junit.Test
+import com.safeboda.di.appModules
+import org.junit.rules.TestRule
+import org.junit.runner.Description
+import org.junit.runners.model.Statement
+import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 
-import org.junit.Assert.*
+class KoinTestRule : TestRule {
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    override fun apply(base: Statement, description: Description): Statement {
+        return object : Statement() {
+
+            override fun evaluate() {
+                stopKoin()
+                startKoin { modules(appModules) }
+                base.evaluate()
+                stopKoin()
+            }
+        }
     }
 }

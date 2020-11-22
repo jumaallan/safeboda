@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda.data.local.dao
+package com.safeboda
 
-import androidx.room.Dao
-import androidx.room.Query
-import com.safeboda.data.local.entities.User
+import com.safeboda.util.KoinTestRule
+import org.junit.Rule
+import org.koin.test.KoinTest
 
-@Dao
-interface UserDao : BaseDao<User> {
+abstract class BaseKoinTest : KoinTest {
 
-    @Query("SELECT * FROM User WHERE login =:login")
-    suspend fun getUserByGithubUsername(login: String): User
+    @get:Rule
+    val koinTestRule = KoinTestRule()
 }

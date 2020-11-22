@@ -13,15 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda.data.local.dao
+package com.safeboda.data.local.entities
 
-import androidx.room.Dao
-import androidx.room.Query
-import com.safeboda.data.local.entities.User
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 
-@Dao
-interface UserDao : BaseDao<User> {
-
-    @Query("SELECT * FROM User WHERE login =:login")
-    suspend fun getUserByGithubUsername(login: String): User
-}
+@Entity(indices = [Index(value = ["login"], unique = true)])
+data class Followings(
+    @PrimaryKey(autoGenerate = true)
+    var id: Long,
+    val userLogin: String,
+    val login: String,
+    val name: String,
+    val avatarUrl: String,
+    val bioHtml: String,
+)

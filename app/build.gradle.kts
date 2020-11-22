@@ -26,15 +26,14 @@ android {
         versionCode = AndroidSdk.versionCode
         versionName = AndroidSdk.versionName
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.safeboda.runner.MockTestRunner"
     }
 
     testOptions {
-        execution = "androidx_test_orchestrator"
         animationsDisabled = true
         unitTests.apply {
             isReturnDefaultValues = true
-            isIncludeAndroidResources = true
+            isIncludeAndroidResources = false
         }
     }
 
@@ -90,6 +89,9 @@ dependencies {
     implementation(Libraries.swiperefreshlayout)
     implementation(Libraries.material)
 
+    // Firebase crashlytics
+    implementation(Libraries.crashlytics)
+
     // Room
     implementation(Libraries.room)
     implementation(Libraries.roomRuntime)
@@ -131,7 +133,6 @@ dependencies {
     testImplementation(TestLibraries.roomTest)
     testImplementation(TestLibraries.koinTest)
     testImplementation(TestLibraries.mockK)
-    testImplementation(TestLibraries.mockWebServer)
     testImplementation(TestLibraries.roboelectric)
     testImplementation(TestLibraries.truth)
     testImplementation(TestLibraries.runner)

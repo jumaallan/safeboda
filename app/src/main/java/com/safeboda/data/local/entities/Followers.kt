@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda.core.utils
+package com.safeboda.data.local.entities
 
-import android.content.Context
-import android.os.IBinder
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.getSystemService
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 
-/**
- * Responsible for dismissing the keyboard
- *
- * @param windowToken
- */
-fun Context.dismissKeyboard(windowToken: IBinder) {
-    val imm = getSystemService<InputMethodManager>()
-    imm?.hideSoftInputFromWindow(windowToken, 0)
-}
+@Entity(indices = [Index(value = ["login"], unique = true)])
+data class Followers(
+    @PrimaryKey(autoGenerate = true)
+    var id: Long,
+    val userLogin: String,
+    val login: String,
+    val name: String,
+    val avatarUrl: String,
+    val bioHtml: String,
+)
