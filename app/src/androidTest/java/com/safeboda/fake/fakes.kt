@@ -17,6 +17,7 @@ package com.safeboda.fake
 
 import com.safeboda.core.data.models.UserOrOrganization
 import com.safeboda.core.fragment.UserProfileFragment
+import com.safeboda.data.local.entities.User
 
 val fakeFollower = UserOrOrganization.Follower(
     UserProfileFragment.Node(
@@ -68,4 +69,32 @@ val fakeProfile = UserOrOrganization(
         message = "Just a man, shipping code"
     ),
     isOrganization = false
+)
+
+val fakeUser = User(
+    id = 1,
+    url = "",
+    avatarUrl = "",
+    bioHtml = "Happy Dev",
+    companyHtml = "Cool company",
+    email = "test@gmail.com",
+    followersTotalCount = 1,
+    followingTotalCount = 1,
+    isDeveloperProgramMember = false,
+    isVerified = true,
+    isEmployee = false,
+    isViewer = false,
+    location = "Some location",
+    login = null,
+    name = "Test User",
+    organizationsCount = 0,
+    repositoriesCount = 1,
+    starredRepositoriesCount = 10,
+    viewerCanFollow = true,
+    viewerIsFollowing = true,
+    websiteUrl = "http://test.com",
+    isOrganization = false,
+    emojiHtml = "",
+    indicatesLimitedAvailability = false,
+    message = "Cool status"
 )
