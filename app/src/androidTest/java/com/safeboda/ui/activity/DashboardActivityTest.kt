@@ -29,12 +29,14 @@ import com.agoda.kakao.recycler.KRecyclerItem
 import com.agoda.kakao.recycler.KRecyclerView
 import com.agoda.kakao.screen.Screen
 import com.agoda.kakao.screen.Screen.Companion.idle
+import com.agoda.kakao.text.KSnackbar
 import com.agoda.kakao.text.KTextView
 import com.safeboda.R
 import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.data.repository.UserRepository
 import com.safeboda.fake.fakeFollowing
 import com.safeboda.fake.fakeProfile
+import com.safeboda.fake.fakeUser
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel
 import io.mockk.clearMocks
 import io.mockk.coEvery
@@ -182,6 +184,48 @@ class DashboardActivityTest : KoinTest {
         idle(3000)
     }
 
+    @Test
+    fun test_snackbar_isDisplayed_whenNegativeResults_areReturned() = runBlocking {
+
+        coEvery {
+            userOrganizationRepository.fetchUserOrOrganization(
+                any(),
+                any(),
+                any()
+            )
+        } returns flowOf(null)
+
+        coEvery { userRepository.getUserByGithubUsername(any()) } returns fakeUser
+
+        declare {
+            UserOrganizationViewModel(
+                userOrganizationRepository,
+                userRepository
+            )
+        }
+
+        ActivityScenario.launch(DashboardActivity::class.java)
+
+        Screen.onScreen<SafebodaUserScreen> {
+            searchView.click()
+            searchText {
+                typeText("test\n")
+            }
+
+            idle(3000)
+
+            snackbar {
+                isDisplayed()
+                text {
+                    hasText("Something went wrong")
+                }
+            }
+        }
+        Unit
+        idle(3000)
+    }
+
+
     class SafebodaUserScreen : Screen<SafebodaUserScreen>() {
         val noUserTitle = KTextView { withId(R.id.empty_state_title) }
         val noUserDescription = KTextView { withId(R.id.empty_state_description) }
@@ -202,6 +246,7 @@ class DashboardActivityTest : KoinTest {
                 itemType(::Item)
             }
         )
+        val snackbar = KSnackbar()
     }
 
     class Item(parent: Matcher<View>) : KRecyclerItem<Item>(parent) {
