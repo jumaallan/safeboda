@@ -30,11 +30,10 @@ android {
     }
 
     testOptions {
-//        execution = "androidx_test_orchestrator"
         animationsDisabled = true
         unitTests.apply {
             isReturnDefaultValues = true
-            isIncludeAndroidResources = true
+            isIncludeAndroidResources = false
         }
     }
 
