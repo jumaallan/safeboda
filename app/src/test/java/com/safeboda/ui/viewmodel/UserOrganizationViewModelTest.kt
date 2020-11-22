@@ -27,7 +27,9 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.flowOf
 import org.junit.Before
 import org.junit.Test
+import org.robolectric.annotation.Config
 
+@Config(manifest=Config.NONE)
 class UserOrganizationViewModelTest : BaseViewModelTest() {
 
     private val userRepository = mockk<UserRepository>()
