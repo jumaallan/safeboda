@@ -63,9 +63,9 @@ val fakeProfile = UserOrOrganization(
     viewerIsFollowing = true,
     websiteUrl = "https://safeboda.com",
     status = UserOrOrganization.Status(
-        "<div><g-emoji class=\"g-emoji\" alias=\"beach_umbrella\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f3d6.png\">\uD83C\uDFD6️</g-emoji></div>",
-        false,
-        "Just a man, shipping code"
+        emojiHtml = "<div><g-emoji class=\"g-emoji\" alias=\"beach_umbrella\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f3d6.png\">\uD83C\uDFD6️</g-emoji></div>",
+        indicatesLimitedAvailability = false,
+        message = "Just a man, shipping code"
     ),
     isOrganization = false
 )
