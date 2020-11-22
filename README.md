@@ -115,23 +115,23 @@ The screenshot below shows the tests that are done on the repo:
 
 The UI Tests are tested on an Emulator Running Android 10 (API 29) - Might be flaky on some API levels
 
-<img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/ui_tests.gif" width="320"/>
+<img src="https://github.com/jumaallan/safeboda/blob/master/screenshots/ui_tests.gif" width="320"/>
 
 The UI tests are written using Kakao
 
-<img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/ui_tests.png"/>
+<img src="https://github.com/jumaallan/safeboda/master/screenshots/ui_tests.png"/>
 
 #### Unit Tests on App Module
 
 The Unit Tests here basically test the DAOs, Repo and the ViewModel
 
-<img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/unit_test_app.png"/>
+<img src="https://github.com/jumaallan/safeboda/blob/master/screenshots/unit_test_app.png"/>
 
 #### Unit Tests on Core Module
 
 The Unit Tests here test the GraphQL call to the Github API
 
-<img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/unit_test_core.png"/>
+<img src="https://github.com/jumaallan/safeboda/blob/master/screenshots/unit_test_core.png"/>
 
 More tests can be added
 
