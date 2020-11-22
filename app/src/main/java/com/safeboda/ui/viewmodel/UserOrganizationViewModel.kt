@@ -29,8 +29,9 @@ import com.safeboda.core.data.remote.UserOrganizationRepository
 import com.safeboda.core.network.ApiFailure
 import com.safeboda.core.network.ApiFailureType.PARSE_ERROR
 import com.safeboda.core.network.ApiModel
-import com.safeboda.data.local.entities.User
+import com.safeboda.data.local.mapper.toOrganization
 import com.safeboda.data.local.mapper.toResponse
+import com.safeboda.data.local.mapper.toUser
 import com.safeboda.data.repository.UserRepository
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.*
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.ORGANIZATIONS
@@ -80,36 +81,7 @@ class UserOrganizationViewModel(
         userOrganizationProfileModel.postValue(ApiModel.success(successListItems(profile)))
         // save to local cache
         val indicatesLimitedAvailability: Boolean = !profile.isOrganization
-
-        userRepository.saveUser(
-            User(
-                0,
-                profile.url,
-                profile.avatarUrl,
-                profile.bioHtml,
-                profile.companyHtml,
-                profile.email,
-                profile.followersTotalCount,
-                profile.followingTotalCount,
-                profile.isDeveloperProgramMember,
-                profile.isVerified,
-                profile.isEmployee,
-                profile.isViewer,
-                profile.location,
-                profile.login,
-                profile.name,
-                profile.organizationsCount,
-                profile.repositoriesCount,
-                profile.starredRepositoriesCount,
-                profile.viewerCanFollow,
-                profile.viewerIsFollowing,
-                profile.websiteUrl,
-                profile.isOrganization,
-                profile.status?.emojiHtml.toString(),
-                indicatesLimitedAvailability,
-                profile.status?.message.toString(),
-            )
-        )
+        userRepository.saveUser(profile.toUser(indicatesLimitedAvailability))
 
         userRepository.saveUserFollowers(
             profile.follower.map { it.toResponse(profile.login) }
@@ -124,9 +96,11 @@ class UserOrganizationViewModel(
     private fun handleProfileLoading(
         login: String?,
     ) {
-        userOrganizationProfileModel.postValue(ApiModel.loading(
-            cachedListItems(true, login)
-        ))
+        userOrganizationProfileModel.postValue(
+            ApiModel.loading(
+                cachedListItems(true, login)
+            )
+        )
     }
 
     private suspend fun handleProfileFailure(
@@ -134,8 +108,8 @@ class UserOrganizationViewModel(
         login: String?
     ) {
 
-        val it = userRepository.getUserByGithubUsername(login.toString())
-        if (it?.login.isNullOrEmpty()) {
+        val user = userRepository.getUserByGithubUsername(login.toString())
+        if (user?.login.isNullOrEmpty()) {
             userOrganizationProfileModel.postValue(
                 ApiModel.failure(failure, cachedListItems(false, login))
             )
@@ -152,38 +126,7 @@ class UserOrganizationViewModel(
             following.forEach {
                 followingList.add(it.toResponse())
             }
-
-            val profile = UserOrOrganization(
-                it!!.id.toString(),
-                it.url,
-                it.avatarUrl,
-                it.bioHtml,
-                it.companyHtml,
-                it.email,
-                followersList,
-                followingList,
-                it.followersTotalCount,
-                it.followingTotalCount,
-                it.isDeveloperProgramMember,
-                it.isVerified,
-                it.isEmployee,
-                it.isViewer,
-                it.location,
-                it.login.toString(),
-                it.name,
-                it.organizationsCount,
-                it.repositoriesCount,
-                it.starredRepositoriesCount,
-                it.viewerCanFollow,
-                it.viewerIsFollowing,
-                it.websiteUrl,
-                UserOrOrganization.Status(
-                    it.emojiHtml, it.indicatesLimitedAvailability, it.message
-                ),
-                it.isOrganization,
-            )
-
-            handleProfileSuccess(profile)
+            handleProfileSuccess(user.toOrganization(followingList, followersList))
         }
     }
 

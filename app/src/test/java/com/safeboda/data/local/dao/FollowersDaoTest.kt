@@ -30,7 +30,7 @@ import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 
 @RunWith(AndroidJUnit4::class)
-@Config(sdk = [Config.OLDEST_SDK]) // https://stackoverflow.com/questions/56821193/does-robolectric-require-java-9
+@Config(sdk = [Config.OLDEST_SDK], manifest = Config.NONE) // https://stackoverflow.com/questions/56821193/does-robolectric-require-java-9
 internal class FollowersDaoTest : BaseTest() {
 
     @get:Rule

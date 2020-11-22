@@ -13,20 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.safeboda.core.utils
+package com.safeboda.core.data.sample
 
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.toList
-
-/**
- * Responsible for converting Flow<List<T>> to a List<>
- *
- * @param T
- * @return a List from a Flow<List<>>
- */
-@FlowPreview
-suspend fun <T> Flow<List<T>>.flattenToList() =
-    flatMapConcat { it.asFlow() }.toList()
+const val username = "jumaallan"
+const val testBio = "<div>Android @ Backbase</div>"

@@ -101,7 +101,7 @@ class UserOrOrganizationAdapter(
 
                 val followingAdapter = FollowingAdapter(onUserOrOrganizationSelectedListener)
                 val rowUserFollowingBinding = binding as RowUserFollowingBinding
-                rowUserFollowingBinding.userFollowersFollowingRecyclerView.adapter =
+                rowUserFollowingBinding.userFollowingRecyclerView.adapter =
                     followingAdapter
             }
             ITEM_TYPE_FOLLOWERS -> {
@@ -114,7 +114,7 @@ class UserOrOrganizationAdapter(
 
                 val followersAdapter = FollowersAdapter(onUserOrOrganizationSelectedListener)
                 val rowUserFollowersBinding = binding as RowUserFollowersBinding
-                rowUserFollowersBinding.userFollowersFollowingRecyclerView.adapter =
+                rowUserFollowersBinding.userFollowersRecyclerView.adapter =
                     followersAdapter
             }
             ITEM_TYPE_MENU_BUTTON -> {
@@ -175,7 +175,7 @@ class UserOrOrganizationAdapter(
                     0
                 )
                 binding.userTitle.compoundDrawablesRelative.first().mutate().setTint(iconTint)
-                val followingAdapter = binding.userFollowersFollowingRecyclerView.adapter
+                val followingAdapter = binding.userFollowingRecyclerView.adapter
                 if (followingAdapter is FollowingAdapter) {
                     followingAdapter.submitList(item.following)
                 }
@@ -192,7 +192,7 @@ class UserOrOrganizationAdapter(
                     0
                 )
                 binding.userTitle.compoundDrawablesRelative.first().mutate().setTint(iconTint)
-                val followersAdapter = binding.userFollowersFollowingRecyclerView.adapter
+                val followersAdapter = binding.userFollowersRecyclerView.adapter
                 if (followersAdapter is FollowersAdapter) {
                     followersAdapter.submitList(item.followers)
                 }
