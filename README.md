@@ -107,6 +107,16 @@ Develop an application that uses Github APIs to achieve the following features:
 
 All the dependencies (external libraries) are defined in the single place - Gradle `buildSrc` folder. This approach allows to easily manage dependencies and use the same dependency version across all modules.
 
+## UI and Unit Tests
+
+The screenshot below shows the tests that are done on the repo:
+
+### UI Tests
+
+The UI tests are written using Kakao
+
+<img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/ui_tests.png"/>
+
 ## License
 ```
 MIT License
