@@ -42,6 +42,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
+import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Matcher
 import org.junit.After
 import org.junit.Test
@@ -53,7 +54,7 @@ class RecyclerviewScrollActions(private val original: ScrollToAction = ScrollToA
     ViewAction by original {
 
     override fun getConstraints(): Matcher<View> = CoreMatchers.anyOf(
-        CoreMatchers.allOf(
+        allOf(
             withEffectiveVisibility(Visibility.VISIBLE),
             isDescendantOfA(isAssignableFrom(RecyclerView::class.java))
         ),
@@ -75,6 +76,7 @@ class DashboardActivityTest : KoinTest {
 
     @Test
     fun testBlankPlaceholder_isDisplayed_whenNoUsers_haveBeenSearched() {
+
         declare {
             UserOrganizationViewModel(
                 userOrganizationRepository,
@@ -83,10 +85,12 @@ class DashboardActivityTest : KoinTest {
         }
         ActivityScenario.launch(DashboardActivity::class.java)
 
-        Screen.onScreen<SafebodaEmptyUserScreen> {
+        Screen.onScreen<SafebodaUserScreen> {
             noUserTitle.isDisplayed()
             noUserDescription.hasAnyText()
         }
+
+        idle(3000)
     }
 
     @Test
@@ -109,7 +113,7 @@ class DashboardActivityTest : KoinTest {
 
         ActivityScenario.launch(DashboardActivity::class.java)
 
-        Screen.onScreen<SafebodaEmptyUserScreen> {
+        Screen.onScreen<SafebodaUserScreen> {
             searchView.click()
             searchText {
                 typeText("jumaallan\n")
@@ -155,23 +159,30 @@ class DashboardActivityTest : KoinTest {
                     RecyclerviewScrollActions()
                 }
 
-                idle(500)
+                idle(3000)
 
                 isDisplayed()
 
                 firstChild<Item> {
                     isVisible()
-                    name { hasText(fakeFollowing.name) }
-                    login { hasText(fakeFollowing.login) }
-                    bio { hasText(fakeFollowing.bioHtml) }
+                    name {
+                        hasText(fakeFollowing.name)
+                    }
+                    login {
+                        hasText(fakeFollowing.login)
+                    }
+                    bio {
+                        hasText(fakeFollowing.bioHtml)
+                    }
                 }
             }
         }
 
         Unit
+        idle(3000)
     }
 
-    class SafebodaEmptyUserScreen : Screen<SafebodaEmptyUserScreen>() {
+    class SafebodaUserScreen : Screen<SafebodaUserScreen>() {
         val noUserTitle = KTextView { withId(R.id.empty_state_title) }
         val noUserDescription = KTextView { withId(R.id.empty_state_description) }
         val searchView = KView { withId(R.id.search_item) }
