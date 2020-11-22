@@ -86,10 +86,10 @@ Develop an application that uses Github APIs to achieve the following features:
 * Architecture
     * MVVM - Model View View Model
 * Tests
-    * [Unit Tests](https://en.wikipedia.org/wiki/Unit_testing) ([JUnit](https://junit.org/junit4/))
-    * [Mockito](https://github.com/mockito/mockito) + [Mockito-Kotlin](https://github.com/nhaarman/mockito-kotlin)
-    * [Kluent](https://github.com/MarkusAmshove/Kluent)
-    * [Kakao](https://github.com/agoda-com/Kakao)
+    * [Unit Tests](https://en.wikipedia.org/wiki/Unit_testing) ([JUnit](https://junit.org/junit4/)) - a simple framework to write repeatable tests.
+    * [MockK](https://github.com/mockk) - mocking library for Kotlin
+    * [Kluent](https://github.com/MarkusAmshove/Kluent) - Fluent Assertion-Library for Kotlin
+    * [Kakao](https://github.com/agoda-com/Kakao) - Nice and simple DSL for Espresso in Kotlin
 * Gradle
     * [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - For reference purposes, here's an [article explaining the migration](https://medium.com/@evanschepsiror/migrating-to-kotlin-dsl-4ee0d6d5c977).
     * Plugins
