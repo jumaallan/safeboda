@@ -147,7 +147,6 @@ object Libraries {
 object TestLibraries {
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     const val jUnit = "junit:junit:${Versions.junit}"
-    const val jUnitTest = "androidx.test.ext:junit:${Versions.junitTest}"
     const val roboelectric = "org.robolectric:robolectric:${Versions.roboelectric}"
     const val androidXJUnit = "androidx.test.ext:junit:${Versions.androidXJUnit}"
     const val truth = "com.google.truth:truth:${Versions.truth}"
