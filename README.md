@@ -133,6 +133,8 @@ The Unit Tests here test the GraphQL call to the Github API
 
 <img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/unit_test_core.png"/>
 
+More tests can be added
+
 ## License
 ```
 MIT License
