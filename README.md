@@ -119,7 +119,7 @@ The UI Tests are tested on an Emulator Running Android 10 (API 29) - Might be fl
 
 The UI tests are written using Kakao
 
-<img src="https://github.com/jumaallan/safeboda/master/screenshots/ui_tests.png"/>
+<img src="https://github.com/jumaallan/safeboda/blob/master/screenshots/ui_tests.png"/>
 
 #### Unit Tests on App Module
 
