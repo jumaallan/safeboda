@@ -24,20 +24,10 @@ import java.net.HttpURLConnection
 
 open class MockRequestDispatcher : Dispatcher() {
 
-    override fun dispatch(request: RecordedRequest): MockResponse {
-        return when (request.path) {
-            EXISTING_SEARCH_PARAMS -> {
-                MockResponse()
-                    .setResponseCode(HttpURLConnection.HTTP_OK)
-                    .setBody(getJson("json/user_search.json"))
-            }
-            else -> throw IllegalArgumentException("Unknown Request Path ${request.path}")
-        }
-    }
-
-    companion object Constants {
-        const val EXISTING_SEARCH_PARAMS = "jumaallan"
-    }
+    override fun dispatch(request: RecordedRequest): MockResponse =
+        MockResponse()
+            .setResponseCode(HttpURLConnection.HTTP_OK)
+            .setBody(getJson("json/user_search.json"))
 }
 
 fun getJson(path: String): String {

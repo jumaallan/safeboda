@@ -15,9 +15,13 @@
  */
 package com.safeboda.core.data.remote
 
+import com.google.common.truth.Truth
 import com.safeboda.core.BaseTest
-import io.mockk.coEvery
-import kotlinx.coroutines.flow.flowOf
+import com.safeboda.core.data.sample.testBio
+import com.safeboda.core.data.sample.username
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
@@ -31,15 +35,18 @@ class UserOrganizationRepositoryTest : BaseTest() {
         userOrganizationRepository = UserOrganizationRepository(apollo)
     }
 
+    @InternalCoroutinesApi
     @Test
     fun fetchUserOrOrganization() {
-
-        coEvery {
-            userOrganizationRepository.fetchUserOrOrganization(
-                any(),
-                any(),
-                any()
-            )
-        } returns flowOf()
+        runBlocking {
+            val userOrOrganizationResponse = userOrganizationRepository.fetchUserOrOrganization(
+                username,
+                null
+            ) {
+            }
+            userOrOrganizationResponse.collect { userOrOrganization ->
+                Truth.assertThat(userOrOrganization?.bioHtml).isEqualTo(testBio)
+            }
+        }
     }
 }

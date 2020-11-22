@@ -46,7 +46,7 @@ open class BaseTest : BaseKoinTest() {
         okHttpClient = buildOkhttpClient(loggingInterceptor)
 
         apollo = ApolloClient.builder()
-            .serverUrl(Constants.BASE_URL)
+            .serverUrl(mockWebServer.url("/jumaallan"))
             .okHttpClient(okHttpClient)
             .build()
     }
