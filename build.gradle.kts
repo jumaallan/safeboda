@@ -46,12 +46,14 @@ buildscript {
 }
 
 subprojects {
+
     apply(plugin = BuildPlugins.detektPlugin)
-    apply(plugin = BuildPlugins.spotlessPlugin)
     detekt {
         config = files("${project.rootDir}/detekt.yml")
         parallel = true
     }
+
+    apply(plugin = BuildPlugins.spotlessPlugin)
     spotless {
         kotlin {
             target("**/*.kt")
