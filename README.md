@@ -111,11 +111,23 @@ All the dependencies (external libraries) are defined in the single place - Grad
 
 The screenshot below shows the tests that are done on the repo:
 
-### UI Tests
+#### UI Tests
 
 The UI tests are written using Kakao
 
 <img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/ui_tests.png"/>
+
+#### Unit Tests on App Module
+
+The Unit Tests here basically test the DAOs, Repo and the ViewModel
+
+<img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/unit_test_app.png"/>
+
+#### Unit Tests on Core Module
+
+The Unit Tests here test the GraphQL call to the Github API
+
+<img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/unit_test_core.png"/>
 
 ## License
 ```
