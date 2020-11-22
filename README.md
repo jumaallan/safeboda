@@ -113,6 +113,10 @@ The screenshot below shows the tests that are done on the repo:
 
 #### UI Tests
 
+The UI Tests are tested on an Emulator Running Android 10 (API 29) - Might be flaky on some API levels
+
+<img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/ui_tests.gif" width="320"/>
+
 The UI tests are written using Kakao
 
 <img src="https://github.com/jumaallan/safeboda/blob/feature/tests/screenshots/ui_tests.png"/>
