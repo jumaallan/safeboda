@@ -30,7 +30,7 @@ class SafebodaDebug : Safeboda() {
 
     private fun initStetho() {
         when {
-            !isRoboUnitTest() && BuildConfig.DEBUG -> {
+            !isRoboUnitTest() -> {
                 Stetho.initializeWithDefaults(this)
             }
         }
