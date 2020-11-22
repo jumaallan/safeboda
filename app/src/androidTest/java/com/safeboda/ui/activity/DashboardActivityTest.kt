@@ -225,7 +225,6 @@ class DashboardActivityTest : KoinTest {
         idle(3000)
     }
 
-
     class SafebodaUserScreen : Screen<SafebodaUserScreen>() {
         val noUserTitle = KTextView { withId(R.id.empty_state_title) }
         val noUserDescription = KTextView { withId(R.id.empty_state_description) }
