@@ -17,7 +17,6 @@ package com.safeboda.core
 
 import com.apollographql.apollo.ApolloClient
 import com.safeboda.core.dispatcher.MockRequestDispatcher
-import com.safeboda.core.utils.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.mockwebserver.MockWebServer
