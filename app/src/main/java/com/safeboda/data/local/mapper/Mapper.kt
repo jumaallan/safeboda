@@ -19,6 +19,7 @@ import com.safeboda.core.data.models.UserOrOrganization
 import com.safeboda.core.fragment.UserProfileFragment
 import com.safeboda.data.local.entities.Followers
 import com.safeboda.data.local.entities.Followings
+import com.safeboda.data.local.entities.User
 
 fun UserOrOrganization.Follower.toResponse(userLogin: String): Followers = Followers(
     0,
@@ -49,3 +50,63 @@ fun Followings.toResponse(): UserOrOrganization.Following = UserOrOrganization.F
         "", this.id.toString(), this.login, this.name, this.avatarUrl, this.bioHtml
     )
 )
+
+fun UserOrOrganization.toUser(indicatesLimitedAvailability: Boolean): User =
+    User(
+        0,
+        this.url,
+        this.avatarUrl,
+        this.bioHtml,
+        this.companyHtml,
+        this.email,
+        this.followersTotalCount,
+        this.followingTotalCount,
+        this.isDeveloperProgramMember,
+        this.isVerified,
+        this.isEmployee,
+        this.isViewer,
+        this.location,
+        this.login,
+        this.name,
+        this.organizationsCount,
+        this.repositoriesCount,
+        this.starredRepositoriesCount,
+        this.viewerCanFollow,
+        this.viewerIsFollowing,
+        this.websiteUrl,
+        this.isOrganization,
+        this.status?.emojiHtml.toString(),
+        indicatesLimitedAvailability,
+        this.status?.message.toString(),
+    )
+
+fun User?.toOrganization(followingList: List<UserOrOrganization.Following>, followersList: List<UserOrOrganization.Follower>): UserOrOrganization =
+    UserOrOrganization(
+        this!!.id.toString(),
+        this.url,
+        this.avatarUrl,
+        this.bioHtml,
+        this.companyHtml,
+        this.email,
+        followersList,
+        followingList,
+        this.followersTotalCount,
+        this.followingTotalCount,
+        this.isDeveloperProgramMember,
+        this.isVerified,
+        this.isEmployee,
+        this.isViewer,
+        this.location,
+        this.login.toString(),
+        this.name,
+        this.organizationsCount,
+        this.repositoriesCount,
+        this.starredRepositoriesCount,
+        this.viewerCanFollow,
+        this.viewerIsFollowing,
+        this.websiteUrl,
+        UserOrOrganization.Status(
+            this.emojiHtml, this.indicatesLimitedAvailability, this.message
+        ),
+        this.isOrganization,
+    )
