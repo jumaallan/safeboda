@@ -124,9 +124,11 @@ class UserOrganizationViewModel(
     private fun handleProfileLoading(
         login: String?,
     ) {
-        userOrganizationProfileModel.postValue(ApiModel.loading(
-            cachedListItems(true, login)
-        ))
+        userOrganizationProfileModel.postValue(
+            ApiModel.loading(
+                cachedListItems(true, login)
+            )
+        )
     }
 
     private suspend fun handleProfileFailure(
