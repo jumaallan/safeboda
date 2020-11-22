@@ -43,7 +43,7 @@ val fakeProfile = UserOrOrganization(
     url = "https://github.com/jumaallan",
     avatarUrl = "https://avatars2.githubusercontent.com/u/25085146?u=ce5247f3c267df4cdbe2af79efee9c848d1791e0&v=4",
     bioHtml = "Happy Dev",
-    companyHtml = "<div>Backbase</div>",
+    companyHtml = "Backbase",
     email = "allanjuma@gmail.com",
     follower = listOf(fakeFollower),
     following = listOf(fakeFollowing),
