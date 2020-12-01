@@ -83,8 +83,8 @@ dependencies {
     implementation(Libraries.apolloCoroutines)
     implementation(Libraries.ohttp)
     implementation(Libraries.loggingInterceptor)
-    debugImplementation(Libraries.chunkDebug)
-    releaseImplementation(Libraries.chunkRelease)
+    debugImplementation(Libraries.chunkerDebug)
+    releaseImplementation(Libraries.chunkerRelease)
 
     // Glide
     implementation(Libraries.glide)

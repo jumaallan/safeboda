@@ -34,7 +34,7 @@ object Versions {
     const val timber = "4.7.1"
     const val stetho = "1.5.1"
     const val leakCanary = "2.4"
-    const val chuck = "1.1.0"
+    const val chucker = "3.4.0"
 
     // Kotlin
     const val kotlinVersion = "1.4.0"
@@ -136,8 +136,8 @@ object Libraries {
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val stetho = "com.facebook.stetho:stetho:${Versions.stetho}"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
-    const val chunkDebug = "com.readystatesoftware.chuck:library:${Versions.chuck}"
-    const val chunkRelease = "com.readystatesoftware.chuck:library-no-op:${Versions.chuck}"
+    const val chunkerDebug = "com.github.chuckerteam.chucker:${Versions.chucker}"
+    const val chunkerRelease = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
 
     // Kotlin
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
