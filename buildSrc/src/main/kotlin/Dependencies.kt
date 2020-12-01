@@ -136,7 +136,7 @@ object Libraries {
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val stetho = "com.facebook.stetho:stetho:${Versions.stetho}"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
-    const val chunkerDebug = "com.github.chuckerteam.chucker:${Versions.chucker}"
+    const val chunkerDebug = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
     const val chunkerRelease = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
 
     // Kotlin
