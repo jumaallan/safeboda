@@ -38,7 +38,7 @@ val networkingModule: Module = module(override = true) {
             else -> HttpLoggingInterceptor.Level.BODY
         }
 
-        val chuckInterceptor = ChuckerInterceptor.Builder(androidContext())
+        val chuckerInterceptor = ChuckerInterceptor.Builder(androidContext())
             .collector(ChuckerCollector(androidContext()))
             .maxContentLength(250000L)
             .redactHeaders(emptySet())
@@ -49,7 +49,7 @@ val networkingModule: Module = module(override = true) {
 
         OkHttpClient.Builder()
             .addInterceptor(interceptor)
-            .addInterceptor(chuckInterceptor)
+            .addInterceptor(chuckerInterceptor)
             .addInterceptor(authInterceptor)
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
