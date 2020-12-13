@@ -15,18 +15,31 @@
  */
 package com.safeboda.data.repository
 
+import com.dropbox.android.external.store4.Fetcher
+import com.dropbox.android.external.store4.StoreBuilder
 import com.safeboda.data.local.dao.FollowersDao
 import com.safeboda.data.local.dao.FollowingDao
 import com.safeboda.data.local.dao.UserDao
 import com.safeboda.data.local.entities.Followers
 import com.safeboda.data.local.entities.Followings
 import com.safeboda.data.local.entities.User
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlin.time.ExperimentalTime
 
 class UserRepository(
     private val userDao: UserDao,
+    private val githubAPI: GithubAPI,
     private val followersDao: FollowersDao,
     private val followingDao: FollowingDao,
 ) {
+
+    @ExperimentalCoroutinesApi
+    @ExperimentalTime
+    @FlowPreview
+    fun fetchUserFollowers(login: String) = StoreBuilder.from(
+        fetcher = Fetcher.of { githubAPI.getFollowers(login) },
+    ).build()
 
     suspend fun saveUser(user: User) = userDao.insert(user)
 

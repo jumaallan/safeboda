@@ -36,11 +36,10 @@ import com.safeboda.data.repository.UserRepository
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.*
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.ORGANIZATIONS
 import com.safeboda.ui.viewmodel.UserOrganizationViewModel.ListItemProfile.MenuButtonItem.ButtonType.REPOSITORIES
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import timber.log.Timber
+import kotlin.time.ExperimentalTime
 
 class UserOrganizationViewModel(
     private val userOrganizationRepository: UserOrganizationRepository,
@@ -52,6 +51,11 @@ class UserOrganizationViewModel(
         MutableLiveData()
     val profileModel: LiveData<ApiModel<List<ListItemProfile>>>
         get() = userOrganizationProfileModel
+
+    @FlowPreview
+    @ExperimentalCoroutinesApi
+    @ExperimentalTime
+    fun fetchUserFollowers(login: String) = userRepository.fetchUserFollowers(login)
 
     fun fetchUserOrOrganization(login: String) {
         handleProfileLoading(login)
@@ -248,40 +252,40 @@ class UserOrganizationViewModel(
             ListItemProfile(ITEM_TYPE_HEADER, ID_HEADER) {
 
             constructor(profile: UserOrOrganization) :
-                this(
-                    profile.avatarUrl,
-                    profile.name,
-                    profile.login,
-                    profile.websiteUrl,
-                    profile.bioHtml,
-                    profile.companyHtml,
-                    profile.status?.emojiHtml,
-                    profile.status?.message,
-                    profile.location,
-                    profile.followersTotalCount,
-                    profile.followingTotalCount,
-                    profile.viewerIsFollowing,
-                    !profile.isOrganization && !profile.isViewer,
-                    profile.id
-                )
+                    this(
+                        profile.avatarUrl,
+                        profile.name,
+                        profile.login,
+                        profile.websiteUrl,
+                        profile.bioHtml,
+                        profile.companyHtml,
+                        profile.status?.emojiHtml,
+                        profile.status?.message,
+                        profile.location,
+                        profile.followersTotalCount,
+                        profile.followingTotalCount,
+                        profile.viewerIsFollowing,
+                        !profile.isOrganization && !profile.isViewer,
+                        profile.id
+                    )
 
             constructor(avatarUrl: String?, userName: String?, login: String?) :
-                this(
-                    avatarUrl,
-                    userName,
-                    login,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    -1,
-                    -1,
-                    false,
-                    false,
-                    ""
-                )
+                    this(
+                        avatarUrl,
+                        userName,
+                        login,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        -1,
+                        -1,
+                        false,
+                        false,
+                        ""
+                    )
         }
 
         data class FollowersItem(
