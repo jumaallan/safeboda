@@ -98,6 +98,14 @@ dependencies {
     kapt(Libraries.roomCompiler)
     implementation(Libraries.store)
 
+    // Network - Retrofit, OKHTTP
+    implementation(Libraries.retrofit)
+    implementation(Libraries.gson)
+    implementation(Libraries.ohttp)
+    implementation(Libraries.loggingInterceptor)
+    debugImplementation(Libraries.chunkerDebug)
+    releaseImplementation(Libraries.chunkerRelease)
+
     // Coroutines
     implementation(Libraries.coroutines)
     implementation(Libraries.coroutinesAndroid)

@@ -12,6 +12,7 @@ object Versions {
     const val crashlytics = "17.2.1"
 
     //Networking
+    const val retrofit = "2.9.0"
     const val okhttp = "4.8.1"
     const val loggingInterceptor = "4.8.1"
 
@@ -101,6 +102,8 @@ object Libraries {
     const val crashlytics = "com.google.firebase:firebase-crashlytics:${Versions.crashlytics}"
 
     // Networking - apollo, OKHTTP and loggingInterceptor
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val apollo = "com.apollographql.apollo:apollo-runtime:${Versions.apolloVersion}"
     const val apolloCoroutines =
         "com.apollographql.apollo:apollo-coroutines-support:${Versions.apolloVersion}"
