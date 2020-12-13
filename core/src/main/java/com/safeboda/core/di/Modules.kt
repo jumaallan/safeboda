@@ -59,7 +59,7 @@ val networkingModule: Module = module(override = true) {
     single {
 
         ApolloClient.builder()
-            .serverUrl(Constants.BASE_URL)
+            .serverUrl(Constants.GRAPHQL_BASE_URL)
             .okHttpClient(get())
             .build()
     }
