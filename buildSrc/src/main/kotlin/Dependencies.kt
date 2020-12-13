@@ -23,6 +23,7 @@ object Versions {
 
     // Room db
     const val room = "2.3.0-alpha02"
+    const val store = "4.0.0"
 
     // Lifecycle
     const val lifecycle = "2.3.0-alpha07"
@@ -119,6 +120,7 @@ object Libraries {
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
     const val room = "androidx.room:room-ktx:${Versions.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+    const val store = "com.dropbox.mobile.store:store4:${Versions.store}"
 
     // Lifecycle
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"

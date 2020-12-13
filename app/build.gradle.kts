@@ -96,6 +96,7 @@ dependencies {
     implementation(Libraries.room)
     implementation(Libraries.roomRuntime)
     kapt(Libraries.roomCompiler)
+    implementation(Libraries.store)
 
     // Coroutines
     implementation(Libraries.coroutines)
